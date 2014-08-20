@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>CSI Tool</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://blog.halper.in/drafts/csi-tool.html" rel="bookmark"
+           title="Permalink to CSI Tool">CSI Tool</a></h1>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="dhalperi">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-08-19T22:03:00">
+                Published: Tue 19 August 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/reproducibility.html">reproducibility</a> <a href="http://blog.halper.in/tag/wi-fi.html">wi-fi</a> </p>
+</footer><!-- /.post-info -->      <p>In this post, I'll tell you about the project that got me into the eScience Institute -- the project that first made me realize that helping smarter people than I am do cooler things than I would think of is a great reason to go to work.</p>
+<blockquote class="twitter-tweet" lang="en"><p>The updated &quot;papers my thesis tool enabled&quot; list—37! Enabling smart ppl to do cool things is what gets me out of bed <a href="http://dhalperi.github.io/linux-80211n-csitool/#external">dhalperi.github.io/linux-80211n-c...</a></p>&mdash; dhalperi (@dhalperi) <a href="https://twitter.com/dhalperi/statuses/501955931887112192">August 20, 2014</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h1>The setup</h1>
+<p>In 2008, I had the privilege of interning with <a href="http://r.halper.in/coauth/anmol">Anmol Sheth</a> at the now-defunct Intel <strike>Research</strike> Labs Seattle. At the time, I was studying wireless networking, in particular this funny new IEEE Wi-Fi standard called "802.11n" that had recently reached draft status and was nearing completion. My collaborators and I (Anmol, postdoc <a href="http://r.halper.in/coauth/wenjun">Wenjun Hu</a>, and my advisor---and lablet director---<a href="http://r.halper.in/coauth/djw">David Wetherall</a>) found 802.11n really exciting because it represented a huge step forward in the best performance (from 54 Mbps to 600 Mbps!) and also a dramatic increase in the complexity of the devices. The increased speed meant that Wi-Fi could potentially be used for lots of new applications, but the increased complexity means our algorithms needed to be smarter. In other words, there was lots of new science to be done!</p>
+<p>Intel was one of the first chip makers to market with 802.11n Wi-Fi chips, and through my blue-badge intern position we had the inside scoop on Intel's confidential IP---design docs, driver source code, and even firmware code. As always in research, "do what only you can do" or, in other words, exploit a competitive advantage if you have it.</p>
+<h1>The research</h1>
+<p>My goal for the summer was to try and find a way to "reign in" all the new complexity of 802.11n. The key, I thought, was to find a way to measure the wireless link---usually known to you only by the 0--5 bars you see in your iPhone's signal strength indicator---in a way that reflected accurately all the details relevant to the new technology.</p>
+<p>I spent the summer completely immersed in Intel's drivers and firmware code, trawling the internal network for design docs and by the end of 2008, I had produced a tool to measure the 802.11n wireless channel state information (CSI) at a fine-grained level never seen before by the computer science community. A hyperbolic metaphor that gets the point across: whereas most research in my field studied Wi-Fi through a magnifying glass, the tool I built was more like an electron microscope.</p>
+<p><center>
+<img alt="Sample CSI" src="http://blog.halper.in/linux-80211n-csitool/img/csi.png" />
+</center>
+You don't need to understand this picture, but this graph shows the radio frequency-selective signal strength (SNR) of four different Wi-Fi links. All that we could ever see before this was the average signal strength across all frequencies, which is actually equal for these four like, hiding important effects.</p>
+<p>Over time, my collaborators and I used this tool for <a href="http://blog.halper.in/linux-80211n-csitool/#publications">several research projects</a> including collaborations with other Intel folks, and I presented <a href="http://r.halper.in/paper/effective_snr_sigcomm10">the paper</a> that eventually became <a href="http://r.halper.in/paper/halperin_thesis">my thesis</a> in August 2010 at SIGCOMM in New Delhi. With another year's worth of work (and an awesome internship at Microsoft Research in between) I got to graduate in summer 2012.</p>
+<p>Done, right?</p>
+<h1>Can I use it?</h1>
+<p>At the Q/A session for my SIGCOMM talk, <a href="http://www0.cs.ucl.ac.uk/staff/b.karp/">Brad Karp</a> asked whether the tool we developed was available for others to use. The answer seemed obvious to me: "well, sure -- it'll be a bit of work, so give me a little while, but yes!" After the talk <a href="http://www0.cs.ucl.ac.uk/staff/k.jamieson/">Kyle Jamieson</a> (who, not coincidentally, works with Brad at UCL), came up to me and asked "Did I hear correctly that you just committed to releasing your tool?" Again, the answer was -- to me -- obvious:</p>
+<p><em>Of course</em> I would want to put the tool out there for others to use. By this point I had spent several years working with it, so long that I was a little sick of it. At the same time, I knew these measurements were not available to anyone else, and I knew we had but barely scratched the surface of the things that could be done with this data. From a <em>purely selfish</em> point of view, I wanted the tool out there so all my time would be worth more than I and my close collaborators could wring out of it.</p>
+<p>In retrospect, I get why Kyle was surprised. Computer science in general, and networking in specific, is pretty bad about releasing code and/or data. We collaborate with industry a lot, and industry does not like to release (what they perceive as) their valuable IP. The main industrial research lab in my field was Microsoft Research---at NSDI 2011, there were 8 MSR papers out of 27 total---and they were especially closed. (<em>Note: this situation is changing. Individual MSR researchers now have much more freedom to release code and data, and MSR has gotten <strong>MUCH</strong> better on this score in recent years!</em>) And I <em>was</em> speaking for Intel Labs, after all.</p>
+<h1>Making the tool open</h1>
+<h2>Opening up the code</h2>
+<p>With regards to code dissemination, Intel was just great. My tool really consisted of three components:</p>
+<ol>
+<li>a modified version of Intel's firmware for a specific (IWL5300) Intel Wi-Fi device that exported the channel measurements from the Wi-Fi chip. Intel let me release this firmware, in closed-source form.</li>
+<li>heavily modified Linux kernel drivers, which turn a production-quality network card into a flexible platform for experimentation. Intel let me put these modifications to their already-open-source drivers <a href="https://github.com/dhalperi/linux-80211n-csitool">up on GitHub</a> as a Linux kernel fork.</li>
+<li>a pile of shell scripts to control experiments, C programs to interface with the kernel, and MATLAB scripts to analyze the data. These are <a href="https://github.com/dhalperi/linux-80211n-csitool-supplementary">open source on GitHub</a> as well.</li>
+</ol>
+<p>I would say it took me about 3 months after SIGCOMM before the code was available -- if I recall correctly, the first people started to use it in November 2010. We had a web page with setup instructions and other information on the Intel Labs site, and this has since moved to being hosted as a <a href="https://dhalperi.github.com/linux-80211n-csitool">GitHub page</a>.</p>
+<h2>Telling people about it</h2>
+<p>Once the code was up on GitHub, we did the obvious thing of emailing everyone who had asked. However--and this predates my connection to the larger discussion and citation and accreditation of software--we really wanted to tell the broader community that we had released the tool, and give them a way to acknowledge it. We decided to write a 1-page editorial article as an advertisement in the <em>Computer Communication Review (CCR)</em>, the quarterly journal of SIGCOMM (this was David's idea, and fairly new ground at the time; thankfully, the editors agreed a 1-page editorial was a good use of space). We also asked people using our tool to cite this paper if they wished to acknowledge our work.</p>
+<h1>The aftermath</h1>
+<h2>Support</h2>
+<p>Of course, making the tool open was not the end of it; supporting it and maintaining it took a lot of effort.</p>
+<p>Eventually, I had to stop forward-porting my changes to newer and newer version of the Linux kernel, because my poor resolutions of merge conflicts were more likely to introduce bugs than they were to fix them. (Thanks to <a href="http://www.cs.utexas.edu/~swati/">Swati Rallapalli</a> and her colleagues at UT Austin for finding several of these issues!)</p>
+<p>Other issues came up when people did not just <em>use</em> the tool and its outputs, but really tried to <strong>understand</strong> it and the analysis scripts at a deep level, or tried to use it for purposes I had never intended. Some great discussions with <a href="http://people.csail.mit.edu/rahul/">Hariharan Rahul</a> led to my own better understanding of the physical causes underlying some of the code in my own analysis scripts, and changes to e.g., <a href="https://github.com/dhalperi/linux-80211n-csitool-supplementary/commit/284137ebd31ac616689dc42f26798a6e38af90d4">add better comments</a>.</p>
+<p>I still support the CSI Tool to this day, and on the average week it seems I get between 1 and 5 emails with questions. Keeping the FAQ up to date would be in my best interests, but who has time...?!</p>
+<h2>Users and uses</h2>
+<p>At the time of writing, it has been three-and-a-half years since that CCR article came out in January 2011. For the first year and a half or so, I kept a <a href="http://dhalperi.github.io/linux-80211n-csitool/#external">list of the papers that other people had written</a> using my tool. I updated the list mainly when I received a citation notification on <a href="http://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;citation_for_view=C6k0OjMAAAAJ:zYLM7Y9cAGgC">Google Scholar</a>, after skimming the paper to see whether they had actually downloaded and used the tool, or not. Eventually I lost track.</p>
+<p>Earlier today, <a href="http://www.cse.unsw.com/db/staff/staff_details.php?ID=yogitac">Yogita Chapre</a> emailed me to ask if I would add her forthcoming paper as the 18th paper on the list. I did so, and then spent a few hours trawling Google Scholar to find papers that use the tool that have been out since. The final tally: I found <em>37 papers</em> we did not collaborate on that used our tool!</p>
+<p><center>
+<table>
+<tr><td><strong>Year</strong></td><td><strong>Known papers using the CSI tool</strong></td></tr>
+<tr><td>2014</td><td>15</td></tr>
+<tr><td>2013</td><td>8</td></tr>
+<tr><td>2012</td><td>11</td></tr>
+<tr><td>2011</td><td>2</td></tr>
+<tr><td>2010</td><td>1, written by an Intel employee with early access</td></tr>
+</table>
+</center></p>
+<p>37 real uses in 3.5 years may seem small, but I call it pretty large when it requires the user to do things like buy specialized hardware and recompile the Linux kernel -- not to mention deal with buggy research code that's barely better than grad-ware and freezes the computer when it crashes.</p>
+<p><em><strong>Some text about what people have done with the tool and how it's surprising to me.</strong></em></p>
+<h1>Wrap up</h1>
+<p>Making the CSI Tool an open, available, useable public resource was ultimately a rewarding experience for me. It may have slowed down my research -- taking 2 to 3 months of work in late 2010 before it was ready for release -- but then again, the improvements I made to the code and analysis scripts probably sped up the work I did to wrap up my thesis. I still spend a few hours every month in support of new users, which I am worse at over time as my knowledge of the code and the quirks of Intel's Wi-Fi driver is slowly evaporating. But at the end of the day, I can go to bed thinking that there have been dozens of projects, many of which based on really cool ideas I would never have though of, that came to be almost certainly exclusively because I took my thesis research and opened it up to the world.</p>
+<p>Looking forward to keeping it going tomorrow!</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
