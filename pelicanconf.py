@@ -36,3 +36,5 @@ SOCIAL = (('GitHub', 'https://github.com/dhalperi'),
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
+
+STATIC_PATHS = ['CNAME']
