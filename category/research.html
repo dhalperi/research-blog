@@ -21,7 +21,82 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-08-20-daily.html">2014-08-20 daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-08-26-daily.html">2014-08-26 daily</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-08-26T23:07:00">
+                Published: Tue 26 August 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/flink.html">flink</a> </p>
+</footer><!-- /.post-info --><p>One of the goals for our <a href="http://github.com/uwescience/raco">Relational Algebra COmpiler (Raco)</a> is that it should be a "relational algebra middleware" for many big data system backends. At the moment, we support: Myria (Myria Team) and Grappa (Brandon Myers), plus anything that speaks SQL including SQL Server but also Hive or Shark. Expanding this set will make the middleware vision real.</p>
+<p>I spent today hacking on the Raco → <a href="http://flink.incubator.apache.org/">Flink</a> pipeline. As of tonight, <a href="https://github.com/uwescience/raco/tree/flink">I can produce Flink Java programs</a> from MyriaL programs for a fairly fleshed-out SPJA subset of the language. I'm hoping that this experiment will</p>
+<ol>
+<li>help us make Raco a better middleware for big data systems. (stay tuned!)</li>
+<li>lower the barrier to entry to using Flink (do you REALLY want to write Java code <a href="https://github.com/apache/incubator-flink/blob/ce3ed7e0b769ab3ddc9a96666028ef45f6b01b6d/flink-examples/flink-java-examples/src/main/java/org/apache/flink/example/java/relational/RelationalQuery.java">like this</a>?)</li>
+<li>make it significantly easier to compare big data systems head-to-head.  (stay tuned!)</li>
+</ol>
+<p>Want to try exporting code for your favorite system from Raco/MyriaL? <a href="mailto:raco@cs.washington.edu">Let us know!</a></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-08-25-daily.html" rel="bookmark"
+                           title="Permalink to 2014-08-25 daily">2014-08-25 daily</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-08-25T00:00:00">
+                Published: Mon 25 August 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info -->                <p>Another fantastic hack session with <a href="http://armbrustlab.ocean.washington.edu/people/clayton">Sophie</a> today. We analyzed the quality and quantity of data in the existing files, including determining which of the 64K SeaFlow samples are within a reasonable amount (say, 1σ) of the "average" SeaFlow sample according to the calibration beads. Surprisingly/hearteningly, the vast majority of ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-08-25-daily.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-08-22-daily.html" rel="bookmark"
+                           title="Permalink to 2014-08-22 daily">2014-08-22 daily</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-08-22T00:00:00">
+                Published: Fri 22 August 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info -->                <p>Started the day with a fantastic meeting with <a href="http://armbrustlab.ocean.washington.edu/people/clayton">Sophie Clayton</a> in the Armbrust Lab. Sophie is trying to analyze the entire SeaFlow corpus in <a href="http://myria.cs.washington.edu">Myria</a>. Today: she wrote queries to analyze ~64K files at once in MyriaL, which she is logging on <a href="https://github.com/uwescience/seaflow-myria/wiki">a GitHub wiki</a>. We ran into some memory ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-08-22-daily.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-08-20-daily.html" rel="bookmark"
+                           title="Permalink to 2014-08-20 daily">2014-08-20 daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-08-20T00:00:00">
                 Published: Wed 20 August 2014
@@ -32,15 +107,10 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/steering.html">steering</a> </p>
-</footer><!-- /.post-info --><p>Today I hacked more on the blog organization and layout; fighting with GitHub CNAMEs was harder than I expected it to be. Eventually I settled on creating a sub-project for the blog as hosting it in my personal <code>dhalperi/dhalperi.github.io</code> repository affected the URLs for other projects like the <a href="http://dhalperi.github.io/linux-80211n-csitool">CSI Tool</a>.</p>
-<p>Met with <a href="http://www.jevinwest.org/">Jevin West</a> and Sandra Anderson to talk about Sandra's work on analyzing citation networks with <a href="https://demo.myria.cs.washington.edu/queries?max=23223&amp;limit=1">Myria</a>. Sandra is a rising sophomore at Cornell, of undecided major but spectacular in both CS and Math. She started 7 weeks ago with no prior experience "thinking like a database", and in that time she has contributed lots of interesting ideas, independently re-derived much of the existing database wisdom about how to efficiently solve problems like transitive closure, and written some of the most complicated, iterative MyriaL programs to date. There will be a follow-up post on Sandra's work!</p>
-<p>More eScience steering committee action. We had our third session with the short-term evaluation team, which seems to be going great. So far, <a href="http://data2insight.com/about/#the_page">Veronica</a> has managed to coerce 20+ fiercely independent minds to work together on the steps in our five-year vision for the project and to establish key evaluations. I need to learn more about the process and goals of evaluation---I'm having a hard time following along/understanding why we're doing what we're doing, but I can see amazing outputs from this process already!</p>
-<p>Some SQLShare planning and support. Seems like we're getting closer to needing/merging the rewrite of the Python client I started a year ago.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>Today I hacked more on the blog organization and layout; fighting with GitHub CNAMEs was harder than I expected it to be. Eventually I settled on creating a sub-project for the blog as hosting it in my personal <code>dhalperi/dhalperi.github.io</code> repository affected the URLs for other projects like ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-08-20-daily.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
