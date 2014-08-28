@@ -21,7 +21,89 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-08-26-daily.html">2014-08-26 daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-08-27-daily.html">2014-08-27 daily</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-08-27T00:00:00">
+                Published: Wed 27 August 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/flink.html">flink</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/asterios.html">asterios</a> <a href="http://blog.halper.in/tag/stephan.html">stephan</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/jake.html">jake</a> <a href="http://blog.halper.in/tag/joe.html">joe</a> </p>
+</footer><!-- /.post-info --><p>I began the day with a Skype call with <a href="http://www.user.tu-berlin.de/asteriosk/">Asterios</a> and <a href="https://www.dima.tu-berlin.de/menue/staff/stephan_ewen/">Stephan</a> from the Flink team. I learned some more things about how to use and test the code I write for Flink, and several places where I did not quite understand the low-level Flink behavior. I have a long list of fixes and todos, but the code generator is looking pretty good! Check out the code below.</p>
+<p><a href="https://twitter.com/7andrew7">Andrew</a>, <a href="http://r.halper.in/coauth/billhowe">Bill</a>, <a href="http://r.halper.in/coauth/jakevdp">Jake</a>, <a href="https://sites.google.com/site/josephlhellerstein/">Joe</a> and I met met to discuss the Fall edition of the Data Science Incubator. We are really excited to run the program again, and we're hoping it will be productive and fun! </p>
+<p>For more information about the UW Data Science Incubator: <a href="http://data.uw.edu/incubator/">http://data.uw.edu/incubator/</a></p>
+<hr />
+<p>My <a href="https://github.com/uwescience/raco/blob/d0ea4720271756be9cbf8ecbab4515cab0d17f09/raco/language/flink/test_flink.py#L142">Raco → Flink code generator</a> automatically produced the following Flink-0.6 Java program from the 8-line MyriaL program embedded in the source below:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">org.apache.flink.api.common.functions.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.aggregation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.tuple.*</span><span class="o">;</span>
+
+<span class="c1">// Original query:</span>
+<span class="c1">//   emp = scan(public:adhoc:employee);</span>
+<span class="c1">//   emp1 = scan(public:adhoc:employee);</span>
+<span class="c1">//   j = [from emp, emp1</span>
+<span class="c1">//        where (emp1.$2 = &quot;Magdalena Balazinska&quot;</span>
+<span class="c1">//               or emp1.salary &lt; 25000)</span>
+<span class="c1">//          and emp1.$0 = emp.$0</span>
+<span class="c1">//        emit emp1.*];</span>
+<span class="c1">//   store(j, OUTPUT);</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FlinkQuery</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+
+    <span class="kd">final</span> <span class="n">ExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">ExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+
+    <span class="c1">// Scan(public:adhoc:employee)</span>
+    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">load_employee</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+
+    <span class="c1">// Apply(id=$0)[employee]</span>
+    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple1</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">Apply1</span> <span class="o">=</span> <span class="n">employee</span><span class="o">.</span><span class="na">project</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="c1">// Scan(public:adhoc:employee)</span>
+    <span class="c1">// skipped -- already computed</span>
+
+    <span class="c1">// Select((($2 = &quot;Magdalena Balazinska&quot;) or (salary &lt; 25000)))[employee]</span>
+    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">Select1</span> <span class="o">=</span> <span class="n">employee</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="k">new</span> <span class="n">FilterFunction</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">filter</span><span class="o">(</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="o">((</span><span class="n">t</span><span class="o">.</span><span class="na">f2</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;Magdalena Balazinska&quot;</span><span class="o">))</span> <span class="o">||</span> <span class="o">((</span><span class="n">t</span><span class="o">.</span><span class="na">f3</span><span class="o">)</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mi">25000L</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}).</span><span class="na">name</span><span class="o">(</span><span class="s">&quot;(($2 = \&quot;Magdalena Balazinska\&quot;) or (salary &lt; 25000))&quot;</span><span class="o">);</span>
+
+    <span class="c1">// ProjectingJoin(($1 = $0); $1, $2, $3, $4)[Apply1,Select1]</span>
+    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">ProjectingJoin1</span> <span class="o">=</span> <span class="n">Apply1</span><span class="o">.</span><span class="na">joinWithHuge</span><span class="o">(</span><span class="n">Select1</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">equalTo</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">projectSecond</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="c1">// Apply(id=id,dept_id=dept_id,name=name,salary=salary)[ProjectingJoin1]</span>
+    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">Apply2</span> <span class="o">=</span> <span class="n">ProjectingJoin1</span><span class="o">.</span><span class="na">project</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="c1">// Store(public:adhoc:OUTPUT)[Apply2]</span>
+    <span class="n">Apply2</span><span class="o">.</span><span class="na">writeAsCsv</span><span class="o">(</span><span class="s">&quot;file:///tmp/flink/OUTPUT&quot;</span><span class="o">);</span>
+    <span class="n">env</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="s">&quot;MyriaL query&quot;</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kd">static</span> <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">load_employee</span><span class="o">(</span><span class="n">ExecutionEnvironment</span> <span class="n">env</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="na">readCsvFile</span><span class="o">(</span><span class="s">&quot;file:///tmp/flink/employee&quot;</span><span class="o">).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-08-26-daily.html" rel="bookmark"
+                           title="Permalink to 2014-08-26 daily">2014-08-26 daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-08-26T23:07:00">
                 Published: Tue 26 August 2014
@@ -30,21 +112,12 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
         </address>
-<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
-<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/flink.html">flink</a> </p>
-</footer><!-- /.post-info --><p>One of the goals for our <a href="http://github.com/uwescience/raco">Relational Algebra COmpiler (Raco)</a> is that it should be a "relational algebra middleware" for many big data system backends. At the moment, we support: Myria (Myria Team) and Grappa (Brandon Myers), plus anything that speaks SQL including SQL Server but also Hive or Shark. Expanding this set will make the middleware vision real.</p>
-<p>I spent today hacking on the Raco → <a href="http://flink.incubator.apache.org/">Flink</a> pipeline. As of tonight, <a href="https://github.com/uwescience/raco/tree/flink">I can produce Flink Java programs</a> from MyriaL programs for a fairly fleshed-out SPJA subset of the language. I'm hoping that this experiment will</p>
-<ol>
-<li>help us make Raco a better middleware for big data systems. (stay tuned!)</li>
-<li>lower the barrier to entry to using Flink (do you REALLY want to write Java code <a href="https://github.com/apache/incubator-flink/blob/ce3ed7e0b769ab3ddc9a96666028ef45f6b01b6d/flink-examples/flink-java-examples/src/main/java/org/apache/flink/example/java/relational/RelationalQuery.java">like this</a>?)</li>
-<li>make it significantly easier to compare big data systems head-to-head.  (stay tuned!)</li>
-</ol>
-<p>Want to try exporting code for your favorite system from Raco/MyriaL? <a href="mailto:raco@cs.washington.edu">Let us know!</a></p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/flink.html">flink</a> </p>
+</footer><!-- /.post-info -->                <p>One of the goals for our <a href="http://github.com/uwescience/raco">Relational Algebra COmpiler (Raco)</a> is that it should be a "relational algebra middleware" for many big data system backends. At the moment, we support: Myria (Myria Team) and Grappa (Brandon Myers), plus anything that speaks SQL including SQL Server but also Hive or Shark ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-08-26-daily.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -61,8 +134,8 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
         </address>
-<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
-<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
 </footer><!-- /.post-info -->                <p>Another fantastic hack session with <a href="http://armbrustlab.ocean.washington.edu/people/clayton">Sophie</a> today. We analyzed the quality and quantity of data in the existing files, including determining which of the 64K SeaFlow samples are within a reasonable amount (say, 1σ) of the "average" SeaFlow sample according to the calibration beads. Surprisingly/hearteningly, the vast majority of ...</p>
                 <a class="readmore" href="http://blog.halper.in/2014-08-25-daily.html">read more</a>
                 </div><!-- /.entry-content -->
@@ -83,8 +156,8 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
         </address>
-<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
-<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
 </footer><!-- /.post-info -->                <p>Started the day with a fantastic meeting with <a href="http://armbrustlab.ocean.washington.edu/people/clayton">Sophie Clayton</a> in the Armbrust Lab. Sophie is trying to analyze the entire SeaFlow corpus in <a href="http://myria.cs.washington.edu">Myria</a>. Today: she wrote queries to analyze ~64K files at once in MyriaL, which she is logging on <a href="https://github.com/uwescience/seaflow-myria/wiki">a GitHub wiki</a>. We ran into some memory ...</p>
                 <a class="readmore" href="http://blog.halper.in/2014-08-22-daily.html">read more</a>
                 </div><!-- /.entry-content -->
@@ -105,7 +178,7 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
         </address>
-<p>In <a href="http://blog.halper.in/category/misc.html">misc</a>. </p>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/grappa.html">grappa</a> </p>
 </footer><!-- /.post-info -->                <p>Today we met with UW-IT to talk about the future of <a href="http://sqlshare.escience.washington.edu">SQLShare</a>. We will be starting some sprints in the fall to prepare it to be transitioned to them as an on-campus service.</p>
 <p>Spent a fair bit of time reading and discussing <a href="http://homes.cs.washington.edu/~bdmyers/">Brandon Myers'</a> paper using <a href="http://github.com/uwescience/raco">Raco</a> to compile high-level ...</p>
@@ -128,8 +201,8 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
         </address>
-<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
-<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/steering.html">steering</a> </p>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/steering.html">steering</a> <a href="http://blog.halper.in/tag/interns.html">interns</a> </p>
 </footer><!-- /.post-info -->                <p>Today I hacked more on the blog organization and layout; fighting with GitHub CNAMEs was harder than I expected it to be. Eventually I settled on creating a sub-project for the blog as hosting it in my personal <code>dhalperi/dhalperi.github.io</code> repository affected the URLs for other projects like ...</p>
                 <a class="readmore" href="http://blog.halper.in/2014-08-20-daily.html">read more</a>
                 </div><!-- /.entry-content -->
@@ -150,8 +223,8 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
         </address>
-<p>In <a href="http://blog.halper.in/category/research.html">Research</a>. </p>
-<p>tags: <a href="http://blog.halper.in/tag/research.html">research</a> </p>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/jake.html">jake</a> <a href="http://blog.halper.in/tag/hogg.html">hogg</a> </p>
 </footer><!-- /.post-info -->                <p>I want to start a research blog. I stole <a href="http://jakevdp.github.io/">Jake's Pythonic Perambulations</a> basic idea and a little bit of <a href="https://github.com/jakevdp/PythonicPerambulations">code</a> to get started, and I intend to micro-blog here in the <a href="http://hoggresearch.blogspot.com/">Hogg style</a>. We'll see how it goes.</p>
                 <a class="readmore" href="http://blog.halper.in/first-post.html">read more</a>
                 </div><!-- /.entry-content -->
