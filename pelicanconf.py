@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Daniel Halperin'
 SITENAME = u"Dan's research blog"
-SITEURL = 'http://blog.halper.in/'
+SITEURL = 'http://blog.halper.in'
 
 PATH = 'content'
 DISPLAY_CATEGORIES_ON_MENU = False
@@ -36,5 +36,8 @@ SOCIAL = (('GitHub', 'https://github.com/dhalperi'),
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
+
+# Use pretty typesetting
+TYPOGRIFY = True
 
 STATIC_PATHS = ['CNAME']
