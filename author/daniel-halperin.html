@@ -21,7 +21,33 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-08-27-daily.html">2014-08-27 daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-08-28-daily.html">2014-08-28&nbsp;daily</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-08-28T00:00:00">
+                Published: Thu 28 August 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/francois.html">francois</a> <a href="http://blog.halper.in/tag/jarred.html">jarred</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> </p>
+</footer><!-- /.post-info --><p>We had our monthly <a href="http://armbrustlab.ocean.washington.edu/resources/seaflow/">SeaFlow</a>/eScience group meeting meeting. For this grant the oceanographers have been doing lots of new science using tools like <a href="http://sqlshare.escience.washington.edu">SQLShare</a>, <a href="http://demo.myria.cs.washington.edu">Myria</a>, and <a href="https://github.com/uwescience/popcycle">popcycle</a>, our software for storing indexing and analyzing SeaFlow data. We discussed needed improvements to popcycle and to the <a href="https://github.com/uwescience/seaflow-viz">seaflow-viz</a> web dashboard (see it here <a href="https://uwescience.github.com/seaflow-viz">https://uwescience.github.com/seaflow-viz</a>) for visualizing cruise performance and science in real time. <a href="http://r.halper.in/coauth/sclayton">Sophie</a> gave an update on the cruise she got back from a few weeks ago and on our work in the last two weeks analyzing cell diversity in Myria. <a href="http://r.halper.in/coauth/fribalet">Francois</a> gave an update on the new proposal we submitted to analyze population dynamics in SeaFlow data. Thinking ahead, we talked about <a href="http://r.halper.in/coauth/swalwell">Jarred</a>&#8216;s agenda for scaling up SeaFlow data collection and what needs that would entail for automated instrument monitoring and the underlying data service; and we talked about how to demo &#8220;Myria for SeaFlow&#8221; to a broader&nbsp;audience.</p>
+<p>In the rest of the day, I worked on making <a href="http://github.com/uwescience/raco">Raco</a> better: adding some new optimization rules to streamline the types of plans that are emitted by the Flink compiler, and hacking/code reviewing with <a href="http://r.halper.in/coauth/bdmyers">Brandon</a> to get the <a href="https://github.com/uwescience/raco/pull/269">MyriaL → Grappa support</a> working better, and fixing a few little issues that cropped&nbsp;up.</p>
+<p>I also finally implemented, evaluated, and deployed the <a href="https://github.com/uwescience/myria/pull/609">50x&#8212;100x speedup <span class="caps">SQL</span> query mod</a> to the bottleneck query in <a href="http://r.halper.in/coauth/domoritz">Dominik</a>&#8216;s fantastic Myria profiler. Now <a href="https://demo.myria.cs.washington.edu/profile?queryId=32305">the profiling <span class="caps">UI</span> is super-snappy even for long programs</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-08-27-daily.html" rel="bookmark"
+                           title="Permalink to 2014-08-27 daily">2014-08-27&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-08-27T00:00:00">
                 Published: Wed 27 August 2014
@@ -32,72 +58,15 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/flink.html">flink</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/asterios.html">asterios</a> <a href="http://blog.halper.in/tag/stephan.html">stephan</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/jake.html">jake</a> <a href="http://blog.halper.in/tag/joe.html">joe</a> </p>
-</footer><!-- /.post-info --><p>I began the day with a Skype call with <a href="http://www.user.tu-berlin.de/asteriosk/">Asterios</a> and <a href="https://www.dima.tu-berlin.de/menue/staff/stephan_ewen/">Stephan</a> from the Flink team. I learned some more things about how to use and test the code I write for Flink, and several places where I did not quite understand the low-level Flink behavior. I have a long list of fixes and todos, but the code generator is looking pretty good! Check out the code below.</p>
-<p><a href="https://twitter.com/7andrew7">Andrew</a>, <a href="http://r.halper.in/coauth/billhowe">Bill</a>, <a href="http://r.halper.in/coauth/jakevdp">Jake</a>, <a href="https://sites.google.com/site/josephlhellerstein/">Joe</a> and I met met to discuss the Fall edition of the Data Science Incubator. We are really excited to run the program again, and we're hoping it will be productive and fun! </p>
-<p>For more information about the UW Data Science Incubator: <a href="http://data.uw.edu/incubator/">http://data.uw.edu/incubator/</a></p>
-<hr />
-<p>My <a href="https://github.com/uwescience/raco/blob/d0ea4720271756be9cbf8ecbab4515cab0d17f09/raco/language/flink/test_flink.py#L142">Raco → Flink code generator</a> automatically produced the following Flink-0.6 Java program from the 8-line MyriaL program embedded in the source below:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">org.apache.flink.api.common.functions.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.aggregation.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.tuple.*</span><span class="o">;</span>
-
-<span class="c1">// Original query:</span>
-<span class="c1">//   emp = scan(public:adhoc:employee);</span>
-<span class="c1">//   emp1 = scan(public:adhoc:employee);</span>
-<span class="c1">//   j = [from emp, emp1</span>
-<span class="c1">//        where (emp1.$2 = &quot;Magdalena Balazinska&quot;</span>
-<span class="c1">//               or emp1.salary &lt; 25000)</span>
-<span class="c1">//          and emp1.$0 = emp.$0</span>
-<span class="c1">//        emit emp1.*];</span>
-<span class="c1">//   store(j, OUTPUT);</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FlinkQuery</span> <span class="o">{</span>
-
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-
-    <span class="kd">final</span> <span class="n">ExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">ExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
-
-    <span class="c1">// Scan(public:adhoc:employee)</span>
-    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">load_employee</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
-
-    <span class="c1">// Apply(id=$0)[employee]</span>
-    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple1</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">Apply1</span> <span class="o">=</span> <span class="n">employee</span><span class="o">.</span><span class="na">project</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-
-    <span class="c1">// Scan(public:adhoc:employee)</span>
-    <span class="c1">// skipped -- already computed</span>
-
-    <span class="c1">// Select((($2 = &quot;Magdalena Balazinska&quot;) or (salary &lt; 25000)))[employee]</span>
-    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">Select1</span> <span class="o">=</span> <span class="n">employee</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="k">new</span> <span class="n">FilterFunction</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">filter</span><span class="o">(</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="o">((</span><span class="n">t</span><span class="o">.</span><span class="na">f2</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;Magdalena Balazinska&quot;</span><span class="o">))</span> <span class="o">||</span> <span class="o">((</span><span class="n">t</span><span class="o">.</span><span class="na">f3</span><span class="o">)</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mi">25000L</span><span class="o">));</span>
-        <span class="o">}</span>
-    <span class="o">}).</span><span class="na">name</span><span class="o">(</span><span class="s">&quot;(($2 = \&quot;Magdalena Balazinska\&quot;) or (salary &lt; 25000))&quot;</span><span class="o">);</span>
-
-    <span class="c1">// ProjectingJoin(($1 = $0); $1, $2, $3, $4)[Apply1,Select1]</span>
-    <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">ProjectingJoin1</span> <span class="o">=</span> <span class="n">Apply1</span><span class="o">.</span><span class="na">joinWithHuge</span><span class="o">(</span><span class="n">Select1</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">equalTo</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">projectSecond</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-
-    <span class="c1">// Store(public:adhoc:OUTPUT)[ProjectingJoin1]</span>
-    <span class="n">ProjectingJoin1</span><span class="o">.</span><span class="na">writeAsCsv</span><span class="o">(</span><span class="s">&quot;file:///tmp/flink/OUTPUT&quot;</span><span class="o">);</span>
-    <span class="n">env</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="s">&quot;MyriaL query&quot;</span><span class="o">);</span>
-  <span class="o">}</span>
-
-  <span class="kd">private</span> <span class="kd">static</span> <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple4</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span><span class="n">Long</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">load_employee</span><span class="o">(</span><span class="n">ExecutionEnvironment</span> <span class="n">env</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="na">readCsvFile</span><span class="o">(</span><span class="s">&quot;file:///tmp/flink/employee&quot;</span><span class="o">).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>I began the day with a Skype call with <a href="http://www.user.tu-berlin.de/asteriosk/">Asterios</a> and <a href="https://www.dima.tu-berlin.de/menue/staff/stephan_ewen/">Stephan</a> from the Flink team. I learned some more things about how to use and test the code I write for Flink, and several places where I did not quite understand the low-level Flink behavior. I have a long ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-08-27-daily.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
                     <h1><a href="http://blog.halper.in/2014-08-26-daily.html" rel="bookmark"
-                           title="Permalink to 2014-08-26 daily">2014-08-26 daily</a></h1>
+                           title="Permalink to 2014-08-26 daily">2014-08-26&nbsp;daily</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -111,7 +80,7 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/flink.html">flink</a> </p>
-</footer><!-- /.post-info -->                <p>One of the goals for our <a href="http://github.com/uwescience/raco">Relational Algebra COmpiler (Raco)</a> is that it should be a "relational algebra middleware" for many big data system backends. At the moment, we support: Myria (Myria Team) and Grappa (Brandon Myers), plus anything that speaks SQL including SQL Server but also Hive or Shark ...</p>
+</footer><!-- /.post-info -->                <p>One of the goals for our <a href="http://github.com/uwescience/raco">Relational Algebra COmpiler (Raco)</a> is that it should be a &#8220;relational algebra middleware&#8221; for many big data system backends. At the moment, we support: Myria (Myria Team) and Grappa (Brandon Myers), plus anything that speaks <span class="caps">SQL</span> including <span class="caps">SQL</span> Server but also Hive or Shark ...</p>
                 <a class="readmore" href="http://blog.halper.in/2014-08-26-daily.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
@@ -119,7 +88,7 @@
             <li><article class="hentry">
                 <header>
                     <h1><a href="http://blog.halper.in/2014-08-25-daily.html" rel="bookmark"
-                           title="Permalink to 2014-08-25 daily">2014-08-25 daily</a></h1>
+                           title="Permalink to 2014-08-25 daily">2014-08-25&nbsp;daily</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -133,7 +102,7 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
-</footer><!-- /.post-info -->                <p>Another fantastic hack session with <a href="http://armbrustlab.ocean.washington.edu/people/clayton">Sophie</a> today. We analyzed the quality and quantity of data in the existing files, including determining which of the 64K SeaFlow samples are within a reasonable amount (say, 1σ) of the "average" SeaFlow sample according to the calibration beads. Surprisingly/hearteningly, the vast majority of ...</p>
+</footer><!-- /.post-info -->                <p>Another fantastic hack session with <a href="http://armbrustlab.ocean.washington.edu/people/clayton">Sophie</a> today. We analyzed the quality and quantity of data in the existing files, including determining which of the 64K SeaFlow samples are within a reasonable amount (say, 1σ) of the &#8220;average&#8221; SeaFlow sample according to the calibration beads. Surprisingly/hearteningly, the vast majority of ...</p>
                 <a class="readmore" href="http://blog.halper.in/2014-08-25-daily.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
@@ -141,7 +110,7 @@
             <li><article class="hentry">
                 <header>
                     <h1><a href="http://blog.halper.in/2014-08-22-daily.html" rel="bookmark"
-                           title="Permalink to 2014-08-22 daily">2014-08-22 daily</a></h1>
+                           title="Permalink to 2014-08-22 daily">2014-08-22&nbsp;daily</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -163,7 +132,7 @@
             <li><article class="hentry">
                 <header>
                     <h1><a href="http://blog.halper.in/2014-08-21-daily.html" rel="bookmark"
-                           title="Permalink to 2014-08-21 daily">2014-08-21 daily</a></h1>
+                           title="Permalink to 2014-08-21 daily">2014-08-21&nbsp;daily</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -177,8 +146,8 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/grappa.html">grappa</a> </p>
-</footer><!-- /.post-info -->                <p>Today we met with UW-IT to talk about the future of <a href="http://sqlshare.escience.washington.edu">SQLShare</a>. We will be starting some sprints in the fall to prepare it to be transitioned to them as an on-campus service.</p>
-<p>Spent a fair bit of time reading and discussing <a href="http://homes.cs.washington.edu/~bdmyers/">Brandon Myers'</a> paper using <a href="http://github.com/uwescience/raco">Raco</a> to compile high-level ...</p>
+</footer><!-- /.post-info -->                <p>Today we met with <span class="caps">UW</span>-<span class="caps">IT</span> to talk about the future of <a href="http://sqlshare.escience.washington.edu">SQLShare</a>. We will be starting some sprints in the fall to prepare it to be transitioned to them as an on-campus&nbsp;service.</p>
+<p>Spent a fair bit of time reading and discussing <a href="http://homes.cs.washington.edu/~bdmyers/">Brandon Myers&#8217;</a> paper using <a href="http://github.com/uwescience/raco">Raco</a> to compile ...</p>
                 <a class="readmore" href="http://blog.halper.in/2014-08-21-daily.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
@@ -186,7 +155,7 @@
             <li><article class="hentry">
                 <header>
                     <h1><a href="http://blog.halper.in/2014-08-20-daily.html" rel="bookmark"
-                           title="Permalink to 2014-08-20 daily">2014-08-20 daily</a></h1>
+                           title="Permalink to 2014-08-20 daily">2014-08-20&nbsp;daily</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -208,7 +177,7 @@
             <li><article class="hentry">
                 <header>
                     <h1><a href="http://blog.halper.in/first-post.html" rel="bookmark"
-                           title="Permalink to First post">First post</a></h1>
+                           title="Permalink to First post">First&nbsp;post</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -222,7 +191,7 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/jake.html">jake</a> <a href="http://blog.halper.in/tag/hogg.html">hogg</a> </p>
-</footer><!-- /.post-info -->                <p>I want to start a research blog. I stole <a href="http://jakevdp.github.io/">Jake's Pythonic Perambulations</a> basic idea and a little bit of <a href="https://github.com/jakevdp/PythonicPerambulations">code</a> to get started, and I intend to micro-blog here in the <a href="http://hoggresearch.blogspot.com/">Hogg style</a>. We'll see how it goes.</p>
+</footer><!-- /.post-info -->                <p>I want to start a research blog. I stole <a href="http://jakevdp.github.io/">Jake&#8217;s Pythonic Perambulations</a> basic idea and a little bit of <a href="https://github.com/jakevdp/PythonicPerambulations">code</a> to get started, and I intend to micro-blog here in the <a href="http://hoggresearch.blogspot.com/">Hogg style</a>. We&#8217;ll see how it&nbsp;goes.</p>
                 <a class="readmore" href="http://blog.halper.in/first-post.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
