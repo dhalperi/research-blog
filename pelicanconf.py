@@ -18,6 +18,9 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
+# DISQUS comments
+DISQUS_SITENAME = "blog-halper-in"
+
 # Blogroll
 LINKS = (('Pythonic Perambulations', 'http://jakevdp.github.io/'),)
 
