@@ -34,7 +34,7 @@
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/francois.html">francois</a> <a href="http://blog.halper.in/tag/jarred.html">jarred</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> </p>
 </footer><!-- /.post-info --><p>We had our monthly <a href="http://armbrustlab.ocean.washington.edu/resources/seaflow/">SeaFlow</a>/eScience group meeting meeting. For this grant the oceanographers have been doing lots of new science using tools like <a href="http://sqlshare.escience.washington.edu">SQLShare</a>, <a href="http://demo.myria.cs.washington.edu">Myria</a>, and <a href="https://github.com/uwescience/popcycle">popcycle</a>, our software for storing indexing and analyzing SeaFlow data. We discussed needed improvements to popcycle and to the <a href="https://github.com/uwescience/seaflow-viz">seaflow-viz</a> web dashboard (see it here <a href="https://uwescience.github.com/seaflow-viz">https://uwescience.github.com/seaflow-viz</a>) for visualizing cruise performance and science in real time. <a href="http://r.halper.in/coauth/sclayton">Sophie</a> gave an update on the cruise she got back from a few weeks ago and on our work in the last two weeks analyzing cell diversity in Myria. <a href="http://r.halper.in/coauth/fribalet">Francois</a> gave an update on the new proposal we submitted to analyze population dynamics in SeaFlow data. Thinking ahead, we talked about <a href="http://r.halper.in/coauth/swalwell">Jarred</a>&#8216;s agenda for scaling up SeaFlow data collection and what needs that would entail for automated instrument monitoring and the underlying data service; and we talked about how to demo &#8220;Myria for SeaFlow&#8221; to a broader&nbsp;audience.</p>
 <p>In the rest of the day, I worked on making <a href="http://github.com/uwescience/raco">Raco</a> better: adding some new optimization rules to streamline the types of plans that are emitted by the Flink compiler, and hacking/code reviewing with <a href="http://r.halper.in/coauth/bdmyers">Brandon</a> to get the <a href="https://github.com/uwescience/raco/pull/269">MyriaL → Grappa support</a> working better, and fixing a few little issues that cropped&nbsp;up.</p>
-<p>I also finally implemented, evaluated, and deployed the <a href="https://github.com/uwescience/myria/pull/609">50x&#8212;100x speedup <span class="caps">SQL</span> query mod</a> to the bottleneck query in <a href="http://r.halper.in/coauth/domoritz">Dominik</a>&#8216;s fantastic Myria profiler. Now <a href="https://demo.myria.cs.washington.edu/profile?queryId=32305">the profiling <span class="caps">UI</span> is super-snappy even for long programs</a>.</p>                </article>
+<p>I also finally implemented, evaluated, and deployed the <a href="https://github.com/uwescience/myria/pull/609">50x&#8212;100x speedup <span class="caps">SQL</span> query mod</a> to the bottleneck query in <a href="http://r.halper.in/coauth/domoritz">Dominik</a>&#8216;s fantastic Myria profiler. Now <a href="https://demo.myria.cs.washington.edu/profile?queryId=32305">the profiling <span class="caps">UI</span> is super-snappy even for long programs</a>.</p><p>There are <a href="http://blog.halper.in/2014-08-28-daily.html#disqus_thread">comments</a>.</p>                </article>
             </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
@@ -65,5 +65,14 @@
                 <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
 
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
 </body>
 </html>
