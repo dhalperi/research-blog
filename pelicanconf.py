@@ -21,6 +21,9 @@ TRANSLATION_FEED_ATOM = None
 # DISQUS comments
 DISQUS_SITENAME = "blog-halper-in"
 
+# GA
+GOOGLE_ANALYTICS = "UA-54311387-1"
+
 # Blogroll
 LINKS = (('Pythonic Perambulations', 'http://jakevdp.github.io/'),)
 
