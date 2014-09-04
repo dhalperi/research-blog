@@ -42,13 +42,19 @@
 &lt;li&gt;It reduced the memory requirements by more than a factor of 4, making the query tractable at its current&amp;nbsp;scale.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;It enabled the query to be run in a pipelined manner. Consider the &lt;span class="caps"&gt;SQL&lt;/span&gt;&amp;nbsp;query:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;SELECT x, COUNT(*) AS c FROM R GROUP BY x;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;COUNT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="k"&gt;c&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="k"&gt;GROUP&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;For a given &lt;code&gt;(x1, c1)&lt;/code&gt; tuple that will appear in the answer, the query cannot output that tuple until it knows that all input tuples with &lt;code&gt;x = x1&lt;/code&gt; have been seen. In a hash-based aggregate, like Myria uses, this property means that no answers can be produced until the &lt;em&gt;entire&lt;/em&gt; input &lt;code&gt;R&lt;/code&gt; has been processed, and slows the query&amp;nbsp;down.&lt;/p&gt;
 &lt;p&gt;(Note: Many databases will sort &lt;code&gt;R&lt;/code&gt; (or use an index on &lt;code&gt;x&lt;/code&gt;) so that they see all the values of &lt;code&gt;x&lt;/code&gt; in order, meaning they can produce &lt;code&gt;(x1,c)&lt;/code&gt; as soon as a tuple of &lt;code&gt;R&lt;/code&gt; has a new value &lt;code&gt;x2&lt;/code&gt;. We are working on this for&amp;nbsp;Myria.)&lt;/p&gt;
 &lt;p&gt;In contrast, consider the &lt;span class="caps"&gt;SQL&lt;/span&gt;&amp;nbsp;query:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;SELECT DISTINCT x FROM R;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="k"&gt;DISTINCT&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;For this Distinct query, the output is simply the unique values of &lt;code&gt;x&lt;/code&gt;. For this answer, we can output every new value &lt;code&gt;x1&lt;/code&gt; for &lt;code&gt;x&lt;/code&gt; as soon as it appears in the input stream. (We have to keep &lt;code&gt;x1&lt;/code&gt; around to make sure that we do not produce it twice, but we do &lt;em&gt;not&lt;/em&gt; need to wait until we have seen all values of &lt;code&gt;x&lt;/code&gt;). When we produce &lt;code&gt;x1&lt;/code&gt; early, downstream computation (in this case, computing the count of the number of full bins for each cytogram) can continue immediately. This new query plan results in: better overlap between different parts of the computation, more efficient use of the parallel resources of our cluster, and ultimately, happier users who can do their science&amp;nbsp;faster.&lt;/p&gt;
-&lt;p&gt;(Note: as above, if the values of &lt;code&gt;x&lt;/code&gt; are sorted then we do not even need to remember all values &lt;code&gt;x1&lt;/code&gt; that we have ever seen&amp;#8212;-just the most recent version. We are working on this for Myria,&amp;nbsp;too.)&lt;/p&gt;
+&lt;p&gt;(Note: as above, if the values of &lt;code&gt;x&lt;/code&gt; are sorted then we do not even need to remember all values &lt;code&gt;x1&lt;/code&gt; that we have ever seen &amp;#8212; just the most recent version. We are working on this for Myria,&amp;nbsp;too.)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Based on what we learned today, I created &lt;a href="https://github.com/dhalperi?tab=contributions&amp;amp;from=2014-09-03"&gt;several new issues&lt;/a&gt; for Raco and for Myria and am well on the way to fixing them. The upshot of this work is that &lt;a href="https://github.com/uwescience/raco/pull/312#issue-41881779"&gt;the &amp;#8220;slow query&amp;#8221;, written the first way, now results in the same plan&lt;/a&gt; as when I rewrote it the fast&amp;nbsp;way.&lt;/p&gt;
