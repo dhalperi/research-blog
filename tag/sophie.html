@@ -21,7 +21,84 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-08-28-daily.html">2014-08-28&nbsp;daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-03-daily.html">2014-09-03&nbsp;daily</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-09-03T00:00:00">
+                Published: Wed 03 September 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/asterios.html">asterios</a> <a href="http://blog.halper.in/tag/danac.html">danac</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> </p>
+</footer><!-- /.post-info --><p>Today&#8217;s highlight was another hack session with <a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> in the Armbrust Lab. The <a href="https://demo.myria.cs.washington.edu/queries?max=32528&amp;limit=1">same query to compute the cytometric diversity (&#8220;richness&#8221;)</a> that we ran a month ago on a smaller dataset now ran out of memory after 12 minutes; after an hour of futzing I got it to <a href="https://demo.myria.cs.washington.edu/queries?max=32532&amp;limit=1">finish successfully</a> in 2.5 minutes. In the second half of the post, I will dive into this particular query more&nbsp;deeply.</p>
+<p>We met with the designer to discuss possible new logos and branding for the <span class="caps">UW</span> eScience Institute and for the <span class="caps">WRF</span> Data Science Studio we will be opening (and moving into) in&nbsp;November.</p>
+<p>Also, <a href="http://r.halper.in/people/asterios">Asterios</a> invited me to be a co-chair for next year&#8217;s <strike>Data Analytics in the Cloud</strike> <strong>Data Analytics at Scale</strong> (<em>DanaC</em>) workshop at <span class="caps">SIGMOD</span> 2015, which would be the fourth incarnation of <a href="http://danac-workshop.dima.tu-berlin.de/">the DanaC workshop</a>. We are working on the proposal, and I hope it is&nbsp;accepted!</p>
+<hr />
+<p>Here is the core of the first version of Sophie&#8217;s richness query (<a href="https://demo.myria.cs.washington.edu/queries?max=32528&amp;limit=1">#32538 on Myria</a>):</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="nf">makebins</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">:</span> <span class="n">x</span><span class="o">//</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">3.5</span><span class="p">)</span><span class="o">/</span><span class="mi">16</span><span class="p">);</span>
+
+<span class="n">AllDataBinned</span> <span class="o">=</span> <span class="n">select</span> <span class="n">Cruise</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">File_Id</span><span class="p">,</span>
+                            <span class="n">makebins</span><span class="p">(</span><span class="n">fsc_small</span><span class="p">)</span> <span class="n">as</span> <span class="n">fsc_bin</span><span class="p">,</span>
+                            <span class="n">makebins</span><span class="p">(</span><span class="n">chl_small</span><span class="p">)</span> <span class="n">as</span> <span class="n">chl_bin</span><span class="p">,</span>
+                            <span class="n">makebins</span><span class="p">(</span><span class="n">pe</span><span class="p">)</span> <span class="n">as</span> <span class="n">pe_bin</span><span class="p">,</span>
+                            <span class="n">count</span><span class="p">(</span><span class="n">fsc_small</span><span class="p">)</span> <span class="n">as</span> <span class="n">num_particles</span>
+                <span class="n">from</span> <span class="n">AllData</span>
+                <span class="n">where</span> <span class="n">pop</span><span class="o">!=</span><span class="s">&quot;beads&quot;</span><span class="p">;</span>
+
+<span class="n">Richness</span> <span class="o">=</span> <span class="n">select</span> <span class="n">Cruise</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">File_Id</span><span class="p">,</span>
+                            <span class="n">count</span><span class="p">(</span><span class="n">num_particles</span><span class="p">)</span> <span class="n">as</span> <span class="n">richness</span>
+                            <span class="n">from</span> <span class="n">AllDataBinned</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Here is the core of the rewrite (<a href="https://demo.myria.cs.washington.edu/queries?max=32532&amp;limit=1">#32532 on Myria</a>):</p>
+<div class="highlight"><pre><span class="n">AllDataBinned</span> <span class="o">=</span> <span class="n">select</span> <span class="n">Cruise</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">File_Id</span><span class="p">,</span>
+                            <span class="n">makebins</span><span class="p">(</span><span class="n">fsc_small</span><span class="p">)</span> <span class="n">AS</span> <span class="n">fsc_bin</span><span class="p">,</span>
+                            <span class="n">makebins</span><span class="p">(</span><span class="n">chl_small</span><span class="p">)</span> <span class="n">AS</span> <span class="n">chl_bin</span><span class="p">,</span>
+                            <span class="n">makebins</span><span class="p">(</span><span class="n">pe</span><span class="p">)</span> <span class="n">AS</span> <span class="n">pe_bin</span>
+                            <span class="o">--</span> <span class="k">do</span> <span class="n">not</span> <span class="n">compute</span> <span class="n">the</span> <span class="n">count</span>
+                <span class="n">from</span> <span class="n">AllData</span>
+                <span class="n">where</span> <span class="n">pop</span><span class="o">!=</span><span class="s">&quot;beads&quot;</span><span class="p">;</span>
+
+<span class="n">DistinctBins</span> <span class="o">=</span> <span class="n">distinct</span><span class="p">(</span><span class="n">AllDataBinned</span><span class="p">);</span>
+
+<span class="n">Richness</span> <span class="o">=</span> <span class="n">select</span> <span class="n">Cruise</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">File_Id</span><span class="p">,</span>
+                            <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">AS</span> <span class="n">richness</span>
+                            <span class="n">from</span> <span class="n">DistinctBins</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Did you see it? It&#8217;s easy to miss. The only difference is that we swapped a GroupBy, which computed a Count aggregate that we then ignored, for a Distinct. This optimization (standard in commercial databases) has two huge&nbsp;benefits:</p>
+<ol>
+<li>It reduced the memory requirements by more than a factor of 4, making the query tractable at its current&nbsp;scale.</li>
+<li>
+<p>It enabled the query to be run in a pipelined manner. Consider the <span class="caps">SQL</span>&nbsp;query:</p>
+<p><code>SELECT x, COUNT(*) AS c FROM R GROUP BY x;</code></p>
+<p>For a given <code>(x1, c1)</code> tuple that will appear in the answer, the query cannot output that tuple until it knows that all input tuples with <code>x = x1</code> have been seen. In a hash-based aggregate, like Myria uses, this property means that no answers can be produced until the <em>entire</em> input <code>R</code> has been processed, and slows the query&nbsp;down.</p>
+<p>(Note: Many databases will sort <code>R</code> (or use an index on <code>x</code>) so that they see all the values of <code>x</code> in order, meaning they can produce <code>(x1,c)</code> as soon as a tuple of <code>R</code> has a new value <code>x2</code>. We are working on this for&nbsp;Myria.)</p>
+<p>In contrast, consider the <span class="caps">SQL</span>&nbsp;query:</p>
+<p><code>SELECT DISTINCT x FROM R;</code></p>
+<p>For this Distinct query, the output is simply the unique values of <code>x</code>. For this answer, we can output every new value <code>x1</code> for <code>x</code> as soon as it appears in the input stream. (We have to keep <code>x1</code> around to make sure that we do not produce it twice, but we do <em>not</em> need to wait until we have seen all values of <code>x</code>). When we produce <code>x1</code> early, downstream computation (in this case, computing the count of the number of full bins for each cytogram) can continue immediately. This new query plan results in: better overlap between different parts of the computation, more efficient use of the parallel resources of our cluster, and ultimately, happier users who can do their science&nbsp;faster.</p>
+<p>(Note: as above, if the values of <code>x</code> are sorted then we do not even need to remember all values <code>x1</code> that we have ever seen&#8212;-just the most recent version. We are working on this for Myria,&nbsp;too.)</p>
+</li>
+</ol>
+<p>Based on what we learned today, I created <a href="https://github.com/dhalperi?tab=contributions&amp;from=2014-09-03">several new issues</a> for Raco and for Myria and am well on the way to fixing them. The upshot of this work is that <a href="https://github.com/uwescience/raco/pull/312#issue-41881779">the &#8220;slow query&#8221;, written the first way, now results in the same plan</a> as when I rewrote it the fast&nbsp;way.</p>
+<p>I&#8217;ve said it before, and I&#8217;ll say it again: <strong>working with real users on real problems is the <strike>only</strike> most effective way to make sure your system is actually useful</strong>. The dividends for Myria of working with Sophie and other real scientists for Myria are <em>huge</em>.</p><p>There are <a href="http://blog.halper.in/2014-09-03-daily.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-08-28-daily.html" rel="bookmark"
+                           title="Permalink to 2014-08-28 daily">2014-08-28&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-08-28T00:00:00">
                 Published: Thu 28 August 2014
@@ -32,14 +109,10 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/francois.html">francois</a> <a href="http://blog.halper.in/tag/jarred.html">jarred</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> </p>
-</footer><!-- /.post-info --><p>We had our monthly <a href="http://armbrustlab.ocean.washington.edu/resources/seaflow/">SeaFlow</a>/eScience group meeting meeting. For this grant the oceanographers have been doing lots of new science using tools like <a href="http://sqlshare.escience.washington.edu">SQLShare</a>, <a href="http://demo.myria.cs.washington.edu">Myria</a>, and <a href="https://github.com/uwescience/popcycle">popcycle</a>, our software for storing indexing and analyzing SeaFlow data. We discussed needed improvements to popcycle and to the <a href="https://github.com/uwescience/seaflow-viz">seaflow-viz</a> web dashboard (see it here <a href="https://uwescience.github.com/seaflow-viz">https://uwescience.github.com/seaflow-viz</a>) for visualizing cruise performance and science in real time. <a href="http://r.halper.in/coauth/sclayton">Sophie</a> gave an update on the cruise she got back from a few weeks ago and on our work in the last two weeks analyzing cell diversity in Myria. <a href="http://r.halper.in/coauth/fribalet">Francois</a> gave an update on the new proposal we submitted to analyze population dynamics in SeaFlow data. Thinking ahead, we talked about <a href="http://r.halper.in/coauth/swalwell">Jarred</a>&#8216;s agenda for scaling up SeaFlow data collection and what needs that would entail for automated instrument monitoring and the underlying data service; and we talked about how to demo &#8220;Myria for SeaFlow&#8221; to a broader&nbsp;audience.</p>
-<p>In the rest of the day, I worked on making <a href="http://github.com/uwescience/raco">Raco</a> better: adding some new optimization rules to streamline the types of plans that are emitted by the Flink compiler, and hacking/code reviewing with <a href="http://r.halper.in/coauth/bdmyers">Brandon</a> to get the <a href="https://github.com/uwescience/raco/pull/269">MyriaL → Grappa support</a> working better, and fixing a few little issues that cropped&nbsp;up.</p>
-<p>I also finally implemented, evaluated, and deployed the <a href="https://github.com/uwescience/myria/pull/609">50x&#8212;100x speedup <span class="caps">SQL</span> query mod</a> to the bottleneck query in <a href="http://r.halper.in/coauth/domoritz">Dominik</a>&#8216;s fantastic Myria profiler. Now <a href="https://demo.myria.cs.washington.edu/profile?queryId=32305">the profiling <span class="caps">UI</span> is super-snappy even for long programs</a>.</p><p>There are <a href="http://blog.halper.in/2014-08-28-daily.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>We had our monthly <a href="http://armbrustlab.ocean.washington.edu/resources/seaflow/">SeaFlow</a>/eScience group meeting meeting. For this grant the oceanographers have been doing lots of new science using tools like <a href="http://sqlshare.escience.washington.edu">SQLShare</a>, <a href="http://demo.myria.cs.washington.edu">Myria</a>, and <a href="https://github.com/uwescience/popcycle">popcycle</a>, our software for storing indexing and analyzing SeaFlow data. We discussed needed improvements to popcycle and to the <a href="https://github.com/uwescience/seaflow-viz">seaflow-viz</a> web dashboard (see ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-08-28-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-08-28-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
