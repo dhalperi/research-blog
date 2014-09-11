@@ -21,7 +21,81 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-04-daily.html">2014-09-04&nbsp;daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-10-daily.html">2014-09-10&nbsp;daily</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-09-10T00:00:00">
+                Published: Wed 10 September 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> </p>
+</footer><!-- /.post-info --><p>In between meetings, I spent most of today continuing yesterday&#8217;s work on the citation use case. Further query rewrites and testing exposed an interesting bug in the optimizer due to a mismatch between logical algebra representation and the actual system implementation behavior &#8212; the optimizer assumed the system could perform an operation which the system could not. Fixed the bug, which was thankfully&nbsp;short-lived!</p>
+<p>After the last few days&#8217; worth of heckling, what I believe is the largest computational step in the algorithm is now finished. At the start, it took about 4 hours to find shared citations 19 levels deep, at which point Myria&#8217;s built-in iteration limit (there to protect against infinite loops by bad queries that I write) was triggered. I raised the iteration limit and with all the improvements to <a href="http://github.com/uwescience/raco">Raco</a> and to <a href="http://myria.cs.washington.edu">Myria</a>, it now takes 4 hours to fully walk the&nbsp;graph.</p>
+<p>The longest train of citations is 69 levels deep! Tomorrow, I hope to find the actual shared citations for pairs of&nbsp;papers.</p><p>There are <a href="http://blog.halper.in/2014-09-10-daily.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-09-09-daily.html" rel="bookmark"
+                           title="Permalink to 2014-09-09 daily">2014-09-09&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-09-09T00:00:00">
+                Published: Tue 09 September 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> </p>
+</footer><!-- /.post-info -->                <p>Today I picked up some of the work that Sandra Anderson did in her summer internship, namely trying to find common citations (transitively) between pairs of papers in <a href="http://r.halper.in/coauth/jevin">Jevin West</a>&#8216;s data&nbsp;sets.</p>
+<p>Once again I identified a number of nice optimization&nbsp;opportunities:</p>
+<ul>
+<li>some query rewrites that result in better ...</li></ul>
+                <a class="readmore" href="http://blog.halper.in/2014-09-09-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-09-09-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-09-08-daily.html" rel="bookmark"
+                           title="Permalink to 2014-09-08 daily">2014-09-08&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-09-08T00:00:00">
+                Published: Mon 08 September 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> </p>
+</footer><!-- /.post-info -->                <p>Today we held the information session for the second installation of our Data Science Incubator projects which we will hold in the Spring. It was fairly well attended; maybe 20&#8212;25 people came and many of these indicated that they will be submitting&nbsp;proposals.</p>
+<p>Over the weekend and today I ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-09-08-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-09-08-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-09-04-daily.html" rel="bookmark"
+                           title="Permalink to 2014-09-04 daily">2014-09-04&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-09-04T00:00:00">
                 Published: Thu 04 September 2014
@@ -32,18 +106,12 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/york.html">york</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> </p>
-</footer><!-- /.post-info --><p>Today I met with <span class="caps">UW</span> <span class="caps">CSE</span> undergrad York Wei and <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> for demos and code review of York&#8217;s summer Project. York and Brandon have adapted our <a href="http://github.com/uwescience/myria-web">Myria Web frontend</a> to extend the current support for <a href="http://myria.cs.washington.edu">Myria</a> with the ability to issue queries to two new&nbsp;backends:</p>
+</footer><!-- /.post-info -->                <p>Today I met with <span class="caps">UW</span> <span class="caps">CSE</span> undergrad York Wei and <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> for demos and code review of York&#8217;s summer Project. York and Brandon have adapted our <a href="http://github.com/uwescience/myria-web">Myria Web frontend</a> to extend the current support for <a href="http://myria.cs.washington.edu">Myria</a> with the ability to issue queries to two new&nbsp;backends:</p>
 <ol>
-<li>a backend that compiles and executes Raco-generated C code for fast, in-memory queries on a single machine,&nbsp;and</li>
-<li>a backend that compiles and executes Raco-generated code on the <a href="http://grappa.io/">Grappa runtime</a>, which uses the partitioned, global address space model to execute blazingly-fast queries in memory on a large, distributed&nbsp;cluster.</li>
-</ol>
-<p>Throughout the course of the meeting we discussed general issues and refactoring for Myria-Web so that it will truly be backend-agnostic and we can deploy this awesome, multi-system functionality on the web. I look forward to using this software for Flink&nbsp;support!</p>
-<p>The other exciting news is that <a href="http://r.halper.in/coauth/whitaker">Andrew Whitaker</a> finished the Raco support for user-defined aggregates and functions. We now have the support that Sandra Anderson needs to issue fast queries over citation&nbsp;graphs!</p><p>There are <a href="http://blog.halper.in/2014-09-04-daily.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<li>a backend ...</li></ol>
+                <a class="readmore" href="http://blog.halper.in/2014-09-04-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-09-04-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
