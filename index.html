@@ -21,7 +21,39 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-10-daily.html">2014-09-10&nbsp;daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-11-daily.html">2014-09-11&nbsp;daily</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-09-11T00:00:00">
+                Published: Thu 11 September 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> </p>
+</footer><!-- /.post-info --><p>Today I spent all day with Sandra Anderson&#8217;s citation graph lineage queries. Though I can compute &#8220;all-pairs reachability&#8221; for the first 10000 papers in the dataset&#8230; I can only currently compute &#8220;least-common ancestor&#8221; for the first <strong>500</strong> papers. There are some severe algorithmic scalability challenges here that we are excited to&nbsp;tackle.</p>
+<p>Part of the problem is that there are 2 million papers and it seems that about 2%&#8212;5% of all paper pairs papers have a common ancestor. This implies that the result set is pretty big &#8212; 200 billion papers. This does not scare us, but it is a good real use&nbsp;case!</p>
+<p>Due to data restrictions, we are working with anonymized paper IDs for this project and only Jevin has the secret mapping. To ensure that our computation is sensible, we sent him about 2300 pairs of papers and their least common ancestors, and he de-blinded some of the titles. The results are pretty&nbsp;fascinating:</p>
+<ul>
+<li>some of the least common ancestors are back in the&nbsp;1700&#8217;s</li>
+<li>some of the least common ancestors are 54 citations deep from one of their papers (<strong>*update</strong>: it appears this is probably bad data, because one such chain is actually&nbsp;anachronistic*)</li>
+<li>The common ancestors for papers in different fields are often really old (<em>What is Capital?</em>, I. Fisher, 1896) or seem really fundamental (<em>On the Mathematical Foundations of Theoretical Statistics</em>, <span class="caps">R. A.</span> Fisher, 1922) to my amateurish eyes, or&nbsp;both.</li>
+</ul>
+<p>Tomorrow I will work more on the scaling&nbsp;issues!</p><p>There are <a href="http://blog.halper.in/2014-09-11-daily.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-09-10-daily.html" rel="bookmark"
+                           title="Permalink to 2014-09-10 daily">2014-09-10&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-09-10T00:00:00">
                 Published: Wed 10 September 2014
@@ -32,14 +64,10 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> </p>
-</footer><!-- /.post-info --><p>In between meetings, I spent most of today continuing yesterday&#8217;s work on the citation use case. Further query rewrites and testing exposed an interesting bug in the optimizer due to a mismatch between logical algebra representation and the actual system implementation behavior &#8212; the optimizer assumed the system could perform an operation which the system could not. Fixed the bug, which was thankfully&nbsp;short-lived!</p>
-<p>After the last few days&#8217; worth of heckling, what I believe is the largest computational step in the algorithm is now finished. At the start, it took about 4 hours to find shared citations 19 levels deep, at which point Myria&#8217;s built-in iteration limit (there to protect against infinite loops by bad queries that I write) was triggered. I raised the iteration limit and with all the improvements to <a href="http://github.com/uwescience/raco">Raco</a> and to <a href="http://myria.cs.washington.edu">Myria</a>, it now takes 4 hours to fully walk the&nbsp;graph.</p>
-<p>The longest train of citations is 69 levels deep! Tomorrow, I hope to find the actual shared citations for pairs of&nbsp;papers.</p><p>There are <a href="http://blog.halper.in/2014-09-10-daily.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>In between meetings, I spent most of today continuing yesterday&#8217;s work on the citation use case. Further query rewrites and testing exposed an interesting bug in the optimizer due to a mismatch between logical algebra representation and the actual system implementation behavior &#8212; the optimizer assumed the system could perform ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-09-10-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-09-10-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
