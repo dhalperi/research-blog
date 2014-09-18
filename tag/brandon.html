@@ -21,7 +21,35 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-04-daily.html">2014-09-04&nbsp;daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-12-daily.html">2014-09-12&nbsp;daily</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-09-12T00:00:00">
+                Published: Fri 12 September 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/magda.html">magda</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> </p>
+</footer><!-- /.post-info --><blockquote>
+<p>Tomorrow I will work more on the scaling&nbsp;issues!</p>
+</blockquote>
+<p>We had a great Myria meeting this afternoon. We discussed <a href="http://r.halper.in/coauth/whitaker">Andrew Whitaker</a>&#8216;s user-defined aggregate (<span class="caps">UDA</span>) extensions to MyriaL, which provide a very nice way to get scalable, distributed partial aggregation to implement many complicated aggregations in a single scan rather than through joins. The poster child is <a href="https://github.com/uwescience/raco/pull/336#diff-bfec5b84bb73fdca4c61627f00d1e6dcR1908"><code>arg_max</code></a>: return the entire row where the value of some field is maximized. <a href="http://r.halper.in/coauth/billhowe">Bill Howe</a> has proposed a nice syntax that might help simplify the expression of <code>arg_max</code>-like&nbsp;UDAs.</p>
+<p>I presented Sandra&#8217;s least-common ancestor query to the group, and we discussed optimizations. At the meeting, <a href="http://r.halper.in/coauth/magda">Magda Balazinska</a>, Bill, and <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> insisted this should work better if rewritten in incremental form, and Brandon helped me rewrite it afterwards. Next week, I&#8217;ll see if the incrementalization actually helps us&nbsp;scale.</p><p>There are <a href="http://blog.halper.in/2014-09-12-daily.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-09-04-daily.html" rel="bookmark"
+                           title="Permalink to 2014-09-04 daily">2014-09-04&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-09-04T00:00:00">
                 Published: Thu 04 September 2014
@@ -32,18 +60,12 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/york.html">york</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> </p>
-</footer><!-- /.post-info --><p>Today I met with <span class="caps">UW</span> <span class="caps">CSE</span> undergrad York Wei and <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> for demos and code review of York&#8217;s summer Project. York and Brandon have adapted our <a href="http://github.com/uwescience/myria-web">Myria Web frontend</a> to extend the current support for <a href="http://myria.cs.washington.edu">Myria</a> with the ability to issue queries to two new&nbsp;backends:</p>
+</footer><!-- /.post-info -->                <p>Today I met with <span class="caps">UW</span> <span class="caps">CSE</span> undergrad York Wei and <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> for demos and code review of York&#8217;s summer Project. York and Brandon have adapted our <a href="http://github.com/uwescience/myria-web">Myria Web frontend</a> to extend the current support for <a href="http://myria.cs.washington.edu">Myria</a> with the ability to issue queries to two new&nbsp;backends:</p>
 <ol>
-<li>a backend that compiles and executes Raco-generated C code for fast, in-memory queries on a single machine,&nbsp;and</li>
-<li>a backend that compiles and executes Raco-generated code on the <a href="http://grappa.io/">Grappa runtime</a>, which uses the partitioned, global address space model to execute blazingly-fast queries in memory on a large, distributed&nbsp;cluster.</li>
-</ol>
-<p>Throughout the course of the meeting we discussed general issues and refactoring for Myria-Web so that it will truly be backend-agnostic and we can deploy this awesome, multi-system functionality on the web. I look forward to using this software for Flink&nbsp;support!</p>
-<p>The other exciting news is that <a href="http://r.halper.in/coauth/whitaker">Andrew Whitaker</a> finished the Raco support for user-defined aggregates and functions. We now have the support that Sandra Anderson needs to issue fast queries over citation&nbsp;graphs!</p><p>There are <a href="http://blog.halper.in/2014-09-04-daily.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<li>a backend ...</li></ol>
+                <a class="readmore" href="http://blog.halper.in/2014-09-04-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-09-04-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
