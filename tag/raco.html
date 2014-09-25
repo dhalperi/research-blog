@@ -21,7 +21,32 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-15-daily.html">2014-09-15&nbsp;daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-22-daily.html">2014-09-22&nbsp;daily</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-09-22T00:00:00">
+                Published: Mon 22 September 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/jeremy.html">jeremy</a> </p>
+</footer><!-- /.post-info --><p>The majority activity today was reviewing the proposals we received for the Fall 2014 edition of our <a href="http://data.uw.edu/incubator/">Data Science Incubator</a>. We received <strong>26</strong> fantastic proposals ranging from Astronomy to Statistics (<em>sadly, no Zoology</em>), and we are probably going to have to cut it down to 5 or 6. Lots of great stuff in there, so much so that we are talking about other ways to figure out how to support the&nbsp;projects.</p>
+<p>The rest of the day was filled with student meetings. <a href="http://r.halper.in/coauth/hyrkas">Jeremy Hyrkas</a> is back from Google and will be finishing up his quals on clustering SeaFlow data. <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> is finishing up his paper using <a href="http://github.com/uwescience/raco">Raco</a> to generate fast, efficient <a href="http://grappa.io/">Grappa</a> programs from MyriaL&nbsp;code.</p><p>There are <a href="http://blog.halper.in/2014-09-22-daily.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-09-15-daily.html" rel="bookmark"
+                           title="Permalink to 2014-09-15 daily">2014-09-15&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-09-15T00:00:00">
                 Published: Mon 15 September 2014
@@ -32,25 +57,16 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> </p>
-</footer><!-- /.post-info --><blockquote>
+</footer><!-- /.post-info -->                <blockquote>
 <p>Next week, I&#8217;ll see if the incrementalization actually helps us&nbsp;scale.</p>
 </blockquote>
 <p>Only had a tiny bit of time today; I worked more on the least common ancestor query. Here is what new work contributed to better&nbsp;scaling:</p>
 <ul>
 <li>
-<p>Incrementalizing the code (duh) did in fact let me scale it farther. The prior program was failing because of memory problems in a large final join; breaking down that join into multiple steps, one at a time, inside the loop reduces the memory&nbsp;crunch.</p>
-</li>
-<li>
-<p>Obvious Raco optimization: turn <code>X = X + Y;</code> into <code>X += Y;</code>, which is a big deal when <code>X</code> and <code>Y</code> both come from and are inserted into a database.  (Here, <code>+</code> is <code>UnionAll</code>).</p>
-<p>The only reason this optimization had not been implemented before is that this was never actually the&nbsp;bottleneck.</p>
-</li>
-</ul>
-<p>Once again, it goes to show what working with real data and real queries can do for your system&#8217;s&nbsp;applicability.</p><p>There are <a href="http://blog.halper.in/2014-09-15-daily.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>Incrementalizing the code (duh) did in fact let me scale it farther ...</p></li></ul>
+                <a class="readmore" href="http://blog.halper.in/2014-09-15-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-09-15-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
