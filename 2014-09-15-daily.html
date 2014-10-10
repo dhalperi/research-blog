@@ -39,19 +39,19 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> </p>
 </footer><!-- /.post-info -->      <blockquote>
-<p>Next week, I&#8217;ll see if the incrementalization actually helps us&nbsp;scale.</p>
+<p>Next week, I’ll see if the incrementalization actually helps us scale.</p>
 </blockquote>
-<p>Only had a tiny bit of time today; I worked more on the least common ancestor query. Here is what new work contributed to better&nbsp;scaling:</p>
+<p>Only had a tiny bit of time today; I worked more on the least common ancestor query. Here is what new work contributed to better scaling:</p>
 <ul>
 <li>
-<p>Incrementalizing the code (duh) did in fact let me scale it farther. The prior program was failing because of memory problems in a large final join; breaking down that join into multiple steps, one at a time, inside the loop reduces the memory&nbsp;crunch.</p>
+<p>Incrementalizing the code (duh) did in fact let me scale it farther. The prior program was failing because of memory problems in a large final join; breaking down that join into multiple steps, one at a time, inside the loop reduces the memory crunch.</p>
 </li>
 <li>
 <p>Obvious Raco optimization: turn <code>X = X + Y;</code> into <code>X += Y;</code>, which is a big deal when <code>X</code> and <code>Y</code> both come from and are inserted into a database.  (Here, <code>+</code> is <code>UnionAll</code>).</p>
-<p>The only reason this optimization had not been implemented before is that this was never actually the&nbsp;bottleneck.</p>
+<p>The only reason this optimization had not been implemented before is that this was never actually the bottleneck.</p>
 </li>
 </ul>
-<p>Once again, it goes to show what working with real data and real queries can do for your system&#8217;s&nbsp;applicability.</p>
+<p>Once again, it goes to show what working with real data and real queries can do for your system’s applicability.</p>
     </div><!-- /.entry-content -->
     <div class="comments">
       <h2>Comments !</h2>

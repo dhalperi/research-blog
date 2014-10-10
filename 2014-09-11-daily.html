@@ -38,15 +38,15 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> </p>
-</footer><!-- /.post-info -->      <p>Today I spent all day with Sandra Anderson&#8217;s citation graph lineage queries. Though I can compute &#8220;all-pairs reachability&#8221; for the first <em>10000</em> papers in the dataset&#8230; I can only currently compute &#8220;least-common ancestor&#8221; for the first <em>500</em> papers. There are some severe algorithmic scalability challenges here that we are excited to&nbsp;tackle.</p>
-<p>Part of the problem is that there are 2 million papers and it seems that about 2%&#8212;5% of all paper pairs have a common ancestor. This implies that the result set is pretty big &#8212; 200 billion papers. This does not scare us, but it is a good real use&nbsp;case!</p>
-<p>Due to data restrictions, we are working with anonymized paper IDs for this project and only Jevin has the secret mapping. To ensure that our computation is sensible, we sent him about 2300 pairs of papers and their least common ancestors, and he de-blinded some of the titles. The results are pretty&nbsp;fascinating:</p>
+</footer><!-- /.post-info -->      <p>Today I spent all day with Sandra Anderson’s citation graph lineage queries. Though I can compute “all-pairs reachability” for the first <em>10000</em> papers in the dataset… I can only currently compute “least-common ancestor” for the first <em>500</em> papers. There are some severe algorithmic scalability challenges here that we are excited to tackle.</p>
+<p>Part of the problem is that there are 2 million papers and it seems that about 2%—5% of all paper pairs have a common ancestor. This implies that the result set is pretty big — 200 billion papers. This does not scare us, but it is a good real use case!</p>
+<p>Due to data restrictions, we are working with anonymized paper IDs for this project and only Jevin has the secret mapping. To ensure that our computation is sensible, we sent him about 2300 pairs of papers and their least common ancestors, and he de-blinded some of the titles. The results are pretty fascinating:</p>
 <ul>
-<li>some of the least common ancestors are back in the&nbsp;1700&#8217;s</li>
+<li>some of the least common ancestors are back in the 1700’s</li>
 <li>some of the least common ancestors are 54 citations deep from one of their papers (<em>update: it appears this is probably bad data, because one such chain is actually anachronistic</em>)</li>
-<li>The common ancestors for papers in different fields are often old and seem really fundamental, e.g. (<em>What is Capital?</em>, I. Fisher, 1896) and (<em>On the Mathematical Foundations of Theoretical Statistics</em>, <span class="caps">R. A.</span> Fisher,&nbsp;1922).</li>
+<li>The common ancestors for papers in different fields are often old and seem really fundamental, e.g. (<em>What is Capital?</em>, I. Fisher, 1896) and (<em>On the Mathematical Foundations of Theoretical Statistics</em>, <span class="caps">R. A.</span> Fisher, 1922).</li>
 </ul>
-<p>Tomorrow I will work more on the scaling&nbsp;issues!</p>
+<p>Tomorrow I will work more on the scaling issues!</p>
     </div><!-- /.entry-content -->
     <div class="comments">
       <h2>Comments !</h2>
