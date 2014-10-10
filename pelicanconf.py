@@ -46,4 +46,11 @@ RELATIVE_URLS = True
 # Use pretty typesetting
 TYPOGRIFY = True
 
-STATIC_PATHS = ['CNAME']
+STATIC_PATHS = ['CNAME', 'images']
+
+# Where to look for plugins
+PLUGIN_PATHS = ['pelican-plugins']
+# Which plugins to enable
+PLUGINS = ['better_figures_and_images']
+# Responsive images
+RESPONSIVE_IMAGES = True
