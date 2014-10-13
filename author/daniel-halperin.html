@@ -21,7 +21,54 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/moore-sloan-data-science-environment-summit.html">Moore-Sloan Data Science Environment&nbsp;Summit</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/moore-sloan-fun-with-academic-lineage.html">Mo(o)re(&#8212;Sloan) fun with Academic&nbsp;Lineage</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-10-09T00:00:00">
+                Published: Thu 09 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/msdse.html">msdse</a> <a href="http://blog.halper.in/tag/eigenfactor.html">eigenfactor</a> </p>
+</footer><!-- /.post-info --><p>While we were at the Moore—Sloan Data Science Environments community build, <a href="http://r.halper.in/coauth/jevin">Jevin West</a> continued our work analyzing academic lineage with Myria.</p>
+<p>On the citation graph we’re using, <a href="http://www.mapequation.org/code.html">InfoMap</a> identifies 5,292 unique paper clusters. For each cluster, we took the top paper rated by <a href="http://www.eigenfactor.org/">Eigenfactor</a> and fed these 5,292 papers as the seed set for the Least Common Ancestor (<span class="caps">LCA</span>) query which we ran on Myria. The <a href="https://demo.myria.cs.washington.edu/queries?max=35111&amp;limit=1">query itself</a> took a little over 4 hours, but it finished successfully.</p>
+<p>Of the nearly 14 million pairs of papers, 7.1M of them have a common ancestor—a hit rate of about 50%.  Among these 7.1M LCAs, here are the ten most frequent papers (and their frequencies):</p>
+<ol>
+<li>(47,129) <em>Some Methods for Strengthening the Common 𝝌<sup>2</sup> Tests</em> (Cochran, 1954)</li>
+<li>(35,585) <em>The Evolution of Reciprocal Altruism</em> (Trivers, 1971)</li>
+<li>(34,195) <em>On the Mathematical Foundations of Theoretical Statistics</em> (Fisher, 1922)</li>
+<li>(34,093) <em>The Tragedy of the Commons</em> (Hardin, 1968)</li>
+<li>(32,067) <em>Some Difficulties of the Determination Problem</em> (Harrison, 1933)</li>
+<li>(29,458) <em>Diverse Doctrines of Evolution, Their Relation to the Practice of Science and of Life</em> (Jennings, 1927)</li>
+<li>(28,149) <em>An Analysis of Transformations</em> (Box, 1964)</li>
+<li>(26,000) <em>Fitting the Negative Binomial Distribution to Biological Data</em> (Bliss, 1953)</li>
+<li>(25,410) <em>A Method for Cluster Analysis</em> (Edwards, 1965)</li>
+<li>(24,611, 0.34% or 1 in 289 of the results) <em>A Theory of the Allocation of Time</em> (Becker, 1965)</li>
+</ol>
+<p>We hope to dig into this more next week, but looking at the results is already pretty fascinating:</p>
+<ul>
+<li>These papers are generally highly cited, but (paraphrasing Jevin) may not be currently recognized as the very top according to standard citation metrics.</li>
+<li>The time range is pretty interesting — early to mid 20th century all around.</li>
+<li>Mathematics and statistics seems to dominate this part of the list. We do see some more fundamental life science papers nearby, the first of which is <em>The Gene</em> (Goldschmidt, 1928) at #17.</li>
+<li>The top hit represents 0.66%, or 1 in 151 of the results, and the 10th hit represents 0.34% or 1 in 289 of the results.</li>
+<li>And, of course, I have not directly come across any of these papers in my work, but I should go read them!</li>
+</ul>
+<p>What are your thoughts: Do you recognize these papers? Have you read them? What else should we think about?</p><p>There are <a href="http://blog.halper.in/moore-sloan-fun-with-academic-lineage.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/moore-sloan-data-science-environment-summit.html" rel="bookmark"
+                           title="Permalink to Moore-Sloan Data Science Environment Summit">Moore-Sloan Data Science Environment&nbsp;Summit</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-10-08T00:00:00">
                 Published: Wed 08 October 2014
@@ -32,20 +79,13 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/msdse.html">msdse</a> <a href="http://blog.halper.in/tag/asilomar.html">asilomar</a> </p>
-</footer><!-- /.post-info --><p><img alt="#dsesummit group" src="/images/20141009_DSE_Summit_70.jpg" style="width: 924px; height: auto; max-width: 100%;"/></p>
+</footer><!-- /.post-info -->                <p><img alt="#dsesummit group" src="/images/20141009_DSE_Summit_70.jpg" style="width: 924px; height: auto; max-width: 100%;"/></p>
 <p>The last three days we were been at the Moore-Sloan <span class="caps">DSE</span> Summit (#dsesummit on Twitter). It was utterly fantastic to see all our compatriots at Berkeley and <span class="caps">NYU</span>, and to meet new ones. Here are a few random observations:</p>
 <ul>
-<li>The main goal of the summit was for community building. By this metric, the <span class="caps">DSE</span> Summit was an <strong>unqualified success</strong>. By the end of the three days I felt like I knew everyone I passed in the hall and I had experienced many substantial, half-hour-plus-long conversations with many great folks from everywhere. Kevin, Micaela, and Sarah did a great job with the planning and the <em>gilded cage</em> of Asilomar was a wonderful venue in which to be locked together!</li>
-<li>Since unconferences started creeping into workshop schedules a few years back, I have had a really mixed impression. They seem to work best with small groups where everyone is interested; bigger groups tend to devolve into presentations and advertisements by the two or three people who normally talk the most — thus two of the unconferences felt pretty useless to me. In contrast, the third unconference on the last day was great — about 10 students and data scientists debating real issues around “how to we keep a sense of community and communication going” after the summit.</li>
-<li>Among the scientists with data problems, the groups seemed heavily slanted towards people who are computer savvy. I heard terms like “cache line size” more often than I would have expected, and I heard terms like “data management” much less often than I would have expected. I expect this distribution to change as data-driven scientists from less computationally-savvy domains enter the field.</li>
-<li><span class="caps">UW</span> seems to be unique among the schools in that we have a substantial and increasing number of people who are “100% <span class="caps">DSE</span>” (Andrew, Bill, Jake, me, plus the data scientists we are recruiting). I will be interested to see whether this difference matters in the next 5 years.</li>
-<li>Bill and I spent the hour introducing and taking Q&amp;A about the <span class="caps">UW</span> Data Science Incubator program at the software tools working group meeting. I am excited and hopeful that versions of this program will be picked up by other schools!</li>
-</ul><p>There are <a href="http://blog.halper.in/moore-sloan-data-science-environment-summit.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<li>The main goal of the summit was for community building. By ...</li></ul>
+                <a class="readmore" href="http://blog.halper.in/moore-sloan-data-science-environment-summit.html">read more</a>
+<p>There are <a href="http://blog.halper.in/moore-sloan-data-science-environment-summit.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

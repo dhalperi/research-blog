@@ -21,7 +21,54 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-23-daily.html">2014-09-23&nbsp;daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/moore-sloan-fun-with-academic-lineage.html">Mo(o)re(&#8212;Sloan) fun with Academic&nbsp;Lineage</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-10-09T00:00:00">
+                Published: Thu 09 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/msdse.html">msdse</a> <a href="http://blog.halper.in/tag/eigenfactor.html">eigenfactor</a> </p>
+</footer><!-- /.post-info --><p>While we were at the Moore—Sloan Data Science Environments community build, <a href="http://r.halper.in/coauth/jevin">Jevin West</a> continued our work analyzing academic lineage with Myria.</p>
+<p>On the citation graph we’re using, <a href="http://www.mapequation.org/code.html">InfoMap</a> identifies 5,292 unique paper clusters. For each cluster, we took the top paper rated by <a href="http://www.eigenfactor.org/">Eigenfactor</a> and fed these 5,292 papers as the seed set for the Least Common Ancestor (<span class="caps">LCA</span>) query which we ran on Myria. The <a href="https://demo.myria.cs.washington.edu/queries?max=35111&amp;limit=1">query itself</a> took a little over 4 hours, but it finished successfully.</p>
+<p>Of the nearly 14 million pairs of papers, 7.1M of them have a common ancestor—a hit rate of about 50%.  Among these 7.1M LCAs, here are the ten most frequent papers (and their frequencies):</p>
+<ol>
+<li>(47,129) <em>Some Methods for Strengthening the Common 𝝌<sup>2</sup> Tests</em> (Cochran, 1954)</li>
+<li>(35,585) <em>The Evolution of Reciprocal Altruism</em> (Trivers, 1971)</li>
+<li>(34,195) <em>On the Mathematical Foundations of Theoretical Statistics</em> (Fisher, 1922)</li>
+<li>(34,093) <em>The Tragedy of the Commons</em> (Hardin, 1968)</li>
+<li>(32,067) <em>Some Difficulties of the Determination Problem</em> (Harrison, 1933)</li>
+<li>(29,458) <em>Diverse Doctrines of Evolution, Their Relation to the Practice of Science and of Life</em> (Jennings, 1927)</li>
+<li>(28,149) <em>An Analysis of Transformations</em> (Box, 1964)</li>
+<li>(26,000) <em>Fitting the Negative Binomial Distribution to Biological Data</em> (Bliss, 1953)</li>
+<li>(25,410) <em>A Method for Cluster Analysis</em> (Edwards, 1965)</li>
+<li>(24,611, 0.34% or 1 in 289 of the results) <em>A Theory of the Allocation of Time</em> (Becker, 1965)</li>
+</ol>
+<p>We hope to dig into this more next week, but looking at the results is already pretty fascinating:</p>
+<ul>
+<li>These papers are generally highly cited, but (paraphrasing Jevin) may not be currently recognized as the very top according to standard citation metrics.</li>
+<li>The time range is pretty interesting — early to mid 20th century all around.</li>
+<li>Mathematics and statistics seems to dominate this part of the list. We do see some more fundamental life science papers nearby, the first of which is <em>The Gene</em> (Goldschmidt, 1928) at #17.</li>
+<li>The top hit represents 0.66%, or 1 in 151 of the results, and the 10th hit represents 0.34% or 1 in 289 of the results.</li>
+<li>And, of course, I have not directly come across any of these papers in my work, but I should go read them!</li>
+</ul>
+<p>What are your thoughts: Do you recognize these papers? Have you read them? What else should we think about?</p><p>There are <a href="http://blog.halper.in/moore-sloan-fun-with-academic-lineage.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-09-23-daily.html" rel="bookmark"
+                           title="Permalink to 2014-09-23 daily">2014-09-23&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-09-23T00:00:00">
                 Published: Tue 23 September 2014
@@ -32,13 +79,10 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/eigenfactor.html">eigenfactor</a> </p>
-</footer><!-- /.post-info --><p>Today I met with <a href="http://r.halper.in/coauth/jevin">Jevin West</a> to continue our discussions of Sandra Anderson’s work using Myria to study citation networks. This week, we are digging into one 37-hop citation path from neuroscience in 1988 to law in 1912. Really, really fascinating data. Soon, we hope to be able to automatically identify what the important papers that bridge disparate fields, and when these bridges were built.</p>
-<p>In the afternoon, we held the <a href="http://escience.washington.edu/blog/data-science-uw">eScience Welcome Event</a> for Fall 2014 — we met all the new postdocs, faculty, and <a href="http://escience.washington.edu/education-IGERT"><span class="caps">IGERT</span></a> students who will be joining us this year. Now that school is back in session (starting tomorrow) the year is officially beginning, and I am so excited about what’s coming up!</p><p>There are <a href="http://blog.halper.in/2014-09-23-daily.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>Today I met with <a href="http://r.halper.in/coauth/jevin">Jevin West</a> to continue our discussions of Sandra Anderson’s work using Myria to study citation networks. This week, we are digging into one 37-hop citation path from neuroscience in 1988 to law in 1912. Really, really fascinating data. Soon, we hope to be able to ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-09-23-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-09-23-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
