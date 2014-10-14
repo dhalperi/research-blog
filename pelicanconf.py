@@ -7,7 +7,7 @@ SITENAME = u"Dan's research blog"
 SITEURL = 'http://blog.halper.in'
 
 PATH = 'content'
-DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_CATEGORIES_ON_MENU = True
 
 TIMEZONE = 'America/Los_Angeles'
 
