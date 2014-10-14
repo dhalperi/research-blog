@@ -17,6 +17,7 @@ DEFAULT_LANG = u'en'
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
+TAG_FEED_ATOM = "feeds/%s.atom.xml"
 
 # DISQUS comments
 DISQUS_SITENAME = "blog-halper-in"
