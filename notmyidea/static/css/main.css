@@ -323,10 +323,18 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		.social a[href*='groups.google.com'] {background-image: url('../images/icons/google-groups.png');}
 		.social a[href*='news.ycombinator.com'],
 		.social a[href*='hackernewsers.com'] {background-image: url('../images/icons/hackernews.png');}
+		.social a[href*='impactstory.org'] {
+			background-image: url('../images/icons/impactstory.png');
+			background-size: 16px 16px;
+		}
 		.social a[href*='last.fm'], .social a[href*='lastfm.'] {background-image: url('../images/icons/lastfm.png');}
 		.social a[href*='linkedin.com'] {background-image: url('../images/icons/linkedin.png');}
 		.social a[href*='reddit.com'] {background-image: url('../images/icons/reddit.png');}
 		.social a[type$='atom+xml'], .social a[type$='rss+xml'] {background-image: url('../images/icons/rss.png');}
+		.social a[href*='scholar.google.com'] {
+			background-image: url('../images/icons/scholar-png.ico');
+			background-size: 16px 16px;
+		}
 		.social a[href*='slideshare.net'] {background-image: url('../images/icons/slideshare.png');}
 		.social a[href*='speakerdeck.com'] {background-image: url('../images/icons/speakerdeck.png');}
 		.social a[href*='stackoverflow.com'] {background-image: url('../images/icons/stackoverflow.png');}
