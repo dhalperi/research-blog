@@ -38,6 +38,8 @@ SOCIAL = (('GitHub', 'https://github.com/dhalperi'),
           ('Twitter', 'https://twitter.com/dhalperi'),
           ('Google+', 'https://plus.google.com/+DanielHalperin'))
 
+THEME = "notmyidea"
+
 # DEFAULT_PAGINATION = 4
 
 # Uncomment following line if you want document-relative URLs when developing
