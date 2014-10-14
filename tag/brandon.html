@@ -21,7 +21,51 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/2014-09-22-daily.html">2014-09-22&nbsp;daily</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/data-science-incubator-week-2.html">Data Science Incubator, Week&nbsp;2</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-10-09T00:00:00">
+                Published: Thu 09 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/grappa.html">grappa</a> </p>
+</footer><!-- /.post-info --><p>I spent today in the Data Science Incubator working with <a href="http://www.astro.washington.edu/users/becker/">Andy Becker</a> on <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a>. We are trying to port the key components of the moving object detection into PostgreSQL using PostGIS.</p>
+<p>On his own, Andy designed a schema for the various data, including spatial columns and indexes. Side by side, we worked on a few issues:</p>
+<ul>
+<li>Speeding up data load: <code>\COPY</code> is much faster than large batch insert statements, as we know.</li>
+<li>Explaining queries and seeing whether indexes are used: not yet, but the database is small so sequential scans might actually make more sense. Also, it looks like the optimizer may miss some tricks in some cases.</li>
+<li>Cloud-ification: we set up an Amazon <span class="caps">RDS</span> PostgreSQL+PostGIS database, and proved that we could load data in, even large data.</li>
+<li>Astro UDFs: for the kinds of spatial queries that we need, there are great C++ libraries that do all the work; we need access to those UDFs in the database! We <a href="https://github.com/uwescience/kbmod/issues/1">began investigating</a> PostgreSQL support for UDFs as compiled C binaries; this should be doable, but we may need to fiddle to make the C++ code play nice with PostgreSQL, which expects C…</li>
+<li>
+<p>UDFs may be a show-stopper for using <span class="caps">RDS</span>, however — you cannot register binary UDFs there, so we will likely have to kill the <span class="caps">RDS</span> instance and setup a manually managed <span class="caps">EC2</span>+PostgreSQL instance instead.</p>
+<p>Aside: Automatically-managed cloud services are <em>very</em> appealing, but little implementation issues like this always seem to bite us. Similar limitations apply to Microsoft <span class="caps">SQL</span> Azure [no stored procedures], and Google App Engine [no CPython]—-our needs always push us into the “Sorry, you have to do <em>everything</em> manually now” use case, or make us dramatically restrict the performance and capabilities of our applications. Surely this issue crops up for other users!</p>
+</li>
+</ul>
+<p>For next week, some preliminary goals are:</p>
+<ul>
+<li>move from <span class="caps">RDS</span> to <span class="caps">EC2</span></li>
+<li>get a bigger dataset into the database, so we are in a real optimization framework</li>
+<li>get the <span class="caps">UDF</span> into the database</li>
+<li>work on expressing the queries and testing correctness</li>
+<li>optimize the indexes and queries</li>
+</ul>
+<p>We also chatted with <a href="http://homes.cs.washington.edu/~bholt/">Brandon Holt</a>, <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a>, and Simon Kahan about possible <a href="http://grappa.io/">Grappa</a>—<span class="caps">KBMOD</span> connections.</p><p>There are <a href="http://blog.halper.in/data-science-incubator-week-2.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/2014-09-22-daily.html" rel="bookmark"
+                           title="Permalink to 2014-09-22 daily">2014-09-22&nbsp;daily</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-09-22T00:00:00">
                 Published: Mon 22 September 2014
@@ -32,13 +76,10 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/jeremy.html">jeremy</a> </p>
-</footer><!-- /.post-info --><p>The majority activity today was reviewing the proposals we received for the Fall 2014 edition of our <a href="http://data.uw.edu/incubator/">Data Science Incubator</a>. We received <strong>26</strong> fantastic proposals ranging from Astronomy to Statistics (<em>sadly, no Zoology</em>), and we are probably going to have to cut it down to 5 or 6. Lots of great stuff in there, so much so that we are talking about other ways to figure out how to support the projects.</p>
-<p>The rest of the day was filled with student meetings. <a href="http://r.halper.in/coauth/hyrkas">Jeremy Hyrkas</a> is back from Google and will be finishing up his quals on clustering SeaFlow data. <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> is finishing up his paper using <a href="http://github.com/uwescience/raco">Raco</a> to generate fast, efficient <a href="http://grappa.io/">Grappa</a> programs from MyriaL code.</p><p>There are <a href="http://blog.halper.in/2014-09-22-daily.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>The majority activity today was reviewing the proposals we received for the Fall 2014 edition of our <a href="http://data.uw.edu/incubator/">Data Science Incubator</a>. We received <strong>26</strong> fantastic proposals ranging from Astronomy to Statistics (<em>sadly, no Zoology</em>), and we are probably going to have to cut it down to 5 or 6. Lots of ...</p>
+                <a class="readmore" href="http://blog.halper.in/2014-09-22-daily.html">read more</a>
+<p>There are <a href="http://blog.halper.in/2014-09-22-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
