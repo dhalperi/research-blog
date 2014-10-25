@@ -1,0 +1,10 @@
+Title: Myria security, ethnography
+Date: 2014-10-15
+Category: daily
+Tags: britta, anissa, dominik, shrainik, bill, myria, incubator, variety, ethnography
+
+The newest Chrome update broke parts of [Myria](http://myria.cs.washington.edu) because of new policies regarding security (HTTPS) in web API calls. So, I finally did the 5 hours of work it would take to make Myria's API server support HTTPS, installed the certificate, and made all our deployment scripts. Now our users' data (which is all publicly logged anyway) is much "safer" and, more importantly, the website works again.
+
+I sat down with the ethnographers who are observing the [Data Science Incubator](http://data.uw.edu/incubator) -- [Brittany Fiore-Silvast](http://fioresilfvast.org/) and Anissa Tanweer -- to chat about the parts of the Incubator process that happened before we looped them in. We discussed the internal planning, what happened in Spring and what we wanted to change, the applicant pool, the review process, and more. It was a fun chat and merely having the chat, plus their insightful questions, made me reflect more on the process and take a step back. 
+
+[Bill Howe](http://r.halper.in/coauth/billhowe) and I met with [Shrainik Jain](http://r.halper.in/coauth/shrainik) and [Dominik Moritz](http://r.halper.in/coauth/domoritz) to discuss our project quantifying how much "variety" there is in different data systems and progress on the draft paper they have been writing. The basic idea is that we have an intuitive notion of "well-structured" databases (like the TPC benchmarks), and databases with "high variety" (like SQLShare), and we ought to be able to quantitatively find differences between them. SDSS should be a nice mid-point: it has many users asking potentially different questions, but their queries are limited to a well-defined, highly structured schema provided by the Skyserver team. Initial results are promising, and we are starting to put together a draft.
