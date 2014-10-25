@@ -22,7 +22,106 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/visualizations-everywhere.html">Visualizations&nbsp;everywhere</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/10/16/ssl-certificates-suck-incubator-32-nyu/"><span class="caps">SSL</span> certificates suck; Incubator 3.2 → <span class="caps">NYU</span></a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-10-16T00:00:00">
+                Published: Thu 16 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info --><p>Today was “I-hate-certificates” day. Four different people had ugly issues with <span class="caps">SSL</span>:</p>
+<ul>
+<li><a href="http://r.halper.in/coauth/sclayton">Sophie</a> has finished cleaning the underway data in SQLShare and is ready to load it into Myria. However, she had problems using Myria’s Python client because her Mac did not trust Myria’s <span class="caps">SSL</span> certificate. (<span class="caps">UW</span>’s choice of Certificate Authority (<span class="caps">CA</span>), InCommon, has apparently not been blessed by Mac <span class="caps">OS</span> X.)</li>
+<li>Brendan Lee has been working with the <a href="http://db.cs.washington.edu/"><span class="caps">UW</span> Database Group</a> on <a href="http://dl.acm.org/citation.cfm?id=2627774">MyMergerTree</a>. MyMergerTree is powered by Myria, so after I enabled <span class="caps">SSL</span> yesterday, I asked him to fix the web service to use <span class="caps">HTTPS</span> instead of <span class="caps">HTTP</span> links. Well, great, InCommon has not been blessed by Ubuntu either.</li>
+<li>Two different people came to Incubator office hours to learn about <code>git</code>. They brought older laptops with, you guessed it, older versions of Mac <span class="caps">OS</span> X installed. And, surprise surprise, <a href="https://help.github.com/articles/error-ssl-certificate-problem-verify-that-the-ca-cert-is-ok/">GitHub’s current <span class="caps">SSL</span> certificate</a> is not blessed by those old versions of Mac <span class="caps">OS</span> X, and the only way to fix it is to <em>upgrade the <span class="caps">OS</span></em>. You know, because that’s a <em>totally reasonable</em> option.</li>
+</ul>
+<p>Such a waste of time. Why do we make users jump through these hoops? We worked around these issues in a variety of ways, all of which involved disabling certificate verification. Ugh, that’s a fail. (In one case we were able to switch from <span class="caps">HTTPS</span> to <span class="caps">SSH</span> for GitHub — that, at least, made me moderately less sad at heart.)</p>
+<p>I left at lunch for the airport. I’ll be at <span class="caps">NYU</span> in Brooklyn for the next week giving talks, making connections, and generally getting to know better our Moore-Sloan <span class="caps">DSE</span> collaborators across the country. I spent the entire flight working on slides for the various talks.</p><p>There are <a href="http://blog.halper.in/posts/2014/10/16/ssl-certificates-suck-incubator-32-nyu/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/15/myria-security-ethnography/" rel="bookmark"
+                           title="Permalink to Myria security, ethnography">Myria security,&nbsp;ethnography</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-10-15T00:00:00">
+                Published: Wed 15 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/britta.html">britta</a> <a href="http://blog.halper.in/tag/anissa.html">anissa</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/shrainik.html">shrainik</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/variety.html">variety</a> <a href="http://blog.halper.in/tag/ethnography.html">ethnography</a> </p>
+</footer><!-- /.post-info -->                <p>The newest Chrome update broke parts of <a href="http://myria.cs.washington.edu">Myria</a> because of new policies regarding security (<span class="caps">HTTPS</span>) in web <span class="caps">API</span> calls. So, I finally did the 5 hours of work it would take to make Myria’s <span class="caps">API</span> server support <span class="caps">HTTPS</span>, installed the certificate, and made all our deployment scripts. Now our ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/15/myria-security-ethnography/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/15/myria-security-ethnography/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/" rel="bookmark"
+                           title="Permalink to Incubator week 3.1">Incubator week&nbsp;3.1</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-10-14T00:00:00">
+                Published: Tue 14 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> </p>
+</footer><!-- /.post-info -->                <p>Today was day 1 of <a href="http://data.uw.edu/incubator">Incubator</a> week 3.</p>
+<p><a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> exposed a locking issue in <a href="http://sqlshare.escience.washington.edu">SQLShare</a>: if a running query reads from table <code>T</code> and a user changes the sharing on table <code>T</code>, SQLShare basically locks the entire system until the query finishes. We need to revisit this issue, but ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/13/data-and-databases/" rel="bookmark"
+                           title="Permalink to Data and databases">Data and&nbsp;databases</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-10-13T00:00:00">
+                Published: Mon 13 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/reading.html">reading</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info -->                <p>Over the weekend, both <a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> and <a href="http://r.halper.in/people/becker">Andy Becker</a> worked independently on their <a href="http://data.uw.edu/incubator">Data Science Incubator</a> projects; I spent some time then and today answering emails :).</p>
+<p>Sophie has been loading underway data (<span class="caps">GPS</span>, temperature, salinity, etc. from ships in motion) into <a href="http://sqlshare.escience.washington.edu">SQLShare</a> for cleaning. Every research vessel is its own ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/13/data-and-databases/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/13/data-and-databases/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/10/visualizations-everywhere/" rel="bookmark"
+                           title="Permalink to Visualizations everywhere">Visualizations&nbsp;everywhere</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-10-10T00:00:00">
                 Published: Fri 10 October 2014
@@ -33,19 +132,14 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/tufte.html">tufte</a> <a href="http://blog.halper.in/tag/camille.html">camille</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
-</footer><!-- /.post-info --><p><a href="http://web.cecs.pdx.edu/~tufte/">Kristin Tufte</a> from Portland State University came to <span class="caps">UW</span> today to visit some folks in transportation and to visit our eScience and Database groups. Most of the eScience students got to tell her about their work, and she and I discussed the Data Science Incubator and how to get undergrads involved. In her talk, she told us about S-Store, a streaming database with transactional support, and all about her work building <a href="http://portal.its.pdx.edu/Portal/index.php/home/">Portal</a> to manage, analyze, and visualize live traffic data on the Portland—Vancouver(<span class="caps">WA</span>) border in collaboration with <span class="caps">ODOT</span>, <span class="caps">WSDOT</span>, and related gov’ts. Fascinating, big, messy data problems everywhere, and great output viz.</p>
-<p><a href="http://r.halper.in/coauth/domoritz">Dominik Moritz</a> <span class="amp">&amp;</span> I chatted about his research on Myria’s profiler / query execution visualizer and the paper we hope to write about it this quarter. I have been logging a half-dozen ways in which the profiler has helped me debug and understand various system this summer and these use cases should help flesh out the paper.</p>
-<p><a href="http://r.halper.in/people/cobbc12">Camille Cobb</a> <span class="amp">&amp;</span> I chatted about various projects for her relating to visualization of scientific datasets. We’re doing lit review and reading up on existing work, but I think we have the gist of two interesting, novel projects to go on.</p>
-<p>In my own time, I have been struggling with using <a href="https://bitbucket.org/zzzeek/sqlalchemy">SQLAlchemy</a> on Google App Engine to make Myria push work into an underlying <span class="caps">DBMS</span> and get much better performance on selective queries.</p><p>There are <a href="http://blog.halper.in/visualizations-everywhere.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p><a href="http://web.cecs.pdx.edu/~tufte/">Kristin Tufte</a> from Portland State University came to <span class="caps">UW</span> today to visit some folks in transportation and to visit our eScience and Database groups. Most of the eScience students got to tell her about their work, and she and I discussed the Data Science Incubator and how to get undergrads ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/10/visualizations-everywhere/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/10/visualizations-everywhere/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/data-science-incubator-week-2.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/10/09/data-science-incubator-week-2/" rel="bookmark"
                            title="Permalink to Data Science Incubator, Week 2">Data Science Incubator, Week&nbsp;2</a></h1>
                 </header>
 
@@ -62,13 +156,13 @@
 <p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/grappa.html">grappa</a> </p>
 </footer><!-- /.post-info -->                <p>I spent today in the Data Science Incubator working with <a href="http://www.astro.washington.edu/users/becker/">Andy Becker</a> on <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a>. We are trying to port the key components of the moving object detection into PostgreSQL using PostGIS.</p>
 <p>On his own, Andy designed a schema for the various data, including spatial columns and indexes. Side by side ...</p>
-                <a class="readmore" href="http://blog.halper.in/data-science-incubator-week-2.html">read more</a>
-<p>There are <a href="http://blog.halper.in/data-science-incubator-week-2.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/09/data-science-incubator-week-2/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/09/data-science-incubator-week-2/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/moore-sloan-fun-with-academic-lineage.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/10/09/moore-sloan-fun-with-academic-lineage/" rel="bookmark"
                            title="Permalink to Mo(o)re(—Sloan) fun with Academic Lineage">Mo(o)re(&#8212;Sloan) fun with Academic&nbsp;Lineage</a></h1>
                 </header>
 
@@ -85,13 +179,13 @@
 <p>tags: <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/msdse.html">msdse</a> <a href="http://blog.halper.in/tag/eigenfactor.html">eigenfactor</a> </p>
 </footer><!-- /.post-info -->                <p>While we were at the Moore—Sloan Data Science Environments community build, <a href="http://r.halper.in/coauth/jevin">Jevin West</a> continued our work analyzing academic lineage with Myria.</p>
 <p>On the citation graph we’re using, <a href="http://www.mapequation.org/code.html">InfoMap</a> identifies 5,292 unique paper clusters. For each cluster, we took the top paper rated by <a href="http://www.eigenfactor.org/">Eigenfactor</a> and fed these ...</p>
-                <a class="readmore" href="http://blog.halper.in/moore-sloan-fun-with-academic-lineage.html">read more</a>
-<p>There are <a href="http://blog.halper.in/moore-sloan-fun-with-academic-lineage.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/09/moore-sloan-fun-with-academic-lineage/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/09/moore-sloan-fun-with-academic-lineage/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/moore-sloan-data-science-environment-summit.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/10/08/moore-sloan-data-science-environment-summit/" rel="bookmark"
                            title="Permalink to Moore-Sloan Data Science Environment Summit">Moore-Sloan Data Science Environment&nbsp;Summit</a></h1>
                 </header>
 
@@ -110,13 +204,13 @@
 <p>The last three days we were been at the Moore-Sloan <span class="caps">DSE</span> Summit (#dsesummit on Twitter). It was utterly fantastic to see all our compatriots at Berkeley and <span class="caps">NYU</span>, and to meet new ones. Here are a few random observations:</p>
 <ul>
 <li>The main goal of the summit was for community building. By ...</li></ul>
-                <a class="readmore" href="http://blog.halper.in/moore-sloan-data-science-environment-summit.html">read more</a>
-<p>There are <a href="http://blog.halper.in/moore-sloan-data-science-environment-summit.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/08/moore-sloan-data-science-environment-summit/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/08/moore-sloan-data-science-environment-summit/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-24-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/24/2014-09-24-daily/" rel="bookmark"
                            title="Permalink to 2014-09-24 daily">2014-09-24&nbsp;daily</a></h1>
                 </header>
 
@@ -132,13 +226,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/shrainik.html">shrainik</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> </p>
 </footer><!-- /.post-info -->                <p>We made final decisions about the proposed Incubator projects today. We ended up with 6 exciting projects we accepted, and 20 more we wish we could have said yes to. If your proposal was not accepted, or you want to get in touch with us some other way, note that ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-24-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-24-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/24/2014-09-24-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/24/2014-09-24-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-23-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/23/2014-09-23-daily/" rel="bookmark"
                            title="Permalink to 2014-09-23 daily">2014-09-23&nbsp;daily</a></h1>
                 </header>
 
@@ -154,13 +248,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/eigenfactor.html">eigenfactor</a> </p>
 </footer><!-- /.post-info -->                <p>Today I met with <a href="http://r.halper.in/coauth/jevin">Jevin West</a> to continue our discussions of Sandra Anderson’s work using Myria to study citation networks. This week, we are digging into one 37-hop citation path from neuroscience in 1988 to law in 1912. Really, really fascinating data. Soon, we hope to be able to ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-23-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-23-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/23/2014-09-23-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/23/2014-09-23-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-22-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/22/2014-09-22-daily/" rel="bookmark"
                            title="Permalink to 2014-09-22 daily">2014-09-22&nbsp;daily</a></h1>
                 </header>
 
@@ -176,13 +270,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/jeremy.html">jeremy</a> </p>
 </footer><!-- /.post-info -->                <p>The majority activity today was reviewing the proposals we received for the Fall 2014 edition of our <a href="http://data.uw.edu/incubator/">Data Science Incubator</a>. We received <strong>26</strong> fantastic proposals ranging from Astronomy to Statistics (<em>sadly, no Zoology</em>), and we are probably going to have to cut it down to 5 or 6. Lots of ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-22-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-22-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/22/2014-09-22-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/22/2014-09-22-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-19-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/19/2014-09-19-daily/" rel="bookmark"
                            title="Permalink to 2014-09-19 daily">2014-09-19&nbsp;daily</a></h1>
                 </header>
 
@@ -199,13 +293,13 @@
 <p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/alvin.html">alvin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> </p>
 </footer><!-- /.post-info -->                <p>Today <a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> and I hacked on Myria for SeaFlow once again. We found another few opportunities for language and usability improvements, and made little progress because of an issue introduced when fixing other bugs earlier this week.</p>
 <p>In the Myria research meeting, we had both Johannes Gehrke from Microsoft ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-19-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-19-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/19/2014-09-19-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/19/2014-09-19-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-17-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/17/2014-09-17-daily/" rel="bookmark"
                            title="Permalink to 2014-09-17 daily">2014-09-17&nbsp;daily</a></h1>
                 </header>
 
@@ -221,13 +315,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
 </footer><!-- /.post-info -->                <p>Today I mostly worked on admission control (i.e., query queuing) for Myria. I also read some papers on cost-based optimizers.</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-17-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-17-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/17/2014-09-17-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/17/2014-09-17-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-16-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/16/2014-09-16-daily/" rel="bookmark"
                            title="Permalink to 2014-09-16 daily">2014-09-16&nbsp;daily</a></h1>
                 </header>
 
@@ -246,13 +340,13 @@
 <ol>
 <li>
 <p><span class="caps">UW</span> Data Science Incubator applications are due Thursday! They have started rolling in, so I have started looking at them and have started a few clarifying discussions with some of the authors. Getting ...</p></li></ol>
-                <a class="readmore" href="http://blog.halper.in/2014-09-16-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-16-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/16/2014-09-16-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/16/2014-09-16-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-15-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/15/2014-09-15-daily/" rel="bookmark"
                            title="Permalink to 2014-09-15 daily">2014-09-15&nbsp;daily</a></h1>
                 </header>
 
@@ -274,13 +368,13 @@
 <ul>
 <li>
 <p>Incrementalizing the code (duh) did in fact let me scale it farther ...</p></li></ul>
-                <a class="readmore" href="http://blog.halper.in/2014-09-15-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-15-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/15/2014-09-15-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/15/2014-09-15-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-12-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/12/2014-09-12-daily/" rel="bookmark"
                            title="Permalink to 2014-09-12 daily">2014-09-12&nbsp;daily</a></h1>
                 </header>
 
@@ -299,13 +393,13 @@
 <p>Tomorrow I will work more on the scaling issues!</p>
 </blockquote>
 <p>We had a great Myria meeting this afternoon. We discussed <a href="http://r.halper.in/coauth/whitaker">Andrew Whitaker</a>‘s user-defined aggregate (<span class="caps">UDA</span>) extensions to MyriaL, which provide a very nice way to get scalable, distributed partial aggregation to implement many complicated aggregations in a single scan rather ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-12-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-12-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/12/2014-09-12-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/12/2014-09-12-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-11-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/11/2014-09-11-daily/" rel="bookmark"
                            title="Permalink to 2014-09-11 daily">2014-09-11&nbsp;daily</a></h1>
                 </header>
 
@@ -321,13 +415,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> </p>
 </footer><!-- /.post-info -->                <p>Today I spent all day with Sandra Anderson’s citation graph lineage queries. Though I can compute “all-pairs reachability” for the first <em>10000</em> papers in the dataset… I can only currently compute “least-common ancestor” for the first <em>500</em> papers. There are some severe algorithmic scalability challenges here that we are ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-11-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-11-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/11/2014-09-11-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/11/2014-09-11-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-10-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/10/2014-09-10-daily/" rel="bookmark"
                            title="Permalink to 2014-09-10 daily">2014-09-10&nbsp;daily</a></h1>
                 </header>
 
@@ -343,13 +437,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/jevin.html">jevin</a> </p>
 </footer><!-- /.post-info -->                <p>In between meetings, I spent most of today continuing yesterday’s work on the citation use case. Further query rewrites and testing exposed an interesting bug in the optimizer due to a mismatch between logical algebra representation and the actual system implementation behavior — the optimizer assumed the system could perform ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-10-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-10-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/10/2014-09-10-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/10/2014-09-10-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-09-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/09/2014-09-09-daily/" rel="bookmark"
                            title="Permalink to 2014-09-09 daily">2014-09-09&nbsp;daily</a></h1>
                 </header>
 
@@ -368,13 +462,13 @@
 <p>Once again I identified a number of nice optimization opportunities:</p>
 <ul>
 <li>some query rewrites that result in better ...</li></ul>
-                <a class="readmore" href="http://blog.halper.in/2014-09-09-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-09-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/09/2014-09-09-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/09/2014-09-09-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-08-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/08/2014-09-08-daily/" rel="bookmark"
                            title="Permalink to 2014-09-08 daily">2014-09-08&nbsp;daily</a></h1>
                 </header>
 
@@ -391,13 +485,13 @@
 <p>tags: <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> </p>
 </footer><!-- /.post-info -->                <p>Today we held the information session for the second installation of our Data Science Incubator projects which we will hold in the Spring. It was fairly well attended; maybe 20—25 people came and many of these indicated that they will be submitting proposals.</p>
 <p>Over the weekend and today I ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-08-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-08-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/08/2014-09-08-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/08/2014-09-08-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-04-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/04/2014-09-04-daily/" rel="bookmark"
                            title="Permalink to 2014-09-04 daily">2014-09-04&nbsp;daily</a></h1>
                 </header>
 
@@ -415,13 +509,13 @@
 </footer><!-- /.post-info -->                <p>Today I met with <span class="caps">UW</span> <span class="caps">CSE</span> undergrad York Wei and <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> for demos and code review of York’s summer Project. York and Brandon have adapted our <a href="http://github.com/uwescience/myria-web">Myria Web frontend</a> to extend the current support for <a href="http://myria.cs.washington.edu">Myria</a> with the ability to issue queries to two new backends:</p>
 <ol>
 <li>a backend ...</li></ol>
-                <a class="readmore" href="http://blog.halper.in/2014-09-04-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-04-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/04/2014-09-04-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/04/2014-09-04-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-03-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/03/2014-09-03-daily/" rel="bookmark"
                            title="Permalink to 2014-09-03 daily">2014-09-03&nbsp;daily</a></h1>
                 </header>
 
@@ -437,13 +531,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/asterios.html">asterios</a> <a href="http://blog.halper.in/tag/danac.html">danac</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> </p>
 </footer><!-- /.post-info -->                <p>Today’s highlight was another hack session with <a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> in the Armbrust Lab. The <a href="https://demo.myria.cs.washington.edu/queries?max=32528&amp;limit=1">same query to compute the cytometric diversity (“richness”)</a> that we ran a month ago on a smaller dataset now ran out of memory after 12 minutes; after an hour of futzing I got it to ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-03-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-03-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/03/2014-09-03-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/03/2014-09-03-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-09-02-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/09/02/2014-09-02-daily/" rel="bookmark"
                            title="Permalink to 2014-09-02 daily">2014-09-02&nbsp;daily</a></h1>
                 </header>
 
@@ -460,13 +554,13 @@
 <p>tags: <a href="http://blog.halper.in/tag/jeremy.html">jeremy</a> <a href="http://blog.halper.in/tag/magda.html">magda</a> <a href="http://blog.halper.in/tag/paris.html">paris</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
 </footer><!-- /.post-info -->                <p>Some writing/editing on <a href="http://r.halper.in/coauth/hyrkas">Jeremy Hyrkas</a>‘s paper on the challenges of clustering SeaFlow data.</p>
 <p>Now that <a href="http://r.halper.in/coauth/magda">Magda</a> is back from sabbatical (woohoo!), we met to discuss the status of with <a href="http://myria.cs.washington.edu">Myria</a> as a project at the implementation and research levels. Good stuff brewing, and we’re looking forward to ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-09-02-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-09-02-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/09/02/2014-09-02-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/09/02/2014-09-02-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-29-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/29/2014-08-29-daily/" rel="bookmark"
                            title="Permalink to 2014-08-29 daily">2014-08-29&nbsp;daily</a></h1>
                 </header>
 
@@ -482,13 +576,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/infomap.html">infomap</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> </p>
 </footer><!-- /.post-info -->                <p>The big news today is that <a href="https://demo.myria.cs.washington.edu">Myria</a> now has support for user-defined aggregations. I’m excited that we can soon put this new feature to work and asymptotically speedup <a href="http://blog.halper.in/2014-08-20-daily.html">Sandra’s citation graph analysis work</a>, which is currently throttled by memory pressure.</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-29-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-29-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/29/2014-08-29-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/29/2014-08-29-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-28-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/28/2014-08-28-daily/" rel="bookmark"
                            title="Permalink to 2014-08-28 daily">2014-08-28&nbsp;daily</a></h1>
                 </header>
 
@@ -504,13 +598,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/francois.html">francois</a> <a href="http://blog.halper.in/tag/jarred.html">jarred</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> </p>
 </footer><!-- /.post-info -->                <p>We had our monthly <a href="http://armbrustlab.ocean.washington.edu/resources/seaflow/">SeaFlow</a>/eScience group meeting meeting. For this grant the oceanographers have been doing lots of new science using tools like <a href="http://sqlshare.escience.washington.edu">SQLShare</a>, <a href="http://demo.myria.cs.washington.edu">Myria</a>, and <a href="https://github.com/uwescience/popcycle">popcycle</a>, our software for storing indexing and analyzing SeaFlow data. We discussed needed improvements to popcycle and to the <a href="https://github.com/uwescience/seaflow-viz">seaflow-viz</a> web dashboard (see ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-28-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-28-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/28/2014-08-28-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/28/2014-08-28-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-27-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/27/2014-08-27-daily/" rel="bookmark"
                            title="Permalink to 2014-08-27 daily">2014-08-27&nbsp;daily</a></h1>
                 </header>
 
@@ -526,13 +620,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/flink.html">flink</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/asterios.html">asterios</a> <a href="http://blog.halper.in/tag/stephan.html">stephan</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/jake.html">jake</a> <a href="http://blog.halper.in/tag/joe.html">joe</a> </p>
 </footer><!-- /.post-info -->                <p>I began the day with a Skype call with <a href="http://www.user.tu-berlin.de/asteriosk/">Asterios</a> and <a href="https://www.dima.tu-berlin.de/menue/staff/stephan_ewen/">Stephan</a> from the Flink team. I learned some more things about how to use and test the code I write for Flink, and several places where I did not quite understand the low-level Flink behavior. I have a long ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-27-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-27-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/27/2014-08-27-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/27/2014-08-27-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-26-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/26/2014-08-26-daily/" rel="bookmark"
                            title="Permalink to 2014-08-26 daily">2014-08-26&nbsp;daily</a></h1>
                 </header>
 
@@ -548,13 +642,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/flink.html">flink</a> </p>
 </footer><!-- /.post-info -->                <p>One of the goals for our <a href="http://github.com/uwescience/raco">Relational Algebra COmpiler (Raco)</a> is that it should be a “relational algebra middleware” for many big data system backends. At the moment, we support: Myria (Myria Team) and Grappa (Brandon Myers), plus anything that speaks <span class="caps">SQL</span> including <span class="caps">SQL</span> Server but also Hive or Shark ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-26-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-26-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/26/2014-08-26-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/26/2014-08-26-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-25-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/25/2014-08-25-daily/" rel="bookmark"
                            title="Permalink to 2014-08-25 daily">2014-08-25&nbsp;daily</a></h1>
                 </header>
 
@@ -570,13 +664,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
 </footer><!-- /.post-info -->                <p>Another fantastic hack session with <a href="http://armbrustlab.ocean.washington.edu/people/clayton">Sophie</a> today. We analyzed the quality and quantity of data in the existing files, including determining which of the 64K SeaFlow samples are within a reasonable amount (say, 1σ) of the “average” SeaFlow sample according to the calibration beads. Surprisingly/hearteningly, the vast majority of ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-25-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-25-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/25/2014-08-25-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/25/2014-08-25-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-22-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/22/2014-08-22-daily/" rel="bookmark"
                            title="Permalink to 2014-08-22 daily">2014-08-22&nbsp;daily</a></h1>
                 </header>
 
@@ -592,13 +686,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
 </footer><!-- /.post-info -->                <p>Started the day with a fantastic meeting with <a href="http://armbrustlab.ocean.washington.edu/people/clayton">Sophie Clayton</a> in the Armbrust Lab. Sophie is trying to analyze the entire SeaFlow corpus in <a href="http://myria.cs.washington.edu">Myria</a>. Today: she wrote queries to analyze ~64K files at once in MyriaL, which she is logging on <a href="https://github.com/uwescience/seaflow-myria/wiki">a GitHub wiki</a>. We ran into some memory ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-22-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-22-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/22/2014-08-22-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/22/2014-08-22-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-21-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/21/2014-08-21-daily/" rel="bookmark"
                            title="Permalink to 2014-08-21 daily">2014-08-21&nbsp;daily</a></h1>
                 </header>
 
@@ -615,13 +709,13 @@
 <p>tags: <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/grappa.html">grappa</a> </p>
 </footer><!-- /.post-info -->                <p>Today we met with <span class="caps">UW</span>-<span class="caps">IT</span> to talk about the future of <a href="http://sqlshare.escience.washington.edu">SQLShare</a>. We will be starting some sprints in the fall to prepare it to be transitioned to them as an on-campus service.</p>
 <p>Spent a fair bit of time reading and discussing <a href="http://homes.cs.washington.edu/~bdmyers/">Brandon Myers’</a> paper using <a href="http://github.com/uwescience/raco">Raco</a> to compile ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-21-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-21-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/21/2014-08-21-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/21/2014-08-21-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-20-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/20/2014-08-20-daily/" rel="bookmark"
                            title="Permalink to 2014-08-20 daily">2014-08-20&nbsp;daily</a></h1>
                 </header>
 
@@ -637,13 +731,13 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/jevin.html">jevin</a> <a href="http://blog.halper.in/tag/sandra.html">sandra</a> <a href="http://blog.halper.in/tag/steering.html">steering</a> <a href="http://blog.halper.in/tag/interns.html">interns</a> </p>
 </footer><!-- /.post-info -->                <p>Today I hacked more on the blog organization and layout; fighting with GitHub CNAMEs was harder than I expected it to be. Eventually I settled on creating a sub-project for the blog as hosting it in my personal <code>dhalperi/dhalperi.github.io</code> repository affected the URLs for other projects like ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-20-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-20-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/20/2014-08-20-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/20/2014-08-20-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/first-post.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/19/first-post/" rel="bookmark"
                            title="Permalink to First post">First&nbsp;post</a></h1>
                 </header>
 
@@ -659,8 +753,8 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/jake.html">jake</a> <a href="http://blog.halper.in/tag/hogg.html">hogg</a> </p>
 </footer><!-- /.post-info -->                <p>I want to start a research blog. I stole <a href="http://jakevdp.github.io/">Jake’s Pythonic Perambulations</a> basic idea and a little bit of <a href="https://github.com/jakevdp/PythonicPerambulations">code</a> to get started, and I intend to micro-blog here in the <a href="http://hoggresearch.blogspot.com/">Hogg style</a>. We’ll see how it goes.</p>
-                <a class="readmore" href="http://blog.halper.in/first-post.html">read more</a>
-<p>There are <a href="http://blog.halper.in/first-post.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/19/first-post/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/19/first-post/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
                 </section><!-- /#content -->

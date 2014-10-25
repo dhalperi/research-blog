@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Dan's research blog - reading</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                    <li><a href="http://blog.halper.in/category/daily.html">daily</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/10/13/data-and-databases/">Data and&nbsp;databases</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-10-13T00:00:00">
+                Published: Mon 13 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/reading.html">reading</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info --><p>Over the weekend, both <a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> and <a href="http://r.halper.in/people/becker">Andy Becker</a> worked independently on their <a href="http://data.uw.edu/incubator">Data Science Incubator</a> projects; I spent some time then and today answering emails :).</p>
+<p>Sophie has been loading underway data (<span class="caps">GPS</span>, temperature, salinity, etc. from ships in motion) into <a href="http://sqlshare.escience.washington.edu">SQLShare</a> for cleaning. Every research vessel is its own special flower that represents dates and times in different ways, and we want to bring them all into a normalized format. We will then load the normalized data into Myria and join it with the SeaFlow data in her analyses. 
+<small>(For now, the Microsoft <span class="caps">SQL</span> Server system underpinning SQLShare is better for messy data than Myria itself, because <span class="caps">SQL</span> Server handles more data types and corner cases than we do. This will change!)</small></p>
+<p>We made Sophia’s queries run <em>dramatically</em> faster by materializing SQLShare datasets once all the fields were in the right types. Turns out, recomputing <code>datetime</code> objects can be really slow when you want to do interval joins on them! We also discussed how to find bad rows in datasets, e.g., if you’re getting errors casting values to <code>float</code>, you need to know about <code>WHERE ISNUMERIC(x) &lt;&gt; 1</code> so you can find the bad values of <code>x</code>.</p>
+<p>Andy has been experiencing the joys of loading data into databases with indexes, foreign keys, auto commit, checkpointing, and all that. After some iteration, we figured out to check the Postgres logs and found that his remote <code>COPY</code> commands were running out of memory.  Chunking the data made it finish.</p>
+<p>I finally got <a href="https://demo.myria.cs.washington.edu">Myria’s web interface</a> to correctly push queries into the Postgres without weird Google App Engine issues, fixed all the Travis-<span class="caps">CI</span> tests, and deployed it.</p><p>There are <a href="http://blog.halper.in/posts/2014/10/13/data-and-databases/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-54311387-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

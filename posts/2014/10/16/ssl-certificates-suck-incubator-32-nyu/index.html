@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>SSL certificates suck; Incubator 3.2 → NYU</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                    <li class="active"><a href="http://blog.halper.in/category/daily.html">daily</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://blog.halper.in/posts/2014/10/16/ssl-certificates-suck-incubator-32-nyu/" rel="bookmark"
+           title="Permalink to SSL certificates suck; Incubator 3.2 → NYU"><span class="caps">SSL</span> certificates suck; Incubator 3.2 → <span class="caps">NYU</span></a></h1>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="dhalperi">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-10-16T00:00:00">
+                Published: Thu 16 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info -->      <p>Today was “I-hate-certificates” day. Four different people had ugly issues with <span class="caps">SSL</span>:</p>
+<ul>
+<li><a href="http://r.halper.in/coauth/sclayton">Sophie</a> has finished cleaning the underway data in SQLShare and is ready to load it into Myria. However, she had problems using Myria’s Python client because her Mac did not trust Myria’s <span class="caps">SSL</span> certificate. (<span class="caps">UW</span>’s choice of Certificate Authority (<span class="caps">CA</span>), InCommon, has apparently not been blessed by Mac <span class="caps">OS</span> X.)</li>
+<li>Brendan Lee has been working with the <a href="http://db.cs.washington.edu/"><span class="caps">UW</span> Database Group</a> on <a href="http://dl.acm.org/citation.cfm?id=2627774">MyMergerTree</a>. MyMergerTree is powered by Myria, so after I enabled <span class="caps">SSL</span> yesterday, I asked him to fix the web service to use <span class="caps">HTTPS</span> instead of <span class="caps">HTTP</span> links. Well, great, InCommon has not been blessed by Ubuntu either.</li>
+<li>Two different people came to Incubator office hours to learn about <code>git</code>. They brought older laptops with, you guessed it, older versions of Mac <span class="caps">OS</span> X installed. And, surprise surprise, <a href="https://help.github.com/articles/error-ssl-certificate-problem-verify-that-the-ca-cert-is-ok/">GitHub’s current <span class="caps">SSL</span> certificate</a> is not blessed by those old versions of Mac <span class="caps">OS</span> X, and the only way to fix it is to <em>upgrade the <span class="caps">OS</span></em>. You know, because that’s a <em>totally reasonable</em> option.</li>
+</ul>
+<p>Such a waste of time. Why do we make users jump through these hoops? We worked around these issues in a variety of ways, all of which involved disabling certificate verification. Ugh, that’s a fail. (In one case we were able to switch from <span class="caps">HTTPS</span> to <span class="caps">SSH</span> for GitHub — that, at least, made me moderately less sad at heart.)</p>
+<p>I left at lunch for the airport. I’ll be at <span class="caps">NYU</span> in Brooklyn for the next week giving talks, making connections, and generally getting to know better our Moore-Sloan <span class="caps">DSE</span> collaborators across the country. I spent the entire flight working on slides for the various talks.</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'blog-halper-in';
+        var disqus_identifier = 'posts/2014/10/16/ssl-certificates-suck-incubator-32-nyu/';
+        var disqus_url = 'http://blog.halper.in/posts/2014/10/16/ssl-certificates-suck-incubator-32-nyu/';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//blog-halper-in.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-54311387-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

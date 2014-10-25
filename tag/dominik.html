@@ -22,7 +22,33 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/visualizations-everywhere.html">Visualizations&nbsp;everywhere</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/10/15/myria-security-ethnography/">Myria security,&nbsp;ethnography</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-10-15T00:00:00">
+                Published: Wed 15 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/britta.html">britta</a> <a href="http://blog.halper.in/tag/anissa.html">anissa</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/shrainik.html">shrainik</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/variety.html">variety</a> <a href="http://blog.halper.in/tag/ethnography.html">ethnography</a> </p>
+</footer><!-- /.post-info --><p>The newest Chrome update broke parts of <a href="http://myria.cs.washington.edu">Myria</a> because of new policies regarding security (<span class="caps">HTTPS</span>) in web <span class="caps">API</span> calls. So, I finally did the 5 hours of work it would take to make Myria’s <span class="caps">API</span> server support <span class="caps">HTTPS</span>, installed the certificate, and made all our deployment scripts. Now our users’ data (which is all publicly logged anyway) is much “safer” and, more importantly, the website works again.</p>
+<p>I sat down with the ethnographers who are observing the <a href="http://data.uw.edu/incubator">Data Science Incubator</a> — <a href="http://fioresilfvast.org/">Brittany Fiore-Silvast</a> and Anissa Tanweer — to chat about the parts of the Incubator process that happened before we looped them in. We discussed the internal planning, what happened in Spring and what we wanted to change, the applicant pool, the review process, and more. It was a fun chat and merely having the chat, plus their insightful questions, made me reflect more on the process and take a step back. </p>
+<p><a href="http://r.halper.in/coauth/billhowe">Bill Howe</a> and I met with <a href="http://r.halper.in/coauth/shrainik">Shrainik Jain</a> and <a href="http://r.halper.in/coauth/domoritz">Dominik Moritz</a> to discuss our project quantifying how much “variety” there is in different data systems and progress on the draft paper they have been writing. The basic idea is that we have an intuitive notion of “well-structured” databases (like the <span class="caps">TPC</span> benchmarks), and databases with “high variety” (like SQLShare), and we ought to be able to quantitatively find differences between them. <span class="caps">SDSS</span> should be a nice mid-point: it has many users asking potentially different questions, but their queries are limited to a well-defined, highly structured schema provided by the Skyserver team. Initial results are promising, and we are starting to put together a draft.</p><p>There are <a href="http://blog.halper.in/posts/2014/10/15/myria-security-ethnography/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/10/visualizations-everywhere/" rel="bookmark"
+                           title="Permalink to Visualizations everywhere">Visualizations&nbsp;everywhere</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-10-10T00:00:00">
                 Published: Fri 10 October 2014
@@ -33,19 +59,14 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/tufte.html">tufte</a> <a href="http://blog.halper.in/tag/camille.html">camille</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
-</footer><!-- /.post-info --><p><a href="http://web.cecs.pdx.edu/~tufte/">Kristin Tufte</a> from Portland State University came to <span class="caps">UW</span> today to visit some folks in transportation and to visit our eScience and Database groups. Most of the eScience students got to tell her about their work, and she and I discussed the Data Science Incubator and how to get undergrads involved. In her talk, she told us about S-Store, a streaming database with transactional support, and all about her work building <a href="http://portal.its.pdx.edu/Portal/index.php/home/">Portal</a> to manage, analyze, and visualize live traffic data on the Portland—Vancouver(<span class="caps">WA</span>) border in collaboration with <span class="caps">ODOT</span>, <span class="caps">WSDOT</span>, and related gov’ts. Fascinating, big, messy data problems everywhere, and great output viz.</p>
-<p><a href="http://r.halper.in/coauth/domoritz">Dominik Moritz</a> <span class="amp">&amp;</span> I chatted about his research on Myria’s profiler / query execution visualizer and the paper we hope to write about it this quarter. I have been logging a half-dozen ways in which the profiler has helped me debug and understand various system this summer and these use cases should help flesh out the paper.</p>
-<p><a href="http://r.halper.in/people/cobbc12">Camille Cobb</a> <span class="amp">&amp;</span> I chatted about various projects for her relating to visualization of scientific datasets. We’re doing lit review and reading up on existing work, but I think we have the gist of two interesting, novel projects to go on.</p>
-<p>In my own time, I have been struggling with using <a href="https://bitbucket.org/zzzeek/sqlalchemy">SQLAlchemy</a> on Google App Engine to make Myria push work into an underlying <span class="caps">DBMS</span> and get much better performance on selective queries.</p><p>There are <a href="http://blog.halper.in/visualizations-everywhere.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p><a href="http://web.cecs.pdx.edu/~tufte/">Kristin Tufte</a> from Portland State University came to <span class="caps">UW</span> today to visit some folks in transportation and to visit our eScience and Database groups. Most of the eScience students got to tell her about their work, and she and I discussed the Data Science Incubator and how to get undergrads ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/10/visualizations-everywhere/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/10/visualizations-everywhere/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="http://blog.halper.in/2014-08-28-daily.html" rel="bookmark"
+                    <h1><a href="http://blog.halper.in/posts/2014/08/28/2014-08-28-daily/" rel="bookmark"
                            title="Permalink to 2014-08-28 daily">2014-08-28&nbsp;daily</a></h1>
                 </header>
 
@@ -61,8 +82,8 @@
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/andrew.html">andrew</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/francois.html">francois</a> <a href="http://blog.halper.in/tag/jarred.html">jarred</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> </p>
 </footer><!-- /.post-info -->                <p>We had our monthly <a href="http://armbrustlab.ocean.washington.edu/resources/seaflow/">SeaFlow</a>/eScience group meeting meeting. For this grant the oceanographers have been doing lots of new science using tools like <a href="http://sqlshare.escience.washington.edu">SQLShare</a>, <a href="http://demo.myria.cs.washington.edu">Myria</a>, and <a href="https://github.com/uwescience/popcycle">popcycle</a>, our software for storing indexing and analyzing SeaFlow data. We discussed needed improvements to popcycle and to the <a href="https://github.com/uwescience/seaflow-viz">seaflow-viz</a> web dashboard (see ...</p>
-                <a class="readmore" href="http://blog.halper.in/2014-08-28-daily.html">read more</a>
-<p>There are <a href="http://blog.halper.in/2014-08-28-daily.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+                <a class="readmore" href="http://blog.halper.in/posts/2014/08/28/2014-08-28-daily/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/08/28/2014-08-28-daily/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
                 </section><!-- /#content -->

@@ -22,7 +22,86 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/data-science-incubator-week-2.html">Data Science Incubator, Week&nbsp;2</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/">Incubator week&nbsp;3.1</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-10-14T00:00:00">
+                Published: Tue 14 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> </p>
+</footer><!-- /.post-info --><p>Today was day 1 of <a href="http://data.uw.edu/incubator">Incubator</a> week 3.</p>
+<p><a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> exposed a locking issue in <a href="http://sqlshare.escience.washington.edu">SQLShare</a>: if a running query reads from table <code>T</code> and a user changes the sharing on table <code>T</code>, SQLShare basically locks the entire system until the query finishes. We need to revisit this issue, but it is unlikely to be a common problem: today was literally the first time it has ever cropped up. We also discussed a variety of <span class="caps">SQL</span>-isms such as how to convert a Julian Day into a <code>Date</code> and the like. Sophie is now really off to the races with the underway data.</p>
+<p><a href="http://r.halper.in/people/becker">Andy Becker</a> and I played with various methods of inspecting on the progress and performance of his loading data into PostgreSQL. We went down a bit of a rabbit-hole when trying to figure out why it was not using the index to compute the number of distinct fields in the database:</p>
+<div class="highlight"><pre><span class="n">kbmod</span><span class="o">=&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="p">(</span><span class="k">select</span> <span class="k">distinct</span> <span class="n">fieldid</span> <span class="k">from</span> <span class="n">pixels</span><span class="p">)</span> <span class="n">X</span><span class="p">;</span>
+                                   <span class="n">QUERY</span> <span class="n">PLAN</span>
+<span class="c1">---------------------------------------------------------------------------------</span>
+ <span class="k">Aggregate</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">19138399</span><span class="p">.</span><span class="mi">42</span><span class="p">..</span><span class="mi">19138399</span><span class="p">.</span><span class="mi">43</span> <span class="k">rows</span><span class="o">=</span><span class="mi">1</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+   <span class="o">-&gt;</span>  <span class="n">HashAggregate</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">19138399</span><span class="p">.</span><span class="mi">40</span><span class="p">..</span><span class="mi">19138399</span><span class="p">.</span><span class="mi">41</span> <span class="k">rows</span><span class="o">=</span><span class="mi">1</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+         <span class="o">-&gt;</span>  <span class="n">Seq</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">pixels</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="p">..</span><span class="mi">17631684</span><span class="p">.</span><span class="mi">52</span> <span class="k">rows</span><span class="o">=</span><span class="mi">602685952</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">3</span> <span class="k">rows</span><span class="p">)</span>
+
+<span class="n">Time</span><span class="p">:</span> <span class="mi">9</span><span class="p">.</span><span class="mi">729</span> <span class="n">ms</span>
+
+
+<span class="n">kbmod</span><span class="o">=&gt;</span> <span class="err">\</span><span class="n">d</span> <span class="n">pixels</span><span class="p">;</span>
+                                   <span class="k">Table</span> <span class="ss">"public.pixels"</span>
+ <span class="k">Column</span>  <span class="o">|</span>         <span class="k">Type</span>         <span class="o">|</span> <span class="n">Modifiers</span>
+<span class="c1">---------+----------------------+----------------------------------------------------------</span>
+ <span class="n">pixelid</span> <span class="o">|</span> <span class="nb">bigint</span>               <span class="o">|</span> <span class="k">not</span> <span class="k">null</span> <span class="k">default</span> <span class="n">nextval</span><span class="p">(</span><span class="s1">'pixels_pixelid_seq'</span><span class="p">::</span><span class="n">regclass</span><span class="p">)</span>
+ <span class="n">fieldid</span> <span class="o">|</span> <span class="nb">bigint</span>               <span class="o">|</span> <span class="k">not</span> <span class="k">null</span>
+ <span class="n">ra</span>      <span class="o">|</span> <span class="n">double</span> <span class="k">precision</span>     <span class="o">|</span>
+ <span class="n">decl</span>    <span class="o">|</span> <span class="n">double</span> <span class="k">precision</span>     <span class="o">|</span>
+ <span class="n">fval</span>    <span class="o">|</span> <span class="nb">real</span>                 <span class="o">|</span>
+ <span class="n">radec</span>   <span class="o">|</span> <span class="n">geometry</span><span class="p">(</span><span class="n">Point</span><span class="p">,</span><span class="mi">3786</span><span class="p">)</span> <span class="o">|</span>
+ <span class="n">mask</span>    <span class="o">|</span> <span class="nb">integer</span>              <span class="o">|</span>
+<span class="n">Indexes</span><span class="p">:</span>
+    <span class="ss">"pixels_pkey"</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">btree</span> <span class="p">(</span><span class="n">pixelid</span><span class="p">)</span>
+    <span class="ss">"fieldidx"</span> <span class="n">btree</span> <span class="p">(</span><span class="n">fieldid</span><span class="p">)</span>
+<span class="k">Foreign</span><span class="o">-</span><span class="k">key</span> <span class="k">constraints</span><span class="p">:</span>
+    <span class="ss">"pixels_fieldid_fkey"</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">fieldid</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">fields</span><span class="p">(</span><span class="n">fieldid</span><span class="p">)</span>
+</pre></div>
+<p>As it turns out, PostgreSQL’s <code>DISTINCT</code> implementation simply cannot do the right thing.</p>
+<p>I also set up the <a href="http://uwdatascienceincubator.wordpress.com/">Incubator Blog</a> today: it combines posts from all of the incubator participants. Setting up this blog was really cool — I used <a href="https://ifttt.com/">If This, Then That (<span class="caps">IFTTT</span>)</a> to automatically crawl the feeds from the individual blogs and post them on a shared Wordpress! (Thanks to our friends at <span class="caps">UC</span> Berkeley for recommending <span class="caps">IFTTT</span> via the new Slack communication channel we’ve all been using.)</p><p>There are <a href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/13/data-and-databases/" rel="bookmark"
+                           title="Permalink to Data and databases">Data and&nbsp;databases</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-10-13T00:00:00">
+                Published: Mon 13 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/reading.html">reading</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> <a href="http://blog.halper.in/tag/raco.html">raco</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info -->                <p>Over the weekend, both <a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> and <a href="http://r.halper.in/people/becker">Andy Becker</a> worked independently on their <a href="http://data.uw.edu/incubator">Data Science Incubator</a> projects; I spent some time then and today answering emails :).</p>
+<p>Sophie has been loading underway data (<span class="caps">GPS</span>, temperature, salinity, etc. from ships in motion) into <a href="http://sqlshare.escience.washington.edu">SQLShare</a> for cleaning. Every research vessel is its own ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/13/data-and-databases/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/13/data-and-databases/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/09/data-science-incubator-week-2/" rel="bookmark"
+                           title="Permalink to Data Science Incubator, Week 2">Data Science Incubator, Week&nbsp;2</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-10-09T00:00:00">
                 Published: Thu 09 October 2014
@@ -33,28 +112,13 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/grappa.html">grappa</a> </p>
-</footer><!-- /.post-info --><p>I spent today in the Data Science Incubator working with <a href="http://www.astro.washington.edu/users/becker/">Andy Becker</a> on <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a>. We are trying to port the key components of the moving object detection into PostgreSQL using PostGIS.</p>
-<p>On his own, Andy designed a schema for the various data, including spatial columns and indexes. Side by side, we worked on a few issues:</p>
-<ul>
-<li>Speeding up data load: <code>\COPY</code> is much faster than large batch insert statements, as we know.</li>
-<li>Explaining queries and seeing whether indexes are used: not yet, but the database is small so sequential scans might actually make more sense. Also, it looks like the optimizer may miss some tricks in some cases.</li>
-<li>Cloud-ification: we set up an Amazon <span class="caps">RDS</span> PostgreSQL+PostGIS database, and proved that we could load data in, even large data.</li>
-<li>Astro UDFs: for the kinds of spatial queries that we need, there are great C++ libraries that do all the work; we need access to those UDFs in the database! We <a href="https://github.com/uwescience/kbmod/issues/1">began investigating</a> PostgreSQL support for UDFs as compiled C binaries; this should be doable, but we may need to fiddle to make the C++ code play nice with PostgreSQL, which expects C…</li>
-<li>
-<p>UDFs may be a show-stopper for using <span class="caps">RDS</span>, however — you cannot register binary UDFs there, so we will likely have to kill the <span class="caps">RDS</span> instance and setup a manually managed <span class="caps">EC2</span>+PostgreSQL instance instead.</p>
-<p>Aside: Automatically-managed cloud services are <em>very</em> appealing, but little implementation issues like this always seem to bite us. Similar limitations apply to Microsoft <span class="caps">SQL</span> Azure [no stored procedures], and Google App Engine [no CPython]—-our needs always push us into the “Sorry, you have to do <em>everything</em> manually now” use case, or make us dramatically restrict the performance and capabilities of our applications. Surely this issue crops up for other users!</p>
-</li>
-</ul>
-<p>For next week, some preliminary goals are:</p>
-<ul>
-<li>move from <span class="caps">RDS</span> to <span class="caps">EC2</span></li>
-<li>get a bigger dataset into the database, so we are in a real optimization framework</li>
-<li>get the <span class="caps">UDF</span> into the database</li>
-<li>work on expressing the queries and testing correctness</li>
-<li>optimize the indexes and queries</li>
-</ul>
-<p>We also chatted with <a href="http://homes.cs.washington.edu/~bholt/">Brandon Holt</a>, <a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a>, and Simon Kahan about possible <a href="http://grappa.io/">Grappa</a>—<span class="caps">KBMOD</span> connections.</p><p>There are <a href="http://blog.halper.in/data-science-incubator-week-2.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
+</footer><!-- /.post-info -->                <p>I spent today in the Data Science Incubator working with <a href="http://www.astro.washington.edu/users/becker/">Andy Becker</a> on <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a>. We are trying to port the key components of the moving object detection into PostgreSQL using PostGIS.</p>
+<p>On his own, Andy designed a schema for the various data, including spatial columns and indexes. Side by side ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/09/data-science-incubator-week-2/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/09/data-science-incubator-week-2/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>

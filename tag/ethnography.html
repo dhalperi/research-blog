@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Dan's research blog - ethnography</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                    <li><a href="http://blog.halper.in/category/daily.html">daily</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/10/15/myria-security-ethnography/">Myria security,&nbsp;ethnography</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-10-15T00:00:00">
+                Published: Wed 15 October 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/britta.html">britta</a> <a href="http://blog.halper.in/tag/anissa.html">anissa</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/shrainik.html">shrainik</a> <a href="http://blog.halper.in/tag/bill.html">bill</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/variety.html">variety</a> <a href="http://blog.halper.in/tag/ethnography.html">ethnography</a> </p>
+</footer><!-- /.post-info --><p>The newest Chrome update broke parts of <a href="http://myria.cs.washington.edu">Myria</a> because of new policies regarding security (<span class="caps">HTTPS</span>) in web <span class="caps">API</span> calls. So, I finally did the 5 hours of work it would take to make Myria’s <span class="caps">API</span> server support <span class="caps">HTTPS</span>, installed the certificate, and made all our deployment scripts. Now our users’ data (which is all publicly logged anyway) is much “safer” and, more importantly, the website works again.</p>
+<p>I sat down with the ethnographers who are observing the <a href="http://data.uw.edu/incubator">Data Science Incubator</a> — <a href="http://fioresilfvast.org/">Brittany Fiore-Silvast</a> and Anissa Tanweer — to chat about the parts of the Incubator process that happened before we looped them in. We discussed the internal planning, what happened in Spring and what we wanted to change, the applicant pool, the review process, and more. It was a fun chat and merely having the chat, plus their insightful questions, made me reflect more on the process and take a step back. </p>
+<p><a href="http://r.halper.in/coauth/billhowe">Bill Howe</a> and I met with <a href="http://r.halper.in/coauth/shrainik">Shrainik Jain</a> and <a href="http://r.halper.in/coauth/domoritz">Dominik Moritz</a> to discuss our project quantifying how much “variety” there is in different data systems and progress on the draft paper they have been writing. The basic idea is that we have an intuitive notion of “well-structured” databases (like the <span class="caps">TPC</span> benchmarks), and databases with “high variety” (like SQLShare), and we ought to be able to quantitatively find differences between them. <span class="caps">SDSS</span> should be a nice mid-point: it has many users asking potentially different questions, but their queries are limited to a well-defined, highly structured schema provided by the Skyserver team. Initial results are promising, and we are starting to put together a draft.</p><p>There are <a href="http://blog.halper.in/posts/2014/10/15/myria-security-ethnography/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-54311387-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>
