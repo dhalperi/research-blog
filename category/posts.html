@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Dan's research blog - posts</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                    <li><a href="http://blog.halper.in/category/daily.html">daily</a></li>
+                    <li class="active"><a href="http://blog.halper.in/category/posts.html">posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/12/public-cluster-private-experiments/">Public cluster + private&nbsp;experiments</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-11-12T00:00:00">
+                Published: Wed 12 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/posts.html">posts</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info --><p>The hot button issue today is what we do with our public Myria service.</p>
+<p>As part of the grant proposal, we promised that “the project develops and deploys a Web-based query-as-a-service interface to the new middleware. The service will be made available to domain scientists” (p.1). This service has been working gangbusters:</p>
+<ul>
+<li>I have written before about the <a href="http://r.halper.in/paper/Loebman_MergerTree_2014.pdf">MyMergerTree</a> service built by students and faculty in the <span class="caps">UW</span> Database and Astronomy groups, led by <a href="http://r.halper.in/coauth/magda">Magda Balazinska</a> and <a href="http://r.halper.in/coauth/loebman">Sarah Loebman</a> on the faculty side. MyMergerTree is just awesome and used by researchers in Astronomy still.</li>
+<li><a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a>‘s <a href="https://github.com/uwescience/incubator/wiki/Patterns-in-phytoplankton-diversity">Incubator project</a> uses Myria to analyze large (tens of cruises, thousands of hours, billions of cells) oceanographic data. Among Myria users, Sophie is the one really innovating at combining Myria with other tools, such as her <a href="https://github.com/uwescience/seaflow-myria/tree/master/ipython_notebooks">IPython notebooks</a>.</li>
+<li><a href="http://r.halper.in/coauth/bdmyers">Brandon Myers</a> and York Wei have been working on <a href="https://github.com/uwescience/myria-web/pull/212">abstracting the Myria web frontend to work with other backends</a> such as Grappa and C.</li>
+</ul>
+<p>All this great work is making the system and the research project much powerful and much better, increasing its visibility, benefiting the entire effort, and it fulfills our grant obligations.</p>
+<p>However, there is a definite tension here, because running a public service tends to lead to high load on a cluster. At the same time, for our own research, we need to reserve the cluster in order to, e.g., give demos with little resource contention, or perform research experiments with repeatable results.</p>
+<p>How should/how can we balance these two concerns?</p>
+<p>Until recently, we have relied on a relatively light workload with few real users who were unlikely to interfere with demos or experiments, and we would notify these users when we had a reservation scheduled. But now that we’re succeeding — now that we’ve advertised to a broader audience and they actually want to use our service — we need a new strategy.</p>
+<p>For now, we’ve implemented a short-term workaround: <a href="https://www.google.com/calendar/embed?src=cs.washington.edu_i1gk4il65dj31mcfgid1t9t1o8@group.calendar.google.com&amp;ctz=America/Los_Angeles&amp;mode=week">a public Google calendar listing our group’s reservations</a>, and <a href="https://github.com/uwescience/myria-web/issues/186">visible warnings on the Myria query editor</a> when the cluster is reserved. With our friendly users, this is likely good enough. (Our group also has the ability to kill queries if we need to in order to give a demo.)</p>
+<p>Long-term, we need to figure out a good balance. On the one hand, the service that we committed to offer has value for the community and generates research ideas, research input, validation, experience, and publicity for our team. On the other hand, serving other groups need not come at the expense of the database group’s ability to do research.</p>
+<p>One key contributor here will be increased usage of the cloud: for one-time, 24-hour dedicated experiments, it makes more sense to spin up a virtual cloud cluster than it does to stop everything running on our hardware including (but not limited to) the existing Myria service. With the cloud, and unlike our silicon, two different students can work at the same time!</p>
+<p>What other advice do you have?</p><p>There are <a href="http://blog.halper.in/posts/2014/11/12/public-cluster-private-experiments/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-54311387-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>
