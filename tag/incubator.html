@@ -23,7 +23,40 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/11/incubator-and-catching-up-on-myria/">Incubator and catching up on&nbsp;Myria</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/13/incubator-72/">Incubator&nbsp;7.2</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-11-13T00:00:00">
+                Published: Thu 13 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info --><p>More work with <a href="http://www.astro.washington.edu/users/becker/">Andy Becker</a>  on the <span class="caps">KBMOD</span> database and query design today. We have been running into issues loading all the pixels in the database — O(Millions) of images with O(Millions) of pixels each means 10^12 records, which would take years to load into our Postgres database. A parallel database like Greenplum, or Myria, would speed up the load linearly but this may not help much.</p>
+<p>An alternate tack is to rethink our queries: rather than one record per pixel, one record per image and then a user-defined function to dereference the pixel in an image when needed. We talked about how we might structure the tables and queries to accomplish this design and ended up with a relatively simple workflow:</p>
+<ol>
+<li>a <em>trajectory</em> becomes a list of bounding boxes, one for each run [night] in which we measured the sky. This bounding box roughly corresponds to [(<code>ra0</code>, <code>dec0</code>), (<code>ra1</code>, <code>dec1</code>)], which are the positions of the <span class="caps">TNO</span> at times <code>t0</code> and <code>t1</code> corresponding to the beginning and end of the run.</li>
+<li>we intersect the per-run trajectory bounding boxes with the bounding box for each image during that run to determine which images might have overlapped with the trajectory.</li>
+<li>we compute the position of the <span class="caps">TNO</span> at the acquisition time of each image to determine whether the <span class="caps">TNO</span> was was actually in the image at all and, if so, in which precise pixel it was captured.</li>
+<li>we co-add all the pixels.</li>
+</ol>
+<p>My guess is that we end up keeping steps 1 <span class="amp">&amp;</span> 2 in the database, but 3 <span class="amp">&amp;</span> 4 are performed outside the database in custom code. Since the images themselves represent the majority of the data, we’ll want to read each image into memory at most once while fetching the desired pixels for many trajectories. Obviously we will try many approaches, but my guess is that we will have better control over this performance-critical code outside of the database.</p>
+<p>For more information, see the <span class="caps">KBMOD</span> discussion on GitHub: <a href="https://github.com/uwescience/kbmod/issues/3">https://github.com/uwescience/kbmod/issues/3</a></p><p>There are <a href="http://blog.halper.in/posts/2014/11/13/incubator-72/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/11/incubator-and-catching-up-on-myria/" rel="bookmark"
+                           title="Permalink to Incubator and catching up on Myria">Incubator and catching up on&nbsp;Myria</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-11-11T00:00:00">
                 Published: Tue 11 November 2014
@@ -34,19 +67,11 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/angela.html">ângela</a> <a href="http://blog.halper.in/tag/jingjing.html">jingjing</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
-</footer><!-- /.post-info --><p>Today, <span class="caps">UW</span> is closed for the Veteran’s Day holiday; I took the opportunity to continue catching up on several weeks’ email.</p>
-<p><a href="http://depts.washington.edu/hacholab/labdetails.php?id=58">Ângela Katsumaya</a> came to the Incubator for a few hours this afternoon. With <a href="http://r.halper.in/coauth/billhowe">Bill</a>, she continued joining and analyzing her data, attempting to answer questions like “what is the average bed time for each student?” in <a href="https://sqlshare.escience.washington.edu">SQLShare</a>.</p>
-<p>On Myria, I reviewed a bunch of the great code that <a href="http://r.halper.in/coauth/jwang">Jingjing Wang</a> has written and merged some of her new features.</p>
-<p>Finally, I also had the wacky idea (based on a question from Ângela) to add some fancy math operators to the Myria language. Would it not be cool if the following was legal code?</p>
-<div class="highlight"><pre><span class="n">select</span> <span class="o">*</span> <span class="n">from</span> <span class="n">R</span> <span class="n">where</span> <span class="n">x</span> <span class="err">≤</span> <span class="mi">5</span><span class="p">;</span>
-</pre></div>
-<p>I have a working prototype and will bring it to the team soon. At the best, these operators would make the language easier to learn and example programs easier to understand. At the worst, it’s confusing and/or misleading — “How do I type that operator?”. (The answer <code>Option</code>+<code>,</code> on a Mac, in this case).</p>
-<p>Oh, also — Bill gave us a tour of the new Data Science Studio space. Looking forward to moving in there as soon as we can!</p><p>There are <a href="http://blog.halper.in/posts/2014/11/11/incubator-and-catching-up-on-myria/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>Today, <span class="caps">UW</span> is closed for the Veteran’s Day holiday; I took the opportunity to continue catching up on several weeks’ email.</p>
+<p><a href="http://depts.washington.edu/hacholab/labdetails.php?id=58">Ângela Katsumaya</a> came to the Incubator for a few hours this afternoon. With <a href="http://r.halper.in/coauth/billhowe">Bill</a>, she continued joining and analyzing her data, attempting to answer questions like “what is ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/11/incubator-and-catching-up-on-myria/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/11/incubator-and-catching-up-on-myria/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

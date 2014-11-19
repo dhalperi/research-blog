@@ -23,7 +23,40 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/">Incubator week&nbsp;3.1</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/13/incubator-72/">Incubator&nbsp;7.2</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-11-13T00:00:00">
+                Published: Thu 13 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info --><p>More work with <a href="http://www.astro.washington.edu/users/becker/">Andy Becker</a>  on the <span class="caps">KBMOD</span> database and query design today. We have been running into issues loading all the pixels in the database — O(Millions) of images with O(Millions) of pixels each means 10^12 records, which would take years to load into our Postgres database. A parallel database like Greenplum, or Myria, would speed up the load linearly but this may not help much.</p>
+<p>An alternate tack is to rethink our queries: rather than one record per pixel, one record per image and then a user-defined function to dereference the pixel in an image when needed. We talked about how we might structure the tables and queries to accomplish this design and ended up with a relatively simple workflow:</p>
+<ol>
+<li>a <em>trajectory</em> becomes a list of bounding boxes, one for each run [night] in which we measured the sky. This bounding box roughly corresponds to [(<code>ra0</code>, <code>dec0</code>), (<code>ra1</code>, <code>dec1</code>)], which are the positions of the <span class="caps">TNO</span> at times <code>t0</code> and <code>t1</code> corresponding to the beginning and end of the run.</li>
+<li>we intersect the per-run trajectory bounding boxes with the bounding box for each image during that run to determine which images might have overlapped with the trajectory.</li>
+<li>we compute the position of the <span class="caps">TNO</span> at the acquisition time of each image to determine whether the <span class="caps">TNO</span> was was actually in the image at all and, if so, in which precise pixel it was captured.</li>
+<li>we co-add all the pixels.</li>
+</ol>
+<p>My guess is that we end up keeping steps 1 <span class="amp">&amp;</span> 2 in the database, but 3 <span class="amp">&amp;</span> 4 are performed outside the database in custom code. Since the images themselves represent the majority of the data, we’ll want to read each image into memory at most once while fetching the desired pixels for many trajectories. Obviously we will try many approaches, but my guess is that we will have better control over this performance-critical code outside of the database.</p>
+<p>For more information, see the <span class="caps">KBMOD</span> discussion on GitHub: <a href="https://github.com/uwescience/kbmod/issues/3">https://github.com/uwescience/kbmod/issues/3</a></p><p>There are <a href="http://blog.halper.in/posts/2014/11/13/incubator-72/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/" rel="bookmark"
+                           title="Permalink to Incubator week 3.1">Incubator week&nbsp;3.1</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-10-14T00:00:00">
                 Published: Tue 14 October 2014
@@ -34,44 +67,11 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> </p>
-</footer><!-- /.post-info --><p>Today was day 1 of <a href="http://data.uw.edu/incubator">Incubator</a> week 3.</p>
-<p><a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> exposed a locking issue in <a href="http://sqlshare.escience.washington.edu">SQLShare</a>: if a running query reads from table <code>T</code> and a user changes the sharing on table <code>T</code>, SQLShare basically locks the entire system until the query finishes. We need to revisit this issue, but it is unlikely to be a common problem: today was literally the first time it has ever cropped up. We also discussed a variety of <span class="caps">SQL</span>-isms such as how to convert a Julian Day into a <code>Date</code> and the like. Sophie is now really off to the races with the underway data.</p>
-<p><a href="http://r.halper.in/people/becker">Andy Becker</a> and I played with various methods of inspecting on the progress and performance of his loading data into PostgreSQL. We went down a bit of a rabbit-hole when trying to figure out why it was not using the index to compute the number of distinct fields in the database:</p>
-<div class="highlight"><pre><span class="n">kbmod</span><span class="o">=&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="p">(</span><span class="k">select</span> <span class="k">distinct</span> <span class="n">fieldid</span> <span class="k">from</span> <span class="n">pixels</span><span class="p">)</span> <span class="n">X</span><span class="p">;</span>
-                                   <span class="n">QUERY</span> <span class="n">PLAN</span>
-<span class="c1">---------------------------------------------------------------------------------</span>
- <span class="k">Aggregate</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">19138399</span><span class="p">.</span><span class="mi">42</span><span class="p">..</span><span class="mi">19138399</span><span class="p">.</span><span class="mi">43</span> <span class="k">rows</span><span class="o">=</span><span class="mi">1</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-   <span class="o">-&gt;</span>  <span class="n">HashAggregate</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">19138399</span><span class="p">.</span><span class="mi">40</span><span class="p">..</span><span class="mi">19138399</span><span class="p">.</span><span class="mi">41</span> <span class="k">rows</span><span class="o">=</span><span class="mi">1</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-         <span class="o">-&gt;</span>  <span class="n">Seq</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">pixels</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="p">..</span><span class="mi">17631684</span><span class="p">.</span><span class="mi">52</span> <span class="k">rows</span><span class="o">=</span><span class="mi">602685952</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">3</span> <span class="k">rows</span><span class="p">)</span>
-
-<span class="n">Time</span><span class="p">:</span> <span class="mi">9</span><span class="p">.</span><span class="mi">729</span> <span class="n">ms</span>
-
-
-<span class="n">kbmod</span><span class="o">=&gt;</span> <span class="err">\</span><span class="n">d</span> <span class="n">pixels</span><span class="p">;</span>
-                                   <span class="k">Table</span> <span class="ss">"public.pixels"</span>
- <span class="k">Column</span>  <span class="o">|</span>         <span class="k">Type</span>         <span class="o">|</span> <span class="n">Modifiers</span>
-<span class="c1">---------+----------------------+----------------------------------------------------------</span>
- <span class="n">pixelid</span> <span class="o">|</span> <span class="nb">bigint</span>               <span class="o">|</span> <span class="k">not</span> <span class="k">null</span> <span class="k">default</span> <span class="n">nextval</span><span class="p">(</span><span class="s1">'pixels_pixelid_seq'</span><span class="p">::</span><span class="n">regclass</span><span class="p">)</span>
- <span class="n">fieldid</span> <span class="o">|</span> <span class="nb">bigint</span>               <span class="o">|</span> <span class="k">not</span> <span class="k">null</span>
- <span class="n">ra</span>      <span class="o">|</span> <span class="n">double</span> <span class="k">precision</span>     <span class="o">|</span>
- <span class="n">decl</span>    <span class="o">|</span> <span class="n">double</span> <span class="k">precision</span>     <span class="o">|</span>
- <span class="n">fval</span>    <span class="o">|</span> <span class="nb">real</span>                 <span class="o">|</span>
- <span class="n">radec</span>   <span class="o">|</span> <span class="n">geometry</span><span class="p">(</span><span class="n">Point</span><span class="p">,</span><span class="mi">3786</span><span class="p">)</span> <span class="o">|</span>
- <span class="n">mask</span>    <span class="o">|</span> <span class="nb">integer</span>              <span class="o">|</span>
-<span class="n">Indexes</span><span class="p">:</span>
-    <span class="ss">"pixels_pkey"</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">btree</span> <span class="p">(</span><span class="n">pixelid</span><span class="p">)</span>
-    <span class="ss">"fieldidx"</span> <span class="n">btree</span> <span class="p">(</span><span class="n">fieldid</span><span class="p">)</span>
-<span class="k">Foreign</span><span class="o">-</span><span class="k">key</span> <span class="k">constraints</span><span class="p">:</span>
-    <span class="ss">"pixels_fieldid_fkey"</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">fieldid</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">fields</span><span class="p">(</span><span class="n">fieldid</span><span class="p">)</span>
-</pre></div>
-<p>As it turns out, PostgreSQL’s <code>DISTINCT</code> implementation simply cannot do the right thing.</p>
-<p>I also set up the <a href="http://uwdatascienceincubator.wordpress.com/">Incubator Blog</a> today: it combines posts from all of the incubator participants. Setting up this blog was really cool — I used <a href="https://ifttt.com/">If This, Then That (<span class="caps">IFTTT</span>)</a> to automatically crawl the feeds from the individual blogs and post them on a shared Wordpress! (Thanks to our friends at <span class="caps">UC</span> Berkeley for recommending <span class="caps">IFTTT</span> via the new Slack communication channel we’ve all been using.)</p><p>There are <a href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>Today was day 1 of <a href="http://data.uw.edu/incubator">Incubator</a> week 3.</p>
+<p><a href="http://r.halper.in/coauth/sclayton">Sophie Clayton</a> exposed a locking issue in <a href="http://sqlshare.escience.washington.edu">SQLShare</a>: if a running query reads from table <code>T</code> and a user changes the sharing on table <code>T</code>, SQLShare basically locks the entire system until the query finishes. We need to revisit this issue, but ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/14/incubator-week-31/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

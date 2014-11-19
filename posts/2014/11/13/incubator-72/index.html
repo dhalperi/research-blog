@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Incubator 7.2</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                    <li class="active"><a href="http://blog.halper.in/category/daily.html">daily</a></li>
+                    <li><a href="http://blog.halper.in/category/posts.html">posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://blog.halper.in/posts/2014/11/13/incubator-72/" rel="bookmark"
+           title="Permalink to Incubator 7.2">Incubator&nbsp;7.2</a></h1>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="dhalperi">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-13T00:00:00">
+                Published: Thu 13 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info -->      <p>More work with <a href="http://www.astro.washington.edu/users/becker/">Andy Becker</a>  on the <span class="caps">KBMOD</span> database and query design today. We have been running into issues loading all the pixels in the database — O(Millions) of images with O(Millions) of pixels each means 10^12 records, which would take years to load into our Postgres database. A parallel database like Greenplum, or Myria, would speed up the load linearly but this may not help much.</p>
+<p>An alternate tack is to rethink our queries: rather than one record per pixel, one record per image and then a user-defined function to dereference the pixel in an image when needed. We talked about how we might structure the tables and queries to accomplish this design and ended up with a relatively simple workflow:</p>
+<ol>
+<li>a <em>trajectory</em> becomes a list of bounding boxes, one for each run [night] in which we measured the sky. This bounding box roughly corresponds to [(<code>ra0</code>, <code>dec0</code>), (<code>ra1</code>, <code>dec1</code>)], which are the positions of the <span class="caps">TNO</span> at times <code>t0</code> and <code>t1</code> corresponding to the beginning and end of the run.</li>
+<li>we intersect the per-run trajectory bounding boxes with the bounding box for each image during that run to determine which images might have overlapped with the trajectory.</li>
+<li>we compute the position of the <span class="caps">TNO</span> at the acquisition time of each image to determine whether the <span class="caps">TNO</span> was was actually in the image at all and, if so, in which precise pixel it was captured.</li>
+<li>we co-add all the pixels.</li>
+</ol>
+<p>My guess is that we end up keeping steps 1 <span class="amp">&amp;</span> 2 in the database, but 3 <span class="amp">&amp;</span> 4 are performed outside the database in custom code. Since the images themselves represent the majority of the data, we’ll want to read each image into memory at most once while fetching the desired pixels for many trajectories. Obviously we will try many approaches, but my guess is that we will have better control over this performance-critical code outside of the database.</p>
+<p>For more information, see the <span class="caps">KBMOD</span> discussion on GitHub: <a href="https://github.com/uwescience/kbmod/issues/3">https://github.com/uwescience/kbmod/issues/3</a></p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'blog-halper-in';
+        var disqus_identifier = 'posts/2014/11/13/incubator-72/';
+        var disqus_url = 'http://blog.halper.in/posts/2014/11/13/incubator-72/';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//blog-halper-in.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-54311387-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

@@ -23,7 +23,79 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/12/software-and-databases/">Software and&nbsp;databases</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/17/infrastructure-and-meetings/">Infrastructure and&nbsp;meetings</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-11-17T00:00:00">
+                Published: Mon 17 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/shrainik.html">shrainik</a> <a href="http://blog.halper.in/tag/jeremy.html">jeremy</a> <a href="http://blog.halper.in/tag/bhaynes.html">bhaynes</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info --><p>Very little research today.</p>
+<p><a href="http://r.halper.in/coauth/shrainik">Shrainik</a> is planning his quals exam and writeup and we are discussing logistics around that.</p>
+<p><a href="http://r.halper.in/coauth/hyrkas">Jeremy</a> is putting the finishing touches on his accepted <span class="caps">IAAI</span>‘15 Challenge Paper on “Time-Varying Clusters in Large-Scale Flow Cytometry”; the key question here is where to host the test dataset. The obvious choices like FigShare and Dryad are out because they either don’t host big data or don’t support the <span class="caps">IAAI</span> conference. Looks like we’ll throw it in an S3 bucket. Comments??</p>
+<p><a href="http://homes.cs.washington.edu/~bhaynes/">Brandon Haynes</a> of the <span class="caps">UW</span> <span class="caps">DB</span> group is starting to use Myria in his scripts and is uncovering issues in little-used Myria <span class="caps">API</span> calls (both in the MyriaX <span class="caps">API</span> and in the Python library that connects to it). I spent a fair bit of time reviewing and merging his changes.</p>
+<p>I also pushed new versions of <a href="https://github.com/uwescience/raco">Raco</a> and <a href="https://github.com/uwescience/myria-python">myria-python</a> to pypi so they are installable via <code>pip</code>!</p><p>There are <a href="http://blog.halper.in/posts/2014/11/17/infrastructure-and-meetings/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/14/mozilla-escience/" rel="bookmark"
+                           title="Permalink to Mozilla, eScience">Mozilla,&nbsp;eScience</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-14T00:00:00">
+                Published: Fri 14 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/camille.html">camille</a> <a href="http://blog.halper.in/tag/mozilla.html">mozilla</a> <a href="http://blog.halper.in/tag/escience.html">escience</a> </p>
+</footer><!-- /.post-info -->                <p>Last month, I grabbed a beer with <a href="http://kaythaney.com/">Kay Thaney</a> and chatted about various M/S and Data Science and eScience and other activities; it was a great chat. One consequence is that Kay invited <a href="http://www.astro.washington.edu/users/vanderplas/">Jake VanderPlas</a> and I to present about the <a href="http://data.uw.edu/incubator">Data Science Incubator</a> on the <a href="https://etherpad.mozilla.org/sciencelab-calls-nov13-2014">Mozilla Science Lab ...</a></p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/14/mozilla-escience/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/14/mozilla-escience/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/13/incubator-72/" rel="bookmark"
+                           title="Permalink to Incubator 7.2">Incubator&nbsp;7.2</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-13T00:00:00">
+                Published: Thu 13 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info -->                <p>More work with <a href="http://www.astro.washington.edu/users/becker/">Andy Becker</a>  on the <span class="caps">KBMOD</span> database and query design today. We have been running into issues loading all the pixels in the database — O(Millions) of images with O(Millions) of pixels each means 10^12 records, which would take years to load into our Postgres database ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/13/incubator-72/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/13/incubator-72/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/12/software-and-databases/" rel="bookmark"
+                           title="Permalink to Software and databases">Software and&nbsp;databases</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-11-12T00:00:00">
                 Published: Wed 12 November 2014
@@ -34,15 +106,11 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/software.html">software</a> <a href="http://blog.halper.in/tag/databases.html">databases</a> </p>
-</footer><!-- /.post-info --><p>See <a href="/posts/2014/11/12/public-cluster-private-experiments/">today’s longer post on resource-sharing</a> for what I spent most of my day thinking about — the right way to balance use of our Myria clusters.</p>
-<p>This morning, <span class="caps">UW</span>’s software working group met to discuss our goals, recent and future interviews <span class="amp">&amp;</span> hiring, and to organize how we respond to calls for help at the <a href="mailto:info@escience.washington.edu">info@escience.washington.edu</a> mailing list.</p>
-<p>In the afternoon, I met with a <span class="caps">CS</span> grad student from the <a href="http://seclab.cs.washington.edu/images/banner.png"><span class="caps">UW</span> Security Research Lab</a>. He is using PostgreSQL databases to store and analyze an interesting dataset which I cannot post publicly about. We discussed database design, query authoring, using indexes properly, understanding <code>EXPLAIN</code>ed query plans — in short, how to use databases well. Turns out that even smart, Linux-heavy grad students in computer science departments have trouble getting databases to go fast out of the box! More motivation for user-friendly services like we’re trying to put together in <a href="https://sqlshare.escience.washington.edu">SQLShare</a> and <a href="http://myria.cs.washington.edu/">Myria</a>…</p>
-<p>I also put together a GitHub repository with the new <a href="https://github.com/uwescience/branding"><span class="caps">UW</span> eScience Institute logos</a> and ordered some stickers! Drop by in 2 weeks and pick one up!</p><p>There are <a href="http://blog.halper.in/posts/2014/11/12/software-and-databases/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>See <a href="/posts/2014/11/12/public-cluster-private-experiments/">today’s longer post on resource-sharing</a> for what I spent most of my day thinking about — the right way to balance use of our Myria clusters.</p>
+<p>This morning, <span class="caps">UW</span>’s software working group met to discuss our goals, recent and future interviews <span class="amp">&amp;</span> hiring, and to organize how we respond ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/12/software-and-databases/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/12/software-and-databases/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
