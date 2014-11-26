@@ -2,12 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Dan's research blog</title><link href="http://blog.halper.in/" rel="alternate"></link><link href="http://blog.halper.in/feeds/all.atom.xml" rel="self"></link><id>http://blog.halper.in/</id><updated>2014-11-23T00:00:00-08:00</updated><entry><title>Incubator 8.3</title><link href="http://blog.halper.in/posts/2014/11/23/incubator-83/" rel="alternate"></link><updated>2014-11-23T00:00:00-08:00</updated><author><name>Daniel Halperin</name></author><id>tag:blog.halper.in,2014-11-23:posts/2014/11/23/incubator-83/</id><summary type="html">&lt;p&gt;I spent a lot of time this weekend revisiting our &lt;a href="https://github.com/uwescience/kbmod/issues/3"&gt;new database design for &lt;span class="caps"&gt;KBMOD&lt;/span&gt;&lt;/a&gt;, and see &lt;a href="posts/2014/11/13/incubator-72/"&gt;last post&lt;/a&gt;. I had a good excuse to finally learn about the spatial database support in PostgreSQL — &lt;a href="http://postgis.net/"&gt;PostGIS&lt;/a&gt;. Through several iterations and redrafts, I sped some of our test queries up by a factor of about 28x (from 21s to 0.7s).&lt;/p&gt;
 &lt;p&gt;Here were the key insights:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Rather than think of each image, as a 2-D box (&lt;code&gt;ra&lt;/code&gt; and &lt;code&gt;dec&lt;/code&gt;) with an associated timestamp, think of it as a 3-D box (&lt;code&gt;ra&lt;/code&gt;, &lt;code&gt;dec&lt;/code&gt;, &lt;code&gt;time&lt;/code&gt;). This box is still fairly small because each image covers only a few seconds or minutes.&lt;/li&gt;
+&lt;li&gt;Rather than think of each image as a 2-D box (&lt;code&gt;ra&lt;/code&gt; and &lt;code&gt;dec&lt;/code&gt;) with an associated timestamp, think of it as a 3-D box (&lt;code&gt;ra&lt;/code&gt;, &lt;code&gt;dec&lt;/code&gt;, &lt;code&gt;time&lt;/code&gt;). This box is still fairly small because each image covers only a few seconds or minutes.&lt;/li&gt;
 &lt;li&gt;The image 3-D box lives in a single column in a single table, so there are no on-the-fly joins and there is less data read from disk (probably).&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;It turns out that PostGIS cannot do a hybrid index-lookup on space and time at the same time. So the 2-D box + time-range version of the query takes two steps — first, intersect each trajectory spatially with all images, then filter out the examples where the timestamps do not sync up.&lt;/p&gt;
-&lt;p&gt;By treating the image as a 3-D box (and the trajectory as a line in 3-D space), we are able to do both these phases at once.
-* To intersect a line with a box, it suffices to simply check that their bounding boxes overlap. PostGIS is faster if you ask for overlapping bounds rather than run the &lt;code&gt;ST_Intersects&lt;/code&gt; code.&lt;/p&gt;
+&lt;p&gt;By treating the image as a 3-D box (and the trajectory as a line in 3-D space), we are able to do both these phases at once.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To intersect a line with a box, it suffices to simply check that their bounding boxes overlap. PostGIS is faster if you ask for overlapping bounds rather than run the &lt;code&gt;ST_Intersects&lt;/code&gt; code.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I think we’re now close enough with the database that we should put the end-to-end pipeline together:&lt;/p&gt;

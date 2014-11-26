@@ -37,12 +37,14 @@
 </footer><!-- /.post-info --><p>I spent a lot of time this weekend revisiting our <a href="https://github.com/uwescience/kbmod/issues/3">new database design for <span class="caps">KBMOD</span></a>, and see <a href="posts/2014/11/13/incubator-72/">last post</a>. I had a good excuse to finally learn about the spatial database support in PostgreSQL — <a href="http://postgis.net/">PostGIS</a>. Through several iterations and redrafts, I sped some of our test queries up by a factor of about 28x (from 21s to 0.7s).</p>
 <p>Here were the key insights:</p>
 <ul>
-<li>Rather than think of each image, as a 2-D box (<code>ra</code> and <code>dec</code>) with an associated timestamp, think of it as a 3-D box (<code>ra</code>, <code>dec</code>, <code>time</code>). This box is still fairly small because each image covers only a few seconds or minutes.</li>
+<li>Rather than think of each image as a 2-D box (<code>ra</code> and <code>dec</code>) with an associated timestamp, think of it as a 3-D box (<code>ra</code>, <code>dec</code>, <code>time</code>). This box is still fairly small because each image covers only a few seconds or minutes.</li>
 <li>The image 3-D box lives in a single column in a single table, so there are no on-the-fly joins and there is less data read from disk (probably).</li>
 <li>
 <p>It turns out that PostGIS cannot do a hybrid index-lookup on space and time at the same time. So the 2-D box + time-range version of the query takes two steps — first, intersect each trajectory spatially with all images, then filter out the examples where the timestamps do not sync up.</p>
-<p>By treating the image as a 3-D box (and the trajectory as a line in 3-D space), we are able to do both these phases at once.
-* To intersect a line with a box, it suffices to simply check that their bounding boxes overlap. PostGIS is faster if you ask for overlapping bounds rather than run the <code>ST_Intersects</code> code.</p>
+<p>By treating the image as a 3-D box (and the trajectory as a line in 3-D space), we are able to do both these phases at once.</p>
+</li>
+<li>
+<p>To intersect a line with a box, it suffices to simply check that their bounding boxes overlap. PostGIS is faster if you ask for overlapping bounds rather than run the <code>ST_Intersects</code> code.</p>
 </li>
 </ul>
 <p>I think we’re now close enough with the database that we should put the end-to-end pipeline together:</p>
