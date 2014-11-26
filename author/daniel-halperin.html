@@ -23,7 +23,94 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/17/infrastructure-and-meetings/">Infrastructure and&nbsp;meetings</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/23/incubator-83/">Incubator&nbsp;8.3</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-11-23T00:00:00">
+                Published: Sun 23 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info --><p>I spent a lot of time this weekend revisiting our <a href="https://github.com/uwescience/kbmod/issues/3">new database design for <span class="caps">KBMOD</span></a>, and see <a href="posts/2014/11/13/incubator-72/">last post</a>. I had a good excuse to finally learn about the spatial database support in PostgreSQL — <a href="http://postgis.net/">PostGIS</a>. Through several iterations and redrafts, I sped some of our test queries up by a factor of about 28x (from 21s to 0.7s).</p>
+<p>Here were the key insights:</p>
+<ul>
+<li>Rather than think of each image, as a 2-D box (<code>ra</code> and <code>dec</code>) with an associated timestamp, think of it as a 3-D box (<code>ra</code>, <code>dec</code>, <code>time</code>). This box is still fairly small because each image covers only a few seconds or minutes.</li>
+<li>The image 3-D box lives in a single column in a single table, so there are no on-the-fly joins and there is less data read from disk (probably).</li>
+<li>
+<p>It turns out that PostGIS cannot do a hybrid index-lookup on space and time at the same time. So the 2-D box + time-range version of the query takes two steps — first, intersect each trajectory spatially with all images, then filter out the examples where the timestamps do not sync up.</p>
+<p>By treating the image as a 3-D box (and the trajectory as a line in 3-D space), we are able to do both these phases at once.
+* To intersect a line with a box, it suffices to simply check that their bounding boxes overlap. PostGIS is faster if you ask for overlapping bounds rather than run the <code>ST_Intersects</code> code.</p>
+</li>
+</ul>
+<p>I think we’re now close enough with the database that we should put the end-to-end pipeline together:</p>
+<ol>
+<li>pose a set of trajectories</li>
+<li>use the database to find all the images these trajectories may overlap with</li>
+<li>use the database to group these results by image, so that we have a set of (trajectory, image) pairs ordered by image.</li>
+<li>read each intersected image off disk once, pulling out the relevant pixels for all trajectories as a group.</li>
+<li>co-add the pixels and find new trans-Neptunian objects — aka, Pluto’s buddies!</li>
+</ol>
+<p>Looking forward to our next meeting!</p><p>There are <a href="http://blog.halper.in/posts/2014/11/23/incubator-83/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/20/incubator-82/" rel="bookmark"
+                           title="Permalink to Incubator 8.2">Incubator&nbsp;8.2</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-20T00:00:00">
+                Published: Thu 20 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info -->                <p>In the morning, <a href="http://r.halper.in/people/becker">Andy Becker</a> and I met with <a href="http://r.halper.in/people/ajc">Andy Connolly</a>, who was apparently <em>not</em> in London at the time, to give him an update on our <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a> progress this quarter. We talked about the database designs, the scaling lessons, the technology tradeoffs, and the potential of our new approach ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/20/incubator-82/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/20/incubator-82/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/18/incubator-81/" rel="bookmark"
+                           title="Permalink to Incubator 8.1">Incubator&nbsp;8.1</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-18T00:00:00">
+                Published: Tue 18 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info -->                <p>Today in the <a href="http://data.uw.edu/incubator">Data Science Incubator</a>, <a href="http://r.halper.in/people/sclayton">Sophie Clayton</a> wrote queries (and I helped a tiny bit) to co-align every cytogram in the SeaFlow cruise in order to compensate for different settings of the SeaFlow instrument itself. The queries should have taken a few minutes to run, but routinely failed due ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/18/incubator-81/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/18/incubator-81/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/17/infrastructure-and-meetings/" rel="bookmark"
+                           title="Permalink to Infrastructure and meetings">Infrastructure and&nbsp;meetings</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-11-17T00:00:00">
                 Published: Mon 17 November 2014
@@ -34,16 +121,12 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/shrainik.html">shrainik</a> <a href="http://blog.halper.in/tag/jeremy.html">jeremy</a> <a href="http://blog.halper.in/tag/bhaynes.html">bhaynes</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
-</footer><!-- /.post-info --><p>Very little research today.</p>
+</footer><!-- /.post-info -->                <p>Very little research today.</p>
 <p><a href="http://r.halper.in/coauth/shrainik">Shrainik</a> is planning his quals exam and writeup and we are discussing logistics around that.</p>
-<p><a href="http://r.halper.in/coauth/hyrkas">Jeremy</a> is putting the finishing touches on his accepted <span class="caps">IAAI</span>‘15 Challenge Paper on “Time-Varying Clusters in Large-Scale Flow Cytometry”; the key question here is where to host the test dataset. The obvious choices like FigShare and Dryad are out because they either don’t host big data or don’t support the <span class="caps">IAAI</span> conference. Looks like we’ll throw it in an S3 bucket. Comments??</p>
-<p><a href="http://homes.cs.washington.edu/~bhaynes/">Brandon Haynes</a> of the <span class="caps">UW</span> <span class="caps">DB</span> group is starting to use Myria in his scripts and is uncovering issues in little-used Myria <span class="caps">API</span> calls (both in the MyriaX <span class="caps">API</span> and in the Python library that connects to it). I spent a fair bit of time reviewing and merging his changes.</p>
-<p>I also pushed new versions of <a href="https://github.com/uwescience/raco">Raco</a> and <a href="https://github.com/uwescience/myria-python">myria-python</a> to pypi so they are installable via <code>pip</code>!</p><p>There are <a href="http://blog.halper.in/posts/2014/11/17/infrastructure-and-meetings/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p><a href="http://r.halper.in/coauth/hyrkas">Jeremy</a> is putting the finishing touches on his accepted <span class="caps">IAAI</span>‘15 Challenge Paper on “Time-Varying Clusters in Large-Scale Flow Cytometry”; the key question here is where to host the test dataset ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/17/infrastructure-and-meetings/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/17/infrastructure-and-meetings/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

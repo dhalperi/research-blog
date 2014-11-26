@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Incubator 8.3</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                    <li class="active"><a href="http://blog.halper.in/category/daily.html">daily</a></li>
+                    <li><a href="http://blog.halper.in/category/posts.html">posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://blog.halper.in/posts/2014/11/23/incubator-83/" rel="bookmark"
+           title="Permalink to Incubator 8.3">Incubator&nbsp;8.3</a></h1>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="dhalperi">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-23T00:00:00">
+                Published: Sun 23 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info -->      <p>I spent a lot of time this weekend revisiting our <a href="https://github.com/uwescience/kbmod/issues/3">new database design for <span class="caps">KBMOD</span></a>, and see <a href="posts/2014/11/13/incubator-72/">last post</a>. I had a good excuse to finally learn about the spatial database support in PostgreSQL — <a href="http://postgis.net/">PostGIS</a>. Through several iterations and redrafts, I sped some of our test queries up by a factor of about 28x (from 21s to 0.7s).</p>
+<p>Here were the key insights:</p>
+<ul>
+<li>Rather than think of each image, as a 2-D box (<code>ra</code> and <code>dec</code>) with an associated timestamp, think of it as a 3-D box (<code>ra</code>, <code>dec</code>, <code>time</code>). This box is still fairly small because each image covers only a few seconds or minutes.</li>
+<li>The image 3-D box lives in a single column in a single table, so there are no on-the-fly joins and there is less data read from disk (probably).</li>
+<li>
+<p>It turns out that PostGIS cannot do a hybrid index-lookup on space and time at the same time. So the 2-D box + time-range version of the query takes two steps — first, intersect each trajectory spatially with all images, then filter out the examples where the timestamps do not sync up.</p>
+<p>By treating the image as a 3-D box (and the trajectory as a line in 3-D space), we are able to do both these phases at once.
+* To intersect a line with a box, it suffices to simply check that their bounding boxes overlap. PostGIS is faster if you ask for overlapping bounds rather than run the <code>ST_Intersects</code> code.</p>
+</li>
+</ul>
+<p>I think we’re now close enough with the database that we should put the end-to-end pipeline together:</p>
+<ol>
+<li>pose a set of trajectories</li>
+<li>use the database to find all the images these trajectories may overlap with</li>
+<li>use the database to group these results by image, so that we have a set of (trajectory, image) pairs ordered by image.</li>
+<li>read each intersected image off disk once, pulling out the relevant pixels for all trajectories as a group.</li>
+<li>co-add the pixels and find new trans-Neptunian objects — aka, Pluto’s buddies!</li>
+</ol>
+<p>Looking forward to our next meeting!</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'blog-halper-in';
+        var disqus_identifier = 'posts/2014/11/23/incubator-83/';
+        var disqus_url = 'http://blog.halper.in/posts/2014/11/23/incubator-83/';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//blog-halper-in.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-54311387-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

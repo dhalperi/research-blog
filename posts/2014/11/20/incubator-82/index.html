@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Incubator 8.2</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                    <li class="active"><a href="http://blog.halper.in/category/daily.html">daily</a></li>
+                    <li><a href="http://blog.halper.in/category/posts.html">posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://blog.halper.in/posts/2014/11/20/incubator-82/" rel="bookmark"
+           title="Permalink to Incubator 8.2">Incubator&nbsp;8.2</a></h1>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="dhalperi">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-20T00:00:00">
+                Published: Thu 20 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info -->      <p>In the morning, <a href="http://r.halper.in/people/becker">Andy Becker</a> and I met with <a href="http://r.halper.in/people/ajc">Andy Connolly</a>, who was apparently <em>not</em> in London at the time, to give him an update on our <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a> progress this quarter. We talked about the database designs, the scaling lessons, the technology tradeoffs, and the potential of our new approach. Importantly, Andy C gave me an awesome <span class="caps">LSST</span> mug to which I promptly affixed one of our shiny new eScience Institute stickers!</p>
+<p><img alt="LSST Mug, eScience Stickers" src="/images/20141120-LSST-mug.jpg" style="width: 768px; height: auto; max-width: 100%;"/></p>
+<p>In the afternoon, <a href="http://r.halper.in/people/sclayton">Sophie Clayton</a> and I picked up where we left off Tuesday and actually ran more queries. We took a break from computation to go over Sophie’s <a href="http://nbviewer.ipython.org/github/uwescience/seaflow-myria/tree/master/ipython_notebooks/">IPython notebooks</a> in which she downloads results from Myria queries and visualizes them. Among other things, I guilted her into adding lat/lon lines and showing land/ocean, though I think the “guilt” was really her embarrassment at my ability to tell American Samoa from Hawaii event though I knew Seattle was. The plots are really cool — go <a href="http://nbviewer.ipython.org/github/uwescience/seaflow-myria/blob/d7536d0c49545f00d4b5b650cc5dddce9e692d22/ipython_notebooks/myria_map_N0.ipynb">look at them</a>!</p>
+<p>We also discussed the usability of Myria. Sophie pointed out, aptly, that we need better documentation and more expressive language features. I pointed in the direction of some string functions she wanted — to turn a <code>year-day</code> string like <code>"2011_129"</code> into <code>2011</code> (year) and <code>129</code> (Julian day) — which she promptly then <a href="https://github.com/uwescience/myria-web/issues/221">broke on her first use</a>. Luckily, I was able to deploy <a href="https://github.com/uwescience/myria-web/pull/222">a fix</a> in mere minutes.</p>
+<p>If you build software systems that you want real people to use, get a beta user like Sophie as early as you can. 1) She’s smart, mathy, and computer savvy, so she’s an “easy” case — that is, we want to aim for users with lower credentials. 2) She actually has real questions for which she cares about the answers, as opposed to toy problems that one might normally use. 3) The real uses cases expose all kinds of fun systems, implementation, efficiency, and design issues where building a system that “works for Sophie” ends up looking pretty different than most of the standard stuff out there. Fun, productive, educational, and rewarding!</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'blog-halper-in';
+        var disqus_identifier = 'posts/2014/11/20/incubator-82/';
+        var disqus_url = 'http://blog.halper.in/posts/2014/11/20/incubator-82/';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//blog-halper-in.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-54311387-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

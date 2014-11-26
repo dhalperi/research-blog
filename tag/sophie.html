@@ -23,7 +23,57 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/10/28/incubator-51/">Incubator&nbsp;5.1</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/20/incubator-82/">Incubator&nbsp;8.2</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-11-20T00:00:00">
+                Published: Thu 20 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info --><p>In the morning, <a href="http://r.halper.in/people/becker">Andy Becker</a> and I met with <a href="http://r.halper.in/people/ajc">Andy Connolly</a>, who was apparently <em>not</em> in London at the time, to give him an update on our <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a> progress this quarter. We talked about the database designs, the scaling lessons, the technology tradeoffs, and the potential of our new approach. Importantly, Andy C gave me an awesome <span class="caps">LSST</span> mug to which I promptly affixed one of our shiny new eScience Institute stickers!</p>
+<p><img alt="LSST Mug, eScience Stickers" src="/images/20141120-LSST-mug.jpg" style="width: 768px; height: auto; max-width: 100%;"/></p>
+<p>In the afternoon, <a href="http://r.halper.in/people/sclayton">Sophie Clayton</a> and I picked up where we left off Tuesday and actually ran more queries. We took a break from computation to go over Sophie’s <a href="http://nbviewer.ipython.org/github/uwescience/seaflow-myria/tree/master/ipython_notebooks/">IPython notebooks</a> in which she downloads results from Myria queries and visualizes them. Among other things, I guilted her into adding lat/lon lines and showing land/ocean, though I think the “guilt” was really her embarrassment at my ability to tell American Samoa from Hawaii event though I knew Seattle was. The plots are really cool — go <a href="http://nbviewer.ipython.org/github/uwescience/seaflow-myria/blob/d7536d0c49545f00d4b5b650cc5dddce9e692d22/ipython_notebooks/myria_map_N0.ipynb">look at them</a>!</p>
+<p>We also discussed the usability of Myria. Sophie pointed out, aptly, that we need better documentation and more expressive language features. I pointed in the direction of some string functions she wanted — to turn a <code>year-day</code> string like <code>"2011_129"</code> into <code>2011</code> (year) and <code>129</code> (Julian day) — which she promptly then <a href="https://github.com/uwescience/myria-web/issues/221">broke on her first use</a>. Luckily, I was able to deploy <a href="https://github.com/uwescience/myria-web/pull/222">a fix</a> in mere minutes.</p>
+<p>If you build software systems that you want real people to use, get a beta user like Sophie as early as you can. 1) She’s smart, mathy, and computer savvy, so she’s an “easy” case — that is, we want to aim for users with lower credentials. 2) She actually has real questions for which she cares about the answers, as opposed to toy problems that one might normally use. 3) The real uses cases expose all kinds of fun systems, implementation, efficiency, and design issues where building a system that “works for Sophie” ends up looking pretty different than most of the standard stuff out there. Fun, productive, educational, and rewarding!</p><p>There are <a href="http://blog.halper.in/posts/2014/11/20/incubator-82/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/18/incubator-81/" rel="bookmark"
+                           title="Permalink to Incubator 8.1">Incubator&nbsp;8.1</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-18T00:00:00">
+                Published: Tue 18 November 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
+</footer><!-- /.post-info -->                <p>Today in the <a href="http://data.uw.edu/incubator">Data Science Incubator</a>, <a href="http://r.halper.in/people/sclayton">Sophie Clayton</a> wrote queries (and I helped a tiny bit) to co-align every cytogram in the SeaFlow cruise in order to compensate for different settings of the SeaFlow instrument itself. The queries should have taken a few minutes to run, but routinely failed due ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/18/incubator-81/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/18/incubator-81/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/10/28/incubator-51/" rel="bookmark"
+                           title="Permalink to Incubator 5.1">Incubator&nbsp;5.1</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-10-28T00:00:00">
                 Published: Tue 28 October 2014
@@ -34,13 +84,11 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
-</footer><!-- /.post-info --><p>In this incubator this morning, <a href="http://r.halper.in/coauth/sclayton">Sophie</a> and I worked on the IPython Notebook — Myria pipeline. In particular, we pushed some bug fixes to some <span class="caps">SSL</span> bugs (but not all the way) and demonstrated an ability to issue queries in Datalog or MyriaL from Python that get executed on Myria!</p>
-<p>Sophie is now on her own for the next two weeks (I’m out), and hopefully she is armed with the tools to be productive. Andrew and Bill will be able to help her if not.</p><p>There are <a href="http://blog.halper.in/posts/2014/10/28/incubator-51/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>In this incubator this morning, <a href="http://r.halper.in/coauth/sclayton">Sophie</a> and I worked on the IPython Notebook — Myria pipeline. In particular, we pushed some bug fixes to some <span class="caps">SSL</span> bugs (but not all the way) and demonstrated an ability to issue queries in Datalog or MyriaL from Python that get executed on Myria!</p>
+<p>Sophie ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/10/28/incubator-51/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/10/28/incubator-51/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
