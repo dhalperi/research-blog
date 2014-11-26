@@ -1,0 +1,14 @@
+Title: Incubator 8.2
+Date: 2014-11-20
+Category: daily
+Tags: becker, sophie, seaflow, kbmod, myria, incubator
+
+In the morning, [Andy Becker](http://r.halper.in/people/becker) and I met with [Andy Connolly](http://r.halper.in/people/ajc), who was apparently *not* in London at the time, to give him an update on our [KBMOD](https://github.com/uwescience/kbmod) progress this quarter. We talked about the database designs, the scaling lessons, the technology tradeoffs, and the potential of our new approach. Importantly, Andy C gave me an awesome LSST mug to which I promptly affixed one of our shiny new eScience Institute stickers!
+
+![LSST Mug, eScience Stickers](/images/20141120-LSST-mug.jpg)
+
+In the afternoon, [Sophie Clayton](http://r.halper.in/people/sclayton) and I picked up where we left off Tuesday and actually ran more queries. We took a break from computation to go over Sophie's [IPython notebooks](http://nbviewer.ipython.org/github/uwescience/seaflow-myria/tree/master/ipython_notebooks/) in which she downloads results from Myria queries and visualizes them. Among other things, I guilted her into adding lat/lon lines and showing land/ocean, though I think the "guilt" was really her embarrassment at my ability to tell American Samoa from Hawaii event though I knew Seattle was. The plots are really cool -- go [look at them](http://nbviewer.ipython.org/github/uwescience/seaflow-myria/blob/d7536d0c49545f00d4b5b650cc5dddce9e692d22/ipython_notebooks/myria_map_N0.ipynb)!
+
+We also discussed the usability of Myria. Sophie pointed out, aptly, that we need better documentation and more expressive language features. I pointed in the direction of some string functions she wanted -- to turn a `year-day` string like `"2011_129"` into `2011` (year) and `129` (Julian day) -- which she promptly then [broke on her first use](https://github.com/uwescience/myria-web/issues/221). Luckily, I was able to deploy [a fix](https://github.com/uwescience/myria-web/pull/222) in mere minutes.
+
+If you build software systems that you want real people to use, get a beta user like Sophie as early as you can. 1) She's smart, mathy, and computer savvy, so she's an "easy" case -- that is, we want to aim for users with lower credentials. 2) She actually has real questions for which she cares about the answers, as opposed to toy problems that one might normally use. 3) The real uses cases expose all kinds of fun systems, implementation, efficiency, and design issues where building a system that "works for Sophie" ends up looking pretty different than most of the standard stuff out there. Fun, productive, educational, and rewarding!
