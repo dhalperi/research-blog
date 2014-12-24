@@ -23,7 +23,51 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/23/incubator-83/">Incubator&nbsp;8.3</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/12/23/myria-updates/">Myria&nbsp;updates</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-12-23T00:00:00-08:00">
+                Published: Tue 23 December 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/jingjing.html">jingjing</a> <a href="http://blog.halper.in/tag/shumo.html">shumo</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info --><p>Not much happening this week, what with the holidays. I took advantage of the break to handle some long-overdue code reviews and code improvements to Myria.</p>
+<ul>
+<li>
+<p><a href="http://r.halper.in/coauth/jwang">Jingjing Wang</a> has added resource profiling to Myria. We can now measure the resource consumption of each operator during query execution. (Unfortunately, these data are not yet available from the website.) See <a href="https://github.com/uwescience/myria/pull/656">myria#656</a> and <a href="https://github.com/uwescience/myria-web/pull/241">myria-web#241</a>.</p>
+</li>
+<li>
+<p><a href="http://r.halper.in/coauth/domoritz">Dominik Moritz</a> implemented binary copy for Postgres. Database inserts are now substantially faster, especially for floating point or doubles where we could not use the <code>COPY</code> mode before (turns out <code>double</code> → <code>string</code> → <code>double</code> is not an identity-preserving transform. Duh.) See <a href="https://github.com/uwescience/myria/pull/667">myria#667</a> and <a href="https://github.com/uwescience/myria/pull/669">myria#669</a>.</p>
+<p>Dominik also improved the performance of the profiler using the new interface. <a href="https://github.com/uwescience/myria/pull/672">myria#672</a></p>
+</li>
+<li>
+<p><a href="http://r.halper.in/coauth/chushumo">Shumo Chu</a> is getting Myria ready for Apache licensing — we just need to get rid of a few pesky <span class="caps">GPL</span>’ed dependencies. Tentatively, it looks like we have easy switch-in replacements that might also yield a bit faster query execution. <a href="https://github.com/uwescience/myria/pull/658">myria#658</a></p>
+</li>
+<li>
+<p>I upgraded our continuous integration to Travis-<span class="caps">CI</span>’s new Docker-based containers. This lets us re-enable caching and also tests that execute multicore and faster! <a href="https://github.com/uwescience/myria/pull/673">myria#673</a> and <a href="https://github.com/uwescience/myria/pull/674">myria#674</a>.</p>
+</li>
+<li>
+<p>As part of these upgrades I cleaned up and better tested several operators.</p>
+</li>
+</ul>
+<p>In short: nothing much to see here, but Myria will hopefully work faster and better. One of Sophie’s sample queries <a href="https://demo.myria.cs.washington.edu/queries?q=good_files_v4_profiled+%3D+0&amp;max=59793&amp;limit=2">sped up from 12m to 4m</a>, and the 3x improvement is entirely due to the binary inserts!</p>
+<p>We have also begun interviewing candidates for the Myria software engineer position.</p><p>There are <a href="http://blog.halper.in/posts/2014/12/23/myria-updates/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/23/incubator-83/" rel="bookmark"
+                           title="Permalink to Incubator 8.3">Incubator&nbsp;8.3</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-11-23T00:00:00-08:00">
                 Published: Sun 23 November 2014
@@ -34,33 +78,10 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
-</footer><!-- /.post-info --><p>I spent a lot of time this weekend revisiting our <a href="https://github.com/uwescience/kbmod/issues/3">new database design for <span class="caps">KBMOD</span></a>, and see <a href="posts/2014/11/13/incubator-72/">last post</a>. I had a good excuse to finally learn about the spatial database support in PostgreSQL — <a href="http://postgis.net/">PostGIS</a>. Through several iterations and redrafts, I sped some of our test queries up by a factor of about 28x (from 21s to 0.7s).</p>
-<p>Here were the key insights:</p>
-<ul>
-<li>Rather than think of each image as a 2-D box (<code>ra</code> and <code>dec</code>) with an associated timestamp, think of it as a 3-D box (<code>ra</code>, <code>dec</code>, <code>time</code>). This box is still fairly small because each image covers only a few seconds or minutes.</li>
-<li>The image 3-D box lives in a single column in a single table, so there are no on-the-fly joins and there is less data read from disk (probably).</li>
-<li>
-<p>It turns out that PostGIS cannot do a hybrid index-lookup on space and time at the same time. So the 2-D box + time-range version of the query takes two steps — first, intersect each trajectory spatially with all images, then filter out the examples where the timestamps do not sync up.</p>
-<p>By treating the image as a 3-D box (and the trajectory as a line in 3-D space), we are able to do both these phases at once.</p>
-</li>
-<li>
-<p>To intersect a line with a box, it suffices to simply check that their bounding boxes overlap. PostGIS is faster if you ask for overlapping bounds rather than run the <code>ST_Intersects</code> code.</p>
-</li>
-</ul>
-<p>I think we’re now close enough with the database that we should put the end-to-end pipeline together:</p>
-<ol>
-<li>pose a set of trajectories</li>
-<li>use the database to find all the images these trajectories may overlap with</li>
-<li>use the database to group these results by image, so that we have a set of (trajectory, image) pairs ordered by image.</li>
-<li>read each intersected image off disk once, pulling out the relevant pixels for all trajectories as a group.</li>
-<li>co-add the pixels and find new trans-Neptunian objects — aka, Pluto’s buddies!</li>
-</ol>
-<p>Looking forward to our next meeting!</p><p>There are <a href="http://blog.halper.in/posts/2014/11/23/incubator-83/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>I spent a lot of time this weekend revisiting our <a href="https://github.com/uwescience/kbmod/issues/3">new database design for <span class="caps">KBMOD</span></a>, and see <a href="posts/2014/11/13/incubator-72/">last post</a>. I had a good excuse to finally learn about the spatial database support in PostgreSQL — <a href="http://postgis.net/">PostGIS</a>. Through several iterations and redrafts, I sped some of our test queries up by a ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/23/incubator-83/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/23/incubator-83/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

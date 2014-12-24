@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dan's research blog</title><link href="http://blog.halper.in/" rel="alternate"></link><link href="http://blog.halper.in/feeds/shumo.atom.xml" rel="self"></link><id>http://blog.halper.in/</id><updated>2014-12-23T00:00:00-08:00</updated><entry><title>Myria updates</title><link href="http://blog.halper.in/posts/2014/12/23/myria-updates/" rel="alternate"></link><updated>2014-12-23T00:00:00-08:00</updated><author><name>Daniel Halperin</name></author><id>tag:blog.halper.in,2014-12-23:posts/2014/12/23/myria-updates/</id><summary type="html">&lt;p&gt;Not much happening this week, what with the holidays. I took advantage of the break to handle some long-overdue code reviews and code improvements to Myria.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://r.halper.in/coauth/jwang"&gt;Jingjing Wang&lt;/a&gt; has added resource profiling to Myria. We can now measure the resource consumption of each operator during query execution. (Unfortunately, these data are not yet available from the website.) See &lt;a href="https://github.com/uwescience/myria/pull/656"&gt;myria#656&lt;/a&gt; and &lt;a href="https://github.com/uwescience/myria-web/pull/241"&gt;myria-web#241&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://r.halper.in/coauth/domoritz"&gt;Dominik Moritz&lt;/a&gt; implemented binary copy for Postgres. Database inserts are now substantially faster, especially for floating point or doubles where we could not use the &lt;code&gt;COPY&lt;/code&gt; mode before (turns out &lt;code&gt;double&lt;/code&gt; → &lt;code&gt;string&lt;/code&gt; → &lt;code&gt;double&lt;/code&gt; is not an identity-preserving transform. Duh.) See &lt;a href="https://github.com/uwescience/myria/pull/667"&gt;myria#667&lt;/a&gt; and &lt;a href="https://github.com/uwescience/myria/pull/669"&gt;myria#669&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Dominik also improved the performance of the profiler using the new interface. &lt;a href="https://github.com/uwescience/myria/pull/672"&gt;myria#672&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://r.halper.in/coauth/chushumo"&gt;Shumo Chu&lt;/a&gt; is getting Myria ready for Apache licensing — we just need to get rid of a few pesky &lt;span class="caps"&gt;GPL&lt;/span&gt;’ed dependencies. Tentatively, it looks like we have easy switch-in replacements that might also yield a bit faster query execution. &lt;a href="https://github.com/uwescience/myria/pull/658"&gt;myria#658&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I upgraded our continuous integration to Travis-&lt;span class="caps"&gt;CI&lt;/span&gt;’s new Docker-based containers. This lets us re-enable caching and also tests that execute multicore and faster! &lt;a href="https://github.com/uwescience/myria/pull/673"&gt;myria#673&lt;/a&gt; and &lt;a href="https://github.com/uwescience/myria/pull/674"&gt;myria#674&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;As part of these upgrades I cleaned up and better tested several operators.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In short: nothing much to see here, but Myria will hopefully work faster and better. One of Sophie’s sample queries &lt;a href="https://demo.myria.cs.washington.edu/queries?q=good_files_v4_profiled+%3D+0&amp;amp;max=59793&amp;amp;limit=2"&gt;sped up from 12m to 4m&lt;/a&gt;, and the 3x improvement is entirely due to the binary inserts!&lt;/p&gt;
+&lt;p&gt;We have also begun interviewing candidates for the Myria software engineer position.&lt;/p&gt;</summary><category term="dominik"></category><category term="jingjing"></category><category term="shumo"></category><category term="myria"></category></entry></feed>

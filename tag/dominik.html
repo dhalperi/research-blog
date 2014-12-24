@@ -23,7 +23,51 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/10/back-from-vacation/">Back from&nbsp;vacation</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/12/23/myria-updates/">Myria&nbsp;updates</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-12-23T00:00:00-08:00">
+                Published: Tue 23 December 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/jingjing.html">jingjing</a> <a href="http://blog.halper.in/tag/shumo.html">shumo</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info --><p>Not much happening this week, what with the holidays. I took advantage of the break to handle some long-overdue code reviews and code improvements to Myria.</p>
+<ul>
+<li>
+<p><a href="http://r.halper.in/coauth/jwang">Jingjing Wang</a> has added resource profiling to Myria. We can now measure the resource consumption of each operator during query execution. (Unfortunately, these data are not yet available from the website.) See <a href="https://github.com/uwescience/myria/pull/656">myria#656</a> and <a href="https://github.com/uwescience/myria-web/pull/241">myria-web#241</a>.</p>
+</li>
+<li>
+<p><a href="http://r.halper.in/coauth/domoritz">Dominik Moritz</a> implemented binary copy for Postgres. Database inserts are now substantially faster, especially for floating point or doubles where we could not use the <code>COPY</code> mode before (turns out <code>double</code> → <code>string</code> → <code>double</code> is not an identity-preserving transform. Duh.) See <a href="https://github.com/uwescience/myria/pull/667">myria#667</a> and <a href="https://github.com/uwescience/myria/pull/669">myria#669</a>.</p>
+<p>Dominik also improved the performance of the profiler using the new interface. <a href="https://github.com/uwescience/myria/pull/672">myria#672</a></p>
+</li>
+<li>
+<p><a href="http://r.halper.in/coauth/chushumo">Shumo Chu</a> is getting Myria ready for Apache licensing — we just need to get rid of a few pesky <span class="caps">GPL</span>’ed dependencies. Tentatively, it looks like we have easy switch-in replacements that might also yield a bit faster query execution. <a href="https://github.com/uwescience/myria/pull/658">myria#658</a></p>
+</li>
+<li>
+<p>I upgraded our continuous integration to Travis-<span class="caps">CI</span>’s new Docker-based containers. This lets us re-enable caching and also tests that execute multicore and faster! <a href="https://github.com/uwescience/myria/pull/673">myria#673</a> and <a href="https://github.com/uwescience/myria/pull/674">myria#674</a>.</p>
+</li>
+<li>
+<p>As part of these upgrades I cleaned up and better tested several operators.</p>
+</li>
+</ul>
+<p>In short: nothing much to see here, but Myria will hopefully work faster and better. One of Sophie’s sample queries <a href="https://demo.myria.cs.washington.edu/queries?q=good_files_v4_profiled+%3D+0&amp;max=59793&amp;limit=2">sped up from 12m to 4m</a>, and the 3x improvement is entirely due to the binary inserts!</p>
+<p>We have also begun interviewing candidates for the Myria software engineer position.</p><p>There are <a href="http://blog.halper.in/posts/2014/12/23/myria-updates/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/10/back-from-vacation/" rel="bookmark"
+                           title="Permalink to Back from vacation">Back from&nbsp;vacation</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-11-10T00:00:00-08:00">
                 Published: Mon 10 November 2014
@@ -34,17 +78,12 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/brandon.html">brandon</a> <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/jingjing.html">jingjing</a> <a href="http://blog.halper.in/tag/shrainik.html">shrainik</a> <a href="http://blog.halper.in/tag/nyu.html">nyu</a> <a href="http://blog.halper.in/tag/friere.html">friere</a> </p>
-</footer><!-- /.post-info --><p>I was offline for the past two weeks, and it was glorious. I highly recommend it!</p>
+</footer><!-- /.post-info -->                <p>I was offline for the past two weeks, and it was glorious. I highly recommend it!</p>
 <p>Monday is meetings day.</p>
-<p><a href="http://r.halper.in/coauth/shrainik">Shrainik</a>, <a href="http://r.halper.in/coauth/billhowe">Bill</a>, and I discussed our efforts (with <a href="http://r.halper.in/coauth/domoritz">Dominik</a>) to define and quantify the extent of variety in different datasets and understand how data management and integration systems help combat or even reduce this variety. The three of them wrote up our initial thoughts while I was gone, and now we are discussing next steps. As an aside, I am excited to repurpose their code to find all the crazy ways scientists use UDFs in SQLShare.</p>
-<p>We talked with <a href="http://r.halper.in/coauth/bdmyers">Brandon</a> about next steps for the failed submission on his Grappa work. By and large, the reviewers missed the boat — but that is our fault: what it really means is that we need to present the work better through organization, writing, and figures. We also discussed plans for generals and the relative pros and cons of literature review-style generals vs thesis proposal-style. In my opinion, a lit review would be more useful because Brandon’s work is so cross-disciplinary. The main counter-argument is that a thesis proposal might be more directly on the fast-path to graduation, and negotiations continue.</p>
-<p>In the Myria meeting, <a href="http://homes.cs.washington.edu/~jwang/">Jingjing Wang</a> showed off her improvements to launching, shutting down, and restarting Myria. Soon the production Myria demo will be much easier to kick when something goes funky. <a href="https://github.com/lbrendanl">Brendan Lee</a> has been documenting the Myria <span class="caps">REST</span> <span class="caps">API</span> using <a href="http://apiary.io">apiary.io</a> and will be showing that off soon as well.</p>
-<p>In the <span class="caps">UWDB</span> paper seminar, <a href="http://homes.cs.washington.edu/~sviyer/">Srini Iyer</a> and <a href="http://homes.cs.washington.edu/~prasang/">Prasang Upadhyaya</a> presented the MadLINQ paper by Qian, et al. It was fun to see the theorists and the systems folks in the room discuss the relative tradeoffs between elegance and performance of the design. Some of these techniques are relatively straightforward techniques to implement in Myria, i.e. tiled matrix multiply with replication looks an awful lot like HyperCube shuffle with range-partitioning.</p><p>There are <a href="http://blog.halper.in/posts/2014/11/10/back-from-vacation/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p><a href="http://r.halper.in/coauth/shrainik">Shrainik</a>, <a href="http://r.halper.in/coauth/billhowe">Bill</a>, and I discussed our efforts (with <a href="http://r.halper.in/coauth/domoritz">Dominik</a>) to define and quantify the extent of variety in different datasets and understand how data management and integration systems help combat ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/10/back-from-vacation/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/10/back-from-vacation/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

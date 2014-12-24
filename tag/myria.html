@@ -23,7 +23,51 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/11/20/incubator-82/">Incubator&nbsp;8.2</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.halper.in/posts/2014/12/23/myria-updates/">Myria&nbsp;updates</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-12-23T00:00:00-08:00">
+                Published: Tue 23 December 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/dominik.html">dominik</a> <a href="http://blog.halper.in/tag/jingjing.html">jingjing</a> <a href="http://blog.halper.in/tag/shumo.html">shumo</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> </p>
+</footer><!-- /.post-info --><p>Not much happening this week, what with the holidays. I took advantage of the break to handle some long-overdue code reviews and code improvements to Myria.</p>
+<ul>
+<li>
+<p><a href="http://r.halper.in/coauth/jwang">Jingjing Wang</a> has added resource profiling to Myria. We can now measure the resource consumption of each operator during query execution. (Unfortunately, these data are not yet available from the website.) See <a href="https://github.com/uwescience/myria/pull/656">myria#656</a> and <a href="https://github.com/uwescience/myria-web/pull/241">myria-web#241</a>.</p>
+</li>
+<li>
+<p><a href="http://r.halper.in/coauth/domoritz">Dominik Moritz</a> implemented binary copy for Postgres. Database inserts are now substantially faster, especially for floating point or doubles where we could not use the <code>COPY</code> mode before (turns out <code>double</code> → <code>string</code> → <code>double</code> is not an identity-preserving transform. Duh.) See <a href="https://github.com/uwescience/myria/pull/667">myria#667</a> and <a href="https://github.com/uwescience/myria/pull/669">myria#669</a>.</p>
+<p>Dominik also improved the performance of the profiler using the new interface. <a href="https://github.com/uwescience/myria/pull/672">myria#672</a></p>
+</li>
+<li>
+<p><a href="http://r.halper.in/coauth/chushumo">Shumo Chu</a> is getting Myria ready for Apache licensing — we just need to get rid of a few pesky <span class="caps">GPL</span>’ed dependencies. Tentatively, it looks like we have easy switch-in replacements that might also yield a bit faster query execution. <a href="https://github.com/uwescience/myria/pull/658">myria#658</a></p>
+</li>
+<li>
+<p>I upgraded our continuous integration to Travis-<span class="caps">CI</span>’s new Docker-based containers. This lets us re-enable caching and also tests that execute multicore and faster! <a href="https://github.com/uwescience/myria/pull/673">myria#673</a> and <a href="https://github.com/uwescience/myria/pull/674">myria#674</a>.</p>
+</li>
+<li>
+<p>As part of these upgrades I cleaned up and better tested several operators.</p>
+</li>
+</ul>
+<p>In short: nothing much to see here, but Myria will hopefully work faster and better. One of Sophie’s sample queries <a href="https://demo.myria.cs.washington.edu/queries?q=good_files_v4_profiled+%3D+0&amp;max=59793&amp;limit=2">sped up from 12m to 4m</a>, and the 3x improvement is entirely due to the binary inserts!</p>
+<p>We have also begun interviewing candidates for the Myria software engineer position.</p><p>There are <a href="http://blog.halper.in/posts/2014/12/23/myria-updates/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.halper.in/posts/2014/11/20/incubator-82/" rel="bookmark"
+                           title="Permalink to Incubator 8.2">Incubator&nbsp;8.2</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-11-20T00:00:00-08:00">
                 Published: Thu 20 November 2014
@@ -34,16 +78,10 @@
         </address>
 <p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
 <p>tags: <a href="http://blog.halper.in/tag/becker.html">becker</a> <a href="http://blog.halper.in/tag/sophie.html">sophie</a> <a href="http://blog.halper.in/tag/seaflow.html">seaflow</a> <a href="http://blog.halper.in/tag/kbmod.html">kbmod</a> <a href="http://blog.halper.in/tag/myria.html">myria</a> <a href="http://blog.halper.in/tag/incubator.html">incubator</a> </p>
-</footer><!-- /.post-info --><p>In the morning, <a href="http://r.halper.in/people/becker">Andy Becker</a> and I met with <a href="http://r.halper.in/people/ajc">Andy Connolly</a>, who was apparently <em>not</em> in London at the time, to give him an update on our <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a> progress this quarter. We talked about the database designs, the scaling lessons, the technology tradeoffs, and the potential of our new approach. Importantly, Andy C gave me an awesome <span class="caps">LSST</span> mug to which I promptly affixed one of our shiny new eScience Institute stickers!</p>
-<p><img alt="LSST Mug, eScience Stickers" src="/images/20141120-LSST-mug.jpg" style="width: 768px; height: auto; max-width: 100%;"/></p>
-<p>In the afternoon, <a href="http://r.halper.in/people/sclayton">Sophie Clayton</a> and I picked up where we left off Tuesday and actually ran more queries. We took a break from computation to go over Sophie’s <a href="http://nbviewer.ipython.org/github/uwescience/seaflow-myria/tree/master/ipython_notebooks/">IPython notebooks</a> in which she downloads results from Myria queries and visualizes them. Among other things, I guilted her into adding lat/lon lines and showing land/ocean, though I think the “guilt” was really her embarrassment at my ability to tell American Samoa from Hawaii event though I knew Seattle was. The plots are really cool — go <a href="http://nbviewer.ipython.org/github/uwescience/seaflow-myria/blob/d7536d0c49545f00d4b5b650cc5dddce9e692d22/ipython_notebooks/myria_map_N0.ipynb">look at them</a>!</p>
-<p>We also discussed the usability of Myria. Sophie pointed out, aptly, that we need better documentation and more expressive language features. I pointed in the direction of some string functions she wanted — to turn a <code>year-day</code> string like <code>"2011_129"</code> into <code>2011</code> (year) and <code>129</code> (Julian day) — which she promptly then <a href="https://github.com/uwescience/myria-web/issues/221">broke on her first use</a>. Luckily, I was able to deploy <a href="https://github.com/uwescience/myria-web/pull/222">a fix</a> in mere minutes.</p>
-<p>If you build software systems that you want real people to use, get a beta user like Sophie as early as you can. 1) She’s smart, mathy, and computer savvy, so she’s an “easy” case — that is, we want to aim for users with lower credentials. 2) She actually has real questions for which she cares about the answers, as opposed to toy problems that one might normally use. 3) The real uses cases expose all kinds of fun systems, implementation, efficiency, and design issues where building a system that “works for Sophie” ends up looking pretty different than most of the standard stuff out there. Fun, productive, educational, and rewarding!</p><p>There are <a href="http://blog.halper.in/posts/2014/11/20/incubator-82/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>In the morning, <a href="http://r.halper.in/people/becker">Andy Becker</a> and I met with <a href="http://r.halper.in/people/ajc">Andy Connolly</a>, who was apparently <em>not</em> in London at the time, to give him an update on our <a href="https://github.com/uwescience/kbmod"><span class="caps">KBMOD</span></a> progress this quarter. We talked about the database designs, the scaling lessons, the technology tradeoffs, and the potential of our new approach ...</p>
+                <a class="readmore" href="http://blog.halper.in/posts/2014/11/20/incubator-82/">read more</a>
+<p>There are <a href="http://blog.halper.in/posts/2014/11/20/incubator-82/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
