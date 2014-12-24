@@ -39,34 +39,34 @@
 <p>Also, <a href="http://r.halper.in/people/asterios">Asterios</a> invited me to be a co-chair for next year’s <strike>Data Analytics in the Cloud</strike> <strong>Data Analytics at Scale</strong> (<em>DanaC</em>) workshop at <span class="caps">SIGMOD</span> 2015, which would be the fourth incarnation of <a href="http://danac-workshop.dima.tu-berlin.de/">the DanaC workshop</a>. We are working on the proposal, and I hope it is accepted!</p>
 <hr/>
 <p>Here is the core of the first version of Sophie’s richness query (<a href="https://demo.myria.cs.washington.edu/queries?max=32528&amp;limit=1">#32538 on Myria</a>):</p>
-<div class="highlight"><pre><span class="n">def</span> <span class="nf">makebins</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">:</span> <span class="n">x</span><span class="o">//</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">3.5</span><span class="p">)</span><span class="o">/</span><span class="mi">16</span><span class="p">);</span>
+<div class="highlight"><pre>def makebins(x): x//(pow(10,3.5)/16);
 
-<span class="n">AllDataBinned</span> <span class="o">=</span> <span class="n">select</span> <span class="n">Cruise</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">File_Id</span><span class="p">,</span>
-                            <span class="n">makebins</span><span class="p">(</span><span class="n">fsc_small</span><span class="p">)</span> <span class="n">as</span> <span class="n">fsc_bin</span><span class="p">,</span>
-                            <span class="n">makebins</span><span class="p">(</span><span class="n">chl_small</span><span class="p">)</span> <span class="n">as</span> <span class="n">chl_bin</span><span class="p">,</span>
-                            <span class="n">makebins</span><span class="p">(</span><span class="n">pe</span><span class="p">)</span> <span class="n">as</span> <span class="n">pe_bin</span><span class="p">,</span>
-                            <span class="n">count</span><span class="p">(</span><span class="n">fsc_small</span><span class="p">)</span> <span class="n">as</span> <span class="n">num_particles</span>
-                <span class="n">from</span> <span class="n">AllData</span>
-                <span class="n">where</span> <span class="n">pop</span><span class="o">!=</span><span class="s">"beads"</span><span class="p">;</span>
+AllDataBinned = select Cruise, Day, File_Id,
+                            makebins(fsc_small) as fsc_bin,
+                            makebins(chl_small) as chl_bin,
+                            makebins(pe) as pe_bin,
+                            count(fsc_small) as num_particles
+                from AllData
+                where pop!="beads";
 
-<span class="n">Richness</span> <span class="o">=</span> <span class="n">select</span> <span class="n">Cruise</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">File_Id</span><span class="p">,</span>
-                            <span class="n">count</span><span class="p">(</span><span class="n">num_particles</span><span class="p">)</span> <span class="n">as</span> <span class="n">richness</span>
-                            <span class="n">from</span> <span class="n">AllDataBinned</span><span class="p">;</span>
+Richness = select Cruise, Day, File_Id,
+                            count(num_particles) as richness
+                            from AllDataBinned;
 </pre></div>
 <p>Here is the core of the rewrite (<a href="https://demo.myria.cs.washington.edu/queries?max=32532&amp;limit=1">#32532 on Myria</a>):</p>
-<div class="highlight"><pre><span class="n">AllDataBinned</span> <span class="o">=</span> <span class="n">select</span> <span class="n">Cruise</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">File_Id</span><span class="p">,</span>
-                            <span class="n">makebins</span><span class="p">(</span><span class="n">fsc_small</span><span class="p">)</span> <span class="n">AS</span> <span class="n">fsc_bin</span><span class="p">,</span>
-                            <span class="n">makebins</span><span class="p">(</span><span class="n">chl_small</span><span class="p">)</span> <span class="n">AS</span> <span class="n">chl_bin</span><span class="p">,</span>
-                            <span class="n">makebins</span><span class="p">(</span><span class="n">pe</span><span class="p">)</span> <span class="n">AS</span> <span class="n">pe_bin</span>
-                            <span class="o">--</span> <span class="k">do</span> <span class="n">not</span> <span class="n">compute</span> <span class="n">the</span> <span class="n">count</span>
-                <span class="n">from</span> <span class="n">AllData</span>
-                <span class="n">where</span> <span class="n">pop</span><span class="o">!=</span><span class="s">"beads"</span><span class="p">;</span>
+<div class="highlight"><pre>AllDataBinned = select Cruise, Day, File_Id,
+                            makebins(fsc_small) AS fsc_bin,
+                            makebins(chl_small) AS chl_bin,
+                            makebins(pe) AS pe_bin
+                            -- do not compute the count
+                from AllData
+                where pop!="beads";
 
-<span class="n">DistinctBins</span> <span class="o">=</span> <span class="n">distinct</span><span class="p">(</span><span class="n">AllDataBinned</span><span class="p">);</span>
+DistinctBins = distinct(AllDataBinned);
 
-<span class="n">Richness</span> <span class="o">=</span> <span class="n">select</span> <span class="n">Cruise</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">File_Id</span><span class="p">,</span>
-                            <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">AS</span> <span class="n">richness</span>
-                            <span class="n">from</span> <span class="n">DistinctBins</span><span class="p">;</span>
+Richness = select Cruise, Day, File_Id,
+                            count(*) AS richness
+                            from DistinctBins;
 </pre></div>
 <p>Did you see it? It’s easy to miss. The only difference is that we swapped a GroupBy, which computed a Count aggregate that we then ignored, for a Distinct. This optimization (standard in commercial databases) has two huge benefits:</p>
 <ol>
