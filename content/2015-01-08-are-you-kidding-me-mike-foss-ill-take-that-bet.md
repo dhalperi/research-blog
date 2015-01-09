@@ -7,7 +7,7 @@ Category: posts
 > # Why home-field advantage doesn't really matter in the NFL Playoffs
 > During the regular season, home teams win 57% of the time.
 
-Okay, so home season is a HUGE advantage in the regular season. The average team would win 9--10 games if they were all played at home. That's wildcard-level play often and division-champion level play sometimes.
+Okay, so home field is a HUGE advantage in the regular season. The average team would win 9--10 games if they were all played at home. That's wildcard-level play often and division-champion level play sometimes.
 
 > Come playoff time, home teams in the divisional round are 70-26 since 1990. That’s a 16% increase as compared to the regular season home team winning percentage. It’s an advantage, but not necessarily as great as many believe.
 
