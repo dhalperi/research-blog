@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Intro to SQLShare</title>
+        <link rel="stylesheet" href="http://blog.halper.in/theme/css/main.css" />
+        <link href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dan's research blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.halper.in/">Dan's research blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://r.halper.in/work">Homepage</a></li>
+                    <li class="active"><a href="http://blog.halper.in/category/daily.html">daily</a></li>
+                    <li><a href="http://blog.halper.in/category/posts.html">posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://blog.halper.in/posts/2015/01/06/intro-to-sqlshare/" rel="bookmark"
+           title="Permalink to Intro to SQLShare">Intro to&nbsp;SQLShare</a></h1>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="dhalperi">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-01-06T00:00:00-08:00">
+                Published: Tue 06 January 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.halper.in/author/daniel-halperin.html">Daniel Halperin</a>
+        </address>
+<p>In <a href="http://blog.halper.in/category/daily.html">daily</a>. </p>
+<p>tags: <a href="http://blog.halper.in/tag/dacb.html">dacb</a> <a href="http://blog.halper.in/tag/sr320.html">sr320</a> <a href="http://blog.halper.in/tag/talks.html">talks</a> <a href="http://blog.halper.in/tag/sqlshare.html">sqlshare</a> </p>
+</footer><!-- /.post-info -->      <p><a href="http://faculty.washington.edu/dacb/">David Beck</a> asked me somewhat last-minute to open this quarter’s <a href="http://escience.washington.edu/education/IGERT/overview"><span class="caps">IGERT</span></a> <a href="http://escience.washington.edu/community_seminar">Community Seminar</a> with a half-hour discussion of <a href="http://escience.washington.edu/sqlshare">SQLShare</a>. I dusted off the slides from the <a href="https://storify.com/ctitusbrown/what-to-teach-biologists-about-computing">What to teach Biologists about Computing? (w2tbac)‘13</a> meeting. (Slides <a href="http://www.slideshare.net/dhalperi/a-24064276">here</a>.) My goal was to give the room (mostly Ph.D. students and postdocs from science departments on campus) an intuition about what <span class="caps">SQL</span> is and why we think it is useful. Dave, of course, has had great success using <span class="caps">SQL</span> in his work and that is why he asked me to talk.</p>
+<p><a href="http://faculty.washington.edu/sr320/?cat=44">Steven Roberts</a> — Associate Professor in Aquatic <span class="amp">&amp;</span> Fisheries Science — gave the second half of the seminar. Steven is a campus leader in open science, and he and his lab have been some of our best SQLShare users. Steven talked about how his lab uses SQLShare to analyze data, manage data, automate standardized processing, and how it integrates into their standard IPython processing pipelines. Steven also presented his students’ real queries of varying complexity and application, and he discussed how he uses SQLShare when teaching.</p>
+<p>The video of Steven’s talk may be posted soon at the <a href="http://escience.washington.edu/community_seminar">Community Seminar website</a>.</p>
+<p>During Steven’s talk, I observed that both the breadth and depth of the queries he presented far exceeded the queries we directly showed them as examples. This is a sign of success — the students autonomously authored significantly more complex queries!</p>
+<p>Unfortunately, some of the queries had issues: some stylistic issues that might lead to very slow database performance (not a big deal, but inconvenient), and at least one correctness bug (a <code>where a-b &lt; abs(0.2)</code> — the <code>abs</code> needs to be around the <code>a-b</code>). [In this case, the buggy code was actually replaced with a different tool, so it thankfully had no affect on the science.]</p>
+<p>I wonder how we can better add code review or sanity checking into the teaching and adoption process for our data science tools. There are at least two fruitful directions:</p>
+<ol>
+<li>query editor that recognizes snippets that don’t make sense and offers suggestions. We could recommend the query author replace <code>a LIKE 'bc'</code> with <code>a = 'bc'</code> and warn on <code>abs(0.2)</code> because <code>abs</code> applied to a constant can always be simplified.</li>
+<li>code review of important queries. Most of these <span class="caps">SQL</span> queries, when paired with an English statement of intent, can be vetted fairly quickly. But we need to think hard about the time, resources, and process around such a review.</li>
+</ol>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'blog-halper-in';
+        var disqus_identifier = 'posts/2015/01/06/intro-to-sqlshare/';
+        var disqus_url = 'http://blog.halper.in/posts/2015/01/06/intro-to-sqlshare/';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//blog-halper-in.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://jakevdp.github.io/">Pythonic Perambulations</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://blog.halper.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/dhalperi">GitHub</a></li>
+                            <li><a href="https://impactstory.org/DanielHalperin">ImpactStory</a></li>
+                            <li><a href="https://scholar.google.com/citations?user=C6k0OjMAAAAJ">Scholar</a></li>
+                            <li><a href="https://twitter.com/dhalperi">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+DanielHalperin">Google+</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-54311387-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-halper-in';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>
